@@ -1,0 +1,6 @@
+Git skipanir
+"git status" sýnir hvað hefur breyst
+"git pull origin master" nær í það nýjasta úr repo
+"git add -A" bætir við öllu sem hefur breyst
+"git commit -m "text" setur inn comment á þær skrár sem á að pusha
+"git push origin master" ýtir þeim skrám sem búið að að adda inní git repo
