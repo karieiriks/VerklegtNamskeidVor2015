@@ -40,3 +40,46 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.main-content{
+    margin-left: 200px;
+    padding-right: 50px;
+    padding-left:50px;
+}
+
+.profile-name-section{
+    text-align:center;
+}
+
+.sidebar{
+    float:left;
+    position:fixed;
+}
+
+.sidebar, .main-content{
+    margin-top: 20px;
+}
+
+.sidebar, #side-nav{
+    width: 200px;
+}
+
+.sidebar .nav-pills a
+{
+    padding:0px;
+}
+
+#profile-picture-container {
+    height: 270px;
+}
+
+#profile-picture-slot {
+    background-color: #F00;
+    height: 180px;
+    width: 180px;
+    margin: 0px auto;
+}
+
+#side-nav hr {
+    margin: 0px;
+}

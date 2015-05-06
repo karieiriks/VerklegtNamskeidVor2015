@@ -26,5 +26,11 @@ namespace TravelBookApplication.Controllers
 
             return View();
         }
+
+        public ActionResult SearchForUser(FormCollection coll)
+        {
+
+            return View("Index");
+        }
     }
 }
