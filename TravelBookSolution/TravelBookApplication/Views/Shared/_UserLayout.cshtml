@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = "_MainLayout.cshtml";
+}
+
+<div class="sidebar">
+    <nav id="side-nav">
+        <div id="user-picture-container">
+            <div id="user-picture-slot">
+            </div>
+            <div class="user-name-section">
+                <h6>@Html.ActionLink("Sverrir Magnússon", "Index", "Home")</h6>
+            </div>
+        </div>
+        <hr />
+        <ul class="nav nav-pills nav-stacked user-actions">
+            <li>@Html.ActionLink("Friends", "Index", "Home")</li>
+            <li>@Html.ActionLink("Messages", "Index", "Home")</li>
+        </ul>
+        <hr />
+        <div class="group-display">
+        </div>
+    </nav>
+</div>
+
+<div class="main-content">
+    <div class="content">
+        @RenderBody()
+    </div>
+</div>
