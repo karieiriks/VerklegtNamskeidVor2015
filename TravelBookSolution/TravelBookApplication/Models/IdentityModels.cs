@@ -24,20 +24,22 @@ namespace TravelBookApplication.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        DbSet<Album> Albums { get; set; }
-        DbSet<Comment> Comments { get; set; }
-        DbSet<Group> Groups { get; set; }
-        DbSet<Message> Messages { get; set; }
-        DbSet<UserContent> Content { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<UserContent> Content { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public static ApplicationDbContext Create()
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            return new ApplicationDbContext();
         }
+
+  
     }
 }

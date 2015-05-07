@@ -8,7 +8,6 @@ namespace TravelBookApplication.Models.Entities
 {
     public class UserContent
     {
-        [Key]
         public int ID { get; set; }
         public int UserID { get; set; }
         public int? ProfileUserID { get; set; }
