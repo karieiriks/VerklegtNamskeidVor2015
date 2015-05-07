@@ -14,7 +14,7 @@ namespace TravelBookApplication.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return RedirectToAction("UserNewsFeed");
+			return RedirectToAction("NewsFeed");
 		}
 
 		[HttpPost]
