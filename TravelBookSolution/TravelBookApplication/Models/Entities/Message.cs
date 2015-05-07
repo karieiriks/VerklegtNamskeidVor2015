@@ -10,8 +10,6 @@ namespace TravelBookApplication.Models.Entities
     {
         [Key]
         public int ID { get; set; }
-        public int FromUserID { get; set; }
-        public int ToUserID { get; set; }
         public string About { get; set; }
         public string Content { get; set; }
         public DateTime DateSent { get; set; }

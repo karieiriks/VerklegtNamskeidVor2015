@@ -13,7 +13,8 @@ namespace TravelBookApplication.Models.Entities
         public string Name { get; set; }
         public bool IsPublic { get; set; }
         public int MemberCount { get; set; }
-        public virtual ICollection<ApplicationUser> Members { get; set; }
-        public virtual ICollection<ApplicationUser> MembersRequests { get; set; }
+        public virtual List<ApplicationUser> Members { get; set; }
+        public virtual List<ApplicationUser> MembersRequests { get; set; }
+        public virtual List<UserContent> GroupContent { get; set; }
     }
 }
