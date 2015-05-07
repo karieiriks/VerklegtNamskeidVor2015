@@ -80,5 +80,10 @@ namespace TravelBookApplication.Models
 		[Required]
 		[Display(Name = "Last name")]
 		public string LastName { get; set; }
+
+		[Required]
+		[DataType(DataType.Date)]
+		[Display(Name = "Birthday")]
+		public string Birthday { get; set; }
     }
 }
