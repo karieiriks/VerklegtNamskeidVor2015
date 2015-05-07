@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelBookApplication.Models;
+using TravelBookApplication.Models.Entities;
 
 namespace TravelBookApplication.Controllers
 {
@@ -10,7 +12,7 @@ namespace TravelBookApplication.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("UserNewsFeed");
         }
 
         public ActionResult About()
@@ -31,6 +33,30 @@ namespace TravelBookApplication.Controllers
         {
 
             return View("Index");
+        }
+
+        public ActionResult UserNewsfeed()
+        {
+            List<UserContent> content = new List<UserContent>();
+            ApplicationUser user = new ApplicationUser();
+            user.UserName = "Sverrir Magnússon";
+            UserContent contentInstance = new UserContent();
+            contentInstance.User = user;
+            contentInstance.PostConent = "Var að koma frá Róm!";
+
+            UserContent contentInstance1 = new UserContent();
+            contentInstance1.User = user;
+            contentInstance1.StoryName = "12345";
+            contentInstance1.StoryTitle = "Saga frá Róm";
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                content.Add(contentInstance);
+                content.Add(contentInstance1);
+            }
+
+            return View("UserNewsfeed", content);
         }
     }
 }
