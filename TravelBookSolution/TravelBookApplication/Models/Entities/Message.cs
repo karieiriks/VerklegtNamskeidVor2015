@@ -8,7 +8,6 @@ namespace TravelBookApplication.Models.Entities
 {
     public class Message
     {
-        [Key]
         public int ID { get; set; }
         public string About { get; set; }
         public string Content { get; set; }

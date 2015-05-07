@@ -8,7 +8,6 @@ namespace TravelBookApplication.Models.Entities
 {
     public class Group
     {
-        [Key]
         public int ID { get; set; }
         public string Name { get; set; }
         public bool IsPublic { get; set; }

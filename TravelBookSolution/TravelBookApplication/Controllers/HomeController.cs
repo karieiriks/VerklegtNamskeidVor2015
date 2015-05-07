@@ -5,14 +5,32 @@ using System.Web;
 using System.Web.Mvc;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
+using TravelBookApplication.Services;
 
 namespace TravelBookApplication.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+		[HttpGet]
+		public ActionResult Index()
+		{
+			return RedirectToAction("UserNewsFeed");
+		}
+
+		[HttpPost]
+        public ActionResult Index(ApplicationUser p)
         {
-            return RedirectToAction("UserNewsFeed");
+			if(ModelState.IsValid)
+			{
+				ApplicationUser u = new ApplicationUser();
+				UpdateModel(u);
+				// service
+				return RedirectToAction("NewsFeed");
+			}
+			else
+			{
+				return View(p);
+			}
         }
 
         public ActionResult About()
@@ -31,7 +49,6 @@ namespace TravelBookApplication.Controllers
 
         public ActionResult SearchForUser(FormCollection coll)
         {
-
             return View("Index");
         }
 
@@ -41,11 +58,11 @@ namespace TravelBookApplication.Controllers
             ApplicationUser user = new ApplicationUser();
             user.UserName = "Sverrir Magnússon";
             UserContent contentInstance = new UserContent();
-            contentInstance.User = user;
+            contentInstance.Owner = user;
             contentInstance.PostConent = "Var að koma frá Róm!";
 
             UserContent contentInstance1 = new UserContent();
-            contentInstance1.User = user;
+            contentInstance1.Owner = user;
             contentInstance1.StoryName = "12345";
             contentInstance1.StoryTitle = "Saga frá Róm";
 
@@ -58,5 +75,12 @@ namespace TravelBookApplication.Controllers
 
             return View("UserNewsfeed", content);
         }
+
+		public ActionResult NewsFeed()
+		{
+			ViewBag.Message = "Your newsfeed.";
+
+			return View();
+		}
     }
 }
