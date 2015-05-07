@@ -3,14 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelBookApplication.Models;
 
 namespace TravelBookApplication.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+		[HttpGet]
+		public ActionResult Index()
+		{
+			return View();
+		}
+
+		[HttpPost]
+        public ActionResult Index(ApplicationUser p)
         {
-            return View();
+			if(ModelState.IsValid)
+			{
+				ApplicationUser u = new ApplicationUser();
+				UpdateModel(u);
+				// service
+				return RedirectToAction("NewsFeed");
+			}
+			else
+			{
+				return View(p);
+			}
         }
 
         public ActionResult About()
@@ -32,5 +50,12 @@ namespace TravelBookApplication.Controllers
 
             return View("Index");
         }
+
+		public ActionResult NewsFeed()
+		{
+			ViewBag.Message = "Your newsfeed.";
+
+			return View();
+		}
     }
 }

@@ -20,7 +20,6 @@ namespace TravelBookApplication.Models
         public virtual ICollection<UserContent> Content { get; set; }
         public virtual ICollection<ApplicationUser> Friends { get; set; }
         public virtual ICollection<ApplicationUser> FriendRequests { get; set; }
-
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
