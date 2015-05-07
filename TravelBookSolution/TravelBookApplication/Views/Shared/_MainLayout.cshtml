@@ -20,11 +20,14 @@
                 @Html.ActionLink("TravelBook", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("My Wall", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Groups", "About", "Home")</li>
-                    <li>@Html.ActionLink("Messages", "Contact", "Home")</li>
-                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("My Wall", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Groups", "About", "Home")</li>
+                        <li>@Html.ActionLink("Messages", "Contact", "Home")</li>
+                    </ul>
+                }
                 @using (Html.BeginForm("SearchForUser", "Home", FormMethod.Get, new { @class = "navbar-form navbar-left", @role = "search" }))
                 {
                     <div class="form-group">
