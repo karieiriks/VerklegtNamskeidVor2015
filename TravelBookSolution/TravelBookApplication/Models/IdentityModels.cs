@@ -14,12 +14,12 @@ namespace TravelBookApplication.Models
         public string ProfileImageName { get; set; }
         public string Gender { get; set; }
         public  DateTime DateOfBirth { get; set; }
-        public virtual ICollection<Album> UserAlbums { get; set; }
-        public virtual ICollection<Comment> UserComments { get; set; }
-        public virtual ICollection<Group> Groups { get; set; }
-        public virtual ICollection<UserContent> Content { get; set; }
-        public virtual ICollection<ApplicationUser> Friends { get; set; }
-        public virtual ICollection<ApplicationUser> FriendRequests { get; set; }
+        public virtual List<Album> Albums { get; set; }
+        public virtual List<Group> Groups { get; set; }
+        public virtual List<UserContent> Content { get; set; }
+        public virtual List<ApplicationUser> Friends { get; set; }
+        public virtual List<ApplicationUser> FriendRequests { get; set; }
+        public virtual List<Message> Messages { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

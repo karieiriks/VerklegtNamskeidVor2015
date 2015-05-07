@@ -15,5 +15,6 @@ namespace TravelBookApplication.Models.Entities
         public int ImageCount { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+        public virtual List<UserContent> Images { get; set; }
     }
 }

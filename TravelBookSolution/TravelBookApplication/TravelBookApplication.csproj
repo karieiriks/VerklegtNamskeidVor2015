@@ -172,12 +172,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Album.cs" />
-    <Compile Include="Models\Entities\AlbumRelation.cs" />
     <Compile Include="Models\Entities\Comment.cs" />
-    <Compile Include="Models\Entities\FriendRequest.cs" />
-    <Compile Include="Models\Entities\Friendship.cs" />
     <Compile Include="Models\Entities\Group.cs" />
-    <Compile Include="Models\Entities\MembershipRequest.cs" />
     <Compile Include="Models\Entities\Message.cs" />
     <Compile Include="Models\Entities\UserContent.cs" />
     <Compile Include="Models\IdentityModels.cs" />
