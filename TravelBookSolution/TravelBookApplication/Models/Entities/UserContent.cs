@@ -19,7 +19,7 @@ namespace TravelBookApplication.Models.Entities
         public DateTime DateCreated { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
-        public virtual List<Comment> Comments { get; set; }
+        //public virtual List<Comment> Comments { get; set; }
 
         //public virtual ApplicationUser ProfileUser { get; set; }
         //public virtual Group Group { get; set; }

@@ -46,15 +46,15 @@ namespace TravelBookApplication.Models
 
     public class RegisterViewModel
     {
-		[Required]
-		[EmailAddress]
-		[Display(Name = "Email")]
-		public string Email { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string UserName { get; set; }
 
 		[Required]
 		[EmailAddress]
 		[Display(Name = "Confirm email")]
-		[Compare("Email", ErrorMessage = "The email and confirmation email do not match.")]
+		[Compare("UserName", ErrorMessage = "The email and confirmation email do not match.")]
 		public string ConfirmEmail { get; set; }
 
 		[Required]

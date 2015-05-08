@@ -23,6 +23,8 @@ namespace TravelBookApplication.Controllers
         public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
+            var userValidator = UserManager.UserValidator as UserValidator<ApplicationUser>;
+            userValidator.AllowOnlyAlphanumericUserNames = false;
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
@@ -78,8 +80,8 @@ namespace TravelBookApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.FirstName, 
-					DateOfBirth = DateTime.Now, Email = model.Email, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName };
+                var user = new ApplicationUser() { UserName = model.UserName, 
+					DateOfBirth = DateTime.Now, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
