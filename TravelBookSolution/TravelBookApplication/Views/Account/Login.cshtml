@@ -4,14 +4,13 @@
     ViewBag.Title = "NewLogin";
 }
 
-<h2>NewLogin</h2>
+<h2>Login to TravelBook</h2>
 
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>LoginViewModel</h4>
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
@@ -40,12 +39,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Log in" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
