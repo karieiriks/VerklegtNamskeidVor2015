@@ -1,10 +1,5 @@
-﻿@model IEnumerable<TravelBookApplication.Models.Entities.UserContent>
+﻿@model TravelBookApplication.Models.ViewModels.NewsFeedViewModel
 
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
-}
-
-@foreach(var item in Model)
-{
-    Html.RenderPartial("NewsFeedItem", item);
 }

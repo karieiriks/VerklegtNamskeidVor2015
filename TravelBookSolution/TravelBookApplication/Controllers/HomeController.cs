@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
+using TravelBookApplication.Models.ViewModels;
 using TravelBookApplication.Services;
+using Microsoft.AspNet.Identity;
 
 namespace TravelBookApplication.Controllers
 {
@@ -14,6 +16,11 @@ namespace TravelBookApplication.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
+            if(User.Identity.IsAuthenticated == true)
+            {
+                return RedirectToAction("UserNewsfeed", "Home", null);
+            }
+
 			return View();
 		}
 
@@ -54,36 +61,16 @@ namespace TravelBookApplication.Controllers
 
         public ActionResult UserNewsfeed()
         {
-            List<UserContent> content = new List<UserContent>();
-            ApplicationUser user = new ApplicationUser();
-            user.UserName = "Sverrir Magnússon";
-            UserContent contentInstance = new UserContent();
-            contentInstance.Owner = user;
-            contentInstance.PostConent = "Var að koma frá Róm!";
-
-            UserContent contentInstance1 = new UserContent();
-            contentInstance1.Owner = user;
-            contentInstance1.StoryName = "12345";
-            contentInstance1.StoryTitle = "Saga frá Róm";
+            string currentUserId = User.Identity.GetUserId();
+            UserService service = new UserService();
+            NewsFeedViewModel model = new NewsFeedViewModel();
+            model.UserDisplayed = service.GetUserByID(currentUserId);
 
 
-            for (int i = 0; i < 10; i++)
-            {
-                content.Add(contentInstance);
-                content.Add(contentInstance1);
-            }
-
-            return View("UserNewsfeed", content);
+            return View("UserNewsfeed", model);
         }
 
-		/*public ActionResult NewsFeed()
-		{
-			ViewBag.Message = "Your newsfeed.";
-
-			return View();
-		}*/
-
-		[HttpPost]
+		/*[HttpPost]
 		public ActionResult Register(RegisterViewModel r)
 		{
 			if(ModelState.IsValid)
@@ -113,6 +100,6 @@ namespace TravelBookApplication.Controllers
 			{
 				return View(l);
 			}
-		}
+		}*/
     }
 }

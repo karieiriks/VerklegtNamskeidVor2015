@@ -1,4 +1,5 @@
-﻿
+﻿@model TravelBookApplication.Models.ViewModels.BaseViewModel
+
 @{
     Layout = "_MainLayout.cshtml";
 }
@@ -7,9 +8,10 @@
     <nav id="side-nav">
         <div id="user-picture-container">
             <div id="user-picture-slot">
+                <img src= @Url.Content(Model.UserDisplayed.ProfileImageName) alt="profile image" />
             </div>
             <div class="user-name-section">
-                <h6>@Html.ActionLink("Sverrir Magnússon", "UserNewsFeed", "Home")</h6>
+                <h6>@Html.ActionLink(Model.UserDisplayed.FullName, "UserNewsFeed", "Home")</h6>
             </div>
         </div>
         <hr />

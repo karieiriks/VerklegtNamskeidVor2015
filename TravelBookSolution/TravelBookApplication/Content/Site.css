@@ -92,6 +92,11 @@ input[type="checkbox"].input-validation-error {
     margin-right: 14px;
 }
 
+#user-picture-slot > img {
+    width: 100%;
+    position: relative;
+}
+
 .user-name-section > h6 {
     position: relative;
     top: 50%;
