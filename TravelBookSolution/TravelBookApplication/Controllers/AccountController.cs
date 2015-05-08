@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using TravelBookApplication.Models;
+using System.Configuration;
 
 namespace TravelBookApplication.Controllers
 {
@@ -80,8 +81,10 @@ namespace TravelBookApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                string ProfileImageName = ConfigurationManager.AppSettings.Get("DefaultProfileImage");
                 var user = new ApplicationUser() { UserName = model.UserName, 
-					DateOfBirth = DateTime.Now, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName };
+					DateOfBirth = DateTime.Now, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName,
+                 ProfileImageName = ProfileImageName};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
