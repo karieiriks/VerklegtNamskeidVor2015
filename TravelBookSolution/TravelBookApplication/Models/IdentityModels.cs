@@ -15,15 +15,16 @@ namespace TravelBookApplication.Models
         public string ProfileImageName { get; set; }
         public string Gender { get; set; }
         public  DateTime DateOfBirth { get; set; }
+		public string FullName { get; set; }
 
-        public virtual List<ApplicationUser> FriendRequests { get; set; }
+        /*public virtual List<ApplicationUser> FriendRequests { get; set; }
         public virtual List<ApplicationUser> Friends { get; set; }
         public virtual List<Group> Groups { get; set; }
         public virtual List<Group> GroupRequests { get; set; }
+		public virtual List<UserContent> Content { get; set; }*/
 
         /*public virtual List<Album> Albums { get; set; }
         public virtual List<Group> Groups { get; set; }
-        public virtual List<UserContent> Content { get; set; }
         public virtual List<Friendship> Friends { get; set; }
         public virtual List<FriendRequest> FriendRequests { get; set; }
         public virtual List<Message> Messages { get; set; }*/
@@ -31,13 +32,13 @@ namespace TravelBookApplication.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Album> Albums { get; set; }
+        /*public DbSet<Album> Albums { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<UserContent> Content { get; set; }
         //public DbSet<FriendRequest> FriendRequests { get; set; }
-        //public DbSet<Friendship> Friendships { get; set; }
+        //public DbSet<Friendship> Friendships { get; set; }*/
 
         public ApplicationDbContext()
             : base("DefaultConnection")
@@ -53,7 +54,7 @@ namespace TravelBookApplication.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ApplicationUser>()
+            /*modelBuilder.Entity<ApplicationUser>()
                 .HasMany(s => s.FriendRequests)
                 .WithMany()
                 .Map(m =>
@@ -91,7 +92,7 @@ namespace TravelBookApplication.Models
                     m.MapLeftKey("RequestId");
                     m.MapRightKey("GroupId");
                     m.ToTable("GroupMemberRequests");
-                });
+                });*/
         }
     }
 }

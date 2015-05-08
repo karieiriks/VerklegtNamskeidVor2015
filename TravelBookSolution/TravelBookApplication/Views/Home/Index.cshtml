@@ -21,10 +21,11 @@
                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
             </p>
         </div>
-        <a href="#myModal" role="button" class="btn btn-default" data-toggle="modal" data-target="#myRegisterModal">Register</a>
+        @Html.ActionLink("Register", "Register", "Account")
+        <!--<a href="#myModal" role="button" class="btn btn-default" data-toggle="modal" data-target="#myRegisterModal">Register</a>-->
     </div>
 </div>
-
+@*
 <!-- register modal-->
 <div class="modal fade" id="myRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -104,10 +105,10 @@
                         <!--<p>
                             @Html.ActionLink("Register as a new user", "Register")
                         </p>-->
-                        @* Enable this once you have account confirmation enabled for password reset functionality
+                         Enable this once you have account confirmation enabled for password reset functionality
                             <p>
                                 @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                            </p>*@
+                            </p>
                     }
                 </section>
             </div>
@@ -162,10 +163,10 @@
                                 <input type="submit" value="Log in" class="btn btn-default" />
                             </div>
                         </div>
-                        @* Enable this once you have account confirmation enabled for password reset functionality
+                         Enable this once you have account confirmation enabled for password reset functionality
                             <p>
                                 @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                            </p>*@
+                            </p>
                     }
                 </section>
             </div>
@@ -173,6 +174,7 @@
     </div>
 </div>
 <!-- /login modal-->
+*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

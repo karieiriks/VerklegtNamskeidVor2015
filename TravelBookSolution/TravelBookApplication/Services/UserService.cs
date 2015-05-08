@@ -12,7 +12,7 @@ namespace TravelBookApplication.Services
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-        public void AddUser(ApplicationUser User)
+        /*public void AddUser(ApplicationUser User)
         {// Test
             try
             {
@@ -49,6 +49,6 @@ namespace TravelBookApplication.Services
 
             ToUser.FriendRequests.Add(FromUser);
             db.SaveChanges();
-        }
+        }*/
     }
 }

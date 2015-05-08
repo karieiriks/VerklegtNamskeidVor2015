@@ -9,6 +9,7 @@ namespace TravelBookApplication.Models.Entities
     public class UserContent
     {
         public int ID { get; set; }
+		public string OwnerID { get; set; }
         public string PhotoName { get; set; }
         public string StoryName { get; set; }
         public string StoryTitle { get; set; }
