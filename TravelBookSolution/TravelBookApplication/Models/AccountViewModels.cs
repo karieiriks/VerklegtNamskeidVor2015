@@ -82,8 +82,9 @@ namespace TravelBookApplication.Models
 		public string LastName { get; set; }
 		
 		[Required]
+		[MinAge(15, ErrorMessage = "You must be at least 15 years old to register")]
 		[DataType(DataType.Date)]
 		[Display(Name = "Birthday")]
-		public DateTime DateOfBith { get; set; }
+		public DateTime DateOfBirth { get; set; }
     }
 }
