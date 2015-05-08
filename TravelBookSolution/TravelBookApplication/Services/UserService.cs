@@ -22,7 +22,7 @@ namespace TravelBookApplication.Services
             user.ProfileImageName = ConfigurationManager.AppSettings.Get("ImageDirectory") + user.ProfileImageName;
 
             return user;
-        }
+        }/*
         public ApplicationUser GetUserByName(string userName)
         {
             var user = (from users in db.Users
@@ -40,7 +40,7 @@ namespace TravelBookApplication.Services
         public void RemoveUser(Models.ApplicationDbContext user)
         {
 
-        }
+        }*/
 
 
     }

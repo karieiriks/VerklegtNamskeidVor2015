@@ -65,7 +65,7 @@ namespace TravelBookApplication.Controllers
             UserService service = new UserService();
             NewsFeedViewModel model = new NewsFeedViewModel();
             model.UserDisplayed = service.GetUserByID(currentUserId);
-
+                
 
             return View("UserNewsfeed", model);
         }
