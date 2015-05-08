@@ -3,3 +3,6 @@
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+
+@Html.Partial("NewsFeedFormPartial", Model)
+@Html.Partial("NewsFeedPartial", Model.Content)

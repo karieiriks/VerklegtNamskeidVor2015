@@ -12,7 +12,11 @@ namespace TravelBookApplication.Services
     {
          ApplicationDbContext db = new ApplicationDbContext();
 
+<<<<<<< HEAD
          public Group GetGroupByID(string Id)
+=======
+         /*public ApplicationUser GetGroupByID(string Id)
+>>>>>>> e01c73735003f28d17983514b8fa4bf6c1f410fb
          {
             /* var group = (from groups in db.Groups
                           where groups.Id == Id
@@ -35,6 +39,7 @@ namespace TravelBookApplication.Services
          public void UpdateUser(Models.ApplicationDbContext user)
          {
 
+<<<<<<< HEAD
          }
 
 
@@ -42,5 +47,9 @@ namespace TravelBookApplication.Services
          {
              throw new NotImplementedException();
          }*/
+=======
+         }*/
+      
+>>>>>>> e01c73735003f28d17983514b8fa4bf6c1f410fb
     }
 }

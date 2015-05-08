@@ -83,7 +83,7 @@ namespace TravelBookApplication.Controllers
             {
                 string ProfileImageName = ConfigurationManager.AppSettings.Get("DefaultProfileImage");
                 var user = new ApplicationUser() { UserName = model.UserName, 
-					DateOfBirth = DateTime.Now, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName,
+					DateOfBirth = model.DateOfBirth, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName,
                  ProfileImageName = ProfileImageName};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
