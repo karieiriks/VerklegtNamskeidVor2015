@@ -23,5 +23,25 @@ namespace TravelBookApplication.Services
 
             return user;
         }
+        public ApplicationUser GetUserByName(string userName)
+        {
+            var user = (from users in db.Users
+                        where users.UserName == userName
+                        select userName).FirstOrDefault();
+
+            return user;
+        }
+       
+        public void UpdateUser(Models.ApplicationDbContext user)
+        {
+            
+        }
+      
+        public void RemoveUser(Models.ApplicationDbContext user)
+        {
+
+        }
+
+
     }
 }
