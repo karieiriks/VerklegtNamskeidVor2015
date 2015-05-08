@@ -119,3 +119,20 @@ input[type="checkbox"].input-validation-error {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+#post-text-area {
+    width: 100% !important;
+    height: 100% !important;
+    max-width : 100%;
+    max-height: 100%;
+    min-height: 100px;
+}
+
+.news-feed-form {
+    width: 700px;
+    margin: auto;
+}
+
+.news-feed-form hr {
+    margin: 10px;
+}

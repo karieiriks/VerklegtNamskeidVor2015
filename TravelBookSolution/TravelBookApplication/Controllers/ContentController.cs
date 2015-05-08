@@ -8,5 +8,11 @@ namespace TravelBookApplication.Controllers
 {
     public class ContentController : Controller
     {
+        [HttpPost]
+        public ActionResult SubmitPost(FormCollection formCollection, HttpPostedFile image)
+        {
+
+            return Json(new { });
+        }
     }
 }
