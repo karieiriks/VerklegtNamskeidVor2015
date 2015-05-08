@@ -1,4 +1,4 @@
-﻿
+﻿/*
 $(document).ready(function () {
     $("#loginLink").click(function (e) {
         e.preventDefault();
@@ -12,3 +12,4 @@ $(document).ready(function () {
         $("#myRegisterModal").modal("show");
     });
 });
+*/

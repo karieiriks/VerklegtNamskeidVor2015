@@ -14,7 +14,7 @@ namespace TravelBookApplication.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return RedirectToAction("UserNewsFeed");
+			return View();
 		}
 
 		[HttpPost]
@@ -76,11 +76,43 @@ namespace TravelBookApplication.Controllers
             return View("UserNewsfeed", content);
         }
 
-		public ActionResult NewsFeed()
+		/*public ActionResult NewsFeed()
 		{
 			ViewBag.Message = "Your newsfeed.";
 
 			return View();
+		}*/
+
+		[HttpPost]
+		public ActionResult Register(RegisterViewModel r)
+		{
+			if(ModelState.IsValid)
+			{
+				ApplicationUser u = new ApplicationUser();
+				UpdateModel(u);
+				//service
+				return RedirectToAction("UserNewsFeed");
+			}
+			else
+			{
+				return View(r);
+			}
+		}
+
+		[HttpPost]
+		public ActionResult Login(LoginViewModel l)
+		{
+			if(ModelState.IsValid)
+			{
+				ApplicationUser u = new ApplicationUser();
+				UpdateModel(u);
+				//service
+				return RedirectToAction("UserNewsFeed");
+			}
+			else
+			{
+				return View(l);
+			}
 		}
     }
 }

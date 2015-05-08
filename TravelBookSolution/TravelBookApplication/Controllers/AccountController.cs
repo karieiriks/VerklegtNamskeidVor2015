@@ -78,12 +78,14 @@ namespace TravelBookApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email };
+                var user = new ApplicationUser() { UserName = model.FirstName, 
+					DateOfBirth = DateTime.Now, Email = model.Email, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserNewsFeed", "Home");
                 }
                 else
                 {

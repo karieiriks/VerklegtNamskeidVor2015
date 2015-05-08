@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TravelBookApplication.Models
 {
@@ -57,7 +58,6 @@ namespace TravelBookApplication.Models
 		public string ConfirmEmail { get; set; }
 
 		[Required]
-		[EmailAddress]
 		[Display(Name = "Gender")]
 		public string Gender { get; set; }
 
@@ -80,10 +80,10 @@ namespace TravelBookApplication.Models
 		[Required]
 		[Display(Name = "Last name")]
 		public string LastName { get; set; }
-
+		
 		[Required]
 		[DataType(DataType.Date)]
 		[Display(Name = "Birthday")]
-		public string Birthday { get; set; }
+		public DateTime DateOfBith { get; set; }
     }
 }
