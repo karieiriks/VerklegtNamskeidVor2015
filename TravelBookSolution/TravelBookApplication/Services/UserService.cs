@@ -35,6 +35,7 @@ namespace TravelBookApplication.Services
 
             return user;
         }
+        /*
         public ApplicationUser GetUserByName(string userName)
         {
             var user = (from users in db.Users
@@ -51,7 +52,6 @@ namespace TravelBookApplication.Services
       
         public void RemoveUser(Models.ApplicationDbContext user)
         {
-
-        }
+        }*/
     }
 }
