@@ -16,10 +16,11 @@ namespace TravelBookApplication.Models
         public string Gender { get; set; }
         public  DateTime DateOfBirth { get; set; }
 
-        public virtual List<ApplicationUser> FriendRequests { get; set; }
+        /*public virtual List<ApplicationUser> FriendRequests { get; set; }
         public virtual List<ApplicationUser> Friends { get; set; }
         public virtual List<Group> Groups { get; set; }
         public virtual List<Group> GroupRequests { get; set; }
+        public virtual List<UserContent> Content { get; set; }
 
         /*public virtual List<Album> Albums { get; set; }
         public virtual List<Group> Groups { get; set; }
@@ -31,11 +32,11 @@ namespace TravelBookApplication.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Album> Albums { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<UserContent> Content { get; set; }
+        //public DbSet<Album> Albums { get; set; }
+        //public DbSet<Comment> Comments { get; set; }
+        //public DbSet<Group> Groups { get; set; }
+        //public DbSet<Message> Messages { get; set; }
+        //public DbSet<UserContent> Content { get; set; }
         //public DbSet<FriendRequest> FriendRequests { get; set; }
         //public DbSet<Friendship> Friendships { get; set; }
 
@@ -52,7 +53,7 @@ namespace TravelBookApplication.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            /*
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(s => s.FriendRequests)
                 .WithMany()
@@ -69,7 +70,7 @@ namespace TravelBookApplication.Models
                 .Map(m =>
                 {
                     m.MapLeftKey("FriendID");
-                    m.MapRightKey("FirendeeID");
+                    m.MapRightKey("FriendeeID");
                     m.ToTable("Friendships");
                 });
 
@@ -78,8 +79,8 @@ namespace TravelBookApplication.Models
                 .WithMany(s => s.Groups)
                 .Map(m =>
                 {
-                    m.MapLeftKey("memberId");
-                    m.MapRightKey("groupId");
+                    m.MapLeftKey("MemberId");
+                    m.MapRightKey("GroupId");
                     m.ToTable("GroupMemberships");
                 });
 
@@ -92,6 +93,23 @@ namespace TravelBookApplication.Models
                     m.MapRightKey("GroupId");
                     m.ToTable("GroupMemberRequests");
                 });
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(s => s.Content)
+                .WithRequired(s => s.Owner)
+                .HasForeignKey(s => s.OwnerID);
+
+            /*modelBuilder.Entity<UserContent>()
+                .HasRequired(s => s.Owner)
+                .WithMany(s => s.Content);
+
+            modelBuilder.Entity<UserContent>()
+                .HasMany(s => s.Comments);
+
+            modelBuilder.Entity<Comment>()
+                .HasKey(s => s.ID)
+                .HasRequired(s => s.User)
+                .WithRequiredDependent();*/
         }
     }
 }

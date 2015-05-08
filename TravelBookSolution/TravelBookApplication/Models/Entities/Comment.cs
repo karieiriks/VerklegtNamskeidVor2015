@@ -8,7 +8,9 @@ namespace TravelBookApplication.Models.Entities
     public class Comment
     {
         public int ID { get; set; }
+        public string UserID;
         public string Body { get; set; }
+
 
         public virtual ApplicationUser User { get; set; }
         public virtual UserContent Content { get; set; }
