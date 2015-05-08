@@ -11,7 +11,7 @@ namespace TravelBookApplication.Services
     {
          ApplicationDbContext db = new ApplicationDbContext();
 
-         public ApplicationUser GetGroupByID(string Id)
+         /*public ApplicationUser GetGroupByID(string Id)
          {
              var group = (from groups in db.Groups
                           where groups.Id == Id
@@ -33,7 +33,7 @@ namespace TravelBookApplication.Services
          public void UpdateUser(Models.ApplicationDbContext user)
          {
 
-         }
+         }*/
       
     }
 }

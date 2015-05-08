@@ -27,7 +27,7 @@ namespace TravelBookApplication.Services
         {
             var user = (from users in db.Users
                         where users.UserName == userName
-                        select userName).FirstOrDefault();
+                        select users).FirstOrDefault();
 
             return user;
         }
