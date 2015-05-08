@@ -7,9 +7,22 @@ using TravelBookApplication.Models;
 
 namespace TravelBookApplication.Services
 {
-    public class GroupService
+    public class GroupService : BaseService
     {
-         ApplicationDbContext db = new ApplicationDbContext();
+        private static GroupService service = null;
+
+        public static GroupService Service
+        {
+            get
+            {
+                if (service == null)
+                {
+                    service = new GroupService();
+                }
+
+                return service;
+            }
+        }
 
          /*public ApplicationUser GetGroupByID(string Id)
          {

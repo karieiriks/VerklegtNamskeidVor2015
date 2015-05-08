@@ -9,17 +9,29 @@ using TravelBookApplication.Models.Entities;
 
 namespace TravelBookApplication.Services
 {
-    public class UserService
+    public class UserService : BaseService
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private static UserService service = null;
+
+        public static UserService Service
+        {
+            get
+            {
+                if (service == null)
+                {
+                    service = new UserService();
+                }
+
+                return service;
+            }
+        }
 
         public ApplicationUser GetUserByID( string Id )
         {
+            
             var user = (from users in db.Users
                         where users.Id == Id
                         select users).SingleOrDefault();
-
-            user.ProfileImageName = ConfigurationManager.AppSettings.Get("ImageDirectory") + user.ProfileImageName;
 
             return user;
         }
@@ -41,7 +53,5 @@ namespace TravelBookApplication.Services
         {
 
         }
-
-
     }
 }

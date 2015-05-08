@@ -8,14 +8,14 @@ namespace TravelBookApplication.Models.Entities
 {
     public class UserContent
     {
-        public string ID { get; set; }
+        public int Id { get; set; }
 
         // The User who posted
         public string OwnerID { get; set; }
         public string PhotoName { get; set; }
         public string StoryName { get; set; }
         public string StoryTitle { get; set; }
-        public string PostConent { get; set; }
+        public string PostContent { get; set; }
         public DateTime DateCreated { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
