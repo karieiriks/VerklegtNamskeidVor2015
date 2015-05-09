@@ -20,9 +20,9 @@ namespace TravelBookApplication.Controllers
         public ActionResult UserWall(string id)
         {
             NewsFeedViewModel wallContent = new NewsFeedViewModel();
-            wallContent.UserDisplayed = UserService.Service.GetUserByID(User.Identity.GetUserId());
-            wallContent.ProfileDisplayed = UserService.Service.GetUserByID(id);
-            wallContent.Content = UserService.Service.GetNewsFeedItemsForUser(id);
+            wallContent.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
+            wallContent.ProfileDisplayed = UserService.Service.GetUserById(id);
+            wallContent.Content = UserService.Service.GetWallContentForUser(id);
 
             return View(wallContent);
         }

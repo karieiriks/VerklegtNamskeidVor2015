@@ -60,6 +60,10 @@ namespace TravelBookApplication.Models
                 .WithRequired(s => s.Owner)
                 .HasForeignKey(s => s.OwnerID);
 
+            modelBuilder.Entity<UserContent>()
+                .HasOptional(s => s.ProfileUser)
+                .WithOptionalPrincipal();
+
             /*modelBuilder.Entity<ApplicationUser>()
                 .HasMany(s => s.FriendRequests)
                 .WithMany()

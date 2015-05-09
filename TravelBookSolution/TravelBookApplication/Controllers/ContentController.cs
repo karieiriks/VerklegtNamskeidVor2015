@@ -62,15 +62,11 @@ namespace TravelBookApplication.Controllers
             }
 
             string userId = formCollection["user-id"];
-            //newContent.grouId = formCollection["group-id"];
+            string profileId = formCollection["profile-id"];
+            string groupId = formCollection["group-id"];
 
-            UserService userService = new UserService();
-            ContentService contentservice = new ContentService();
-
-            newContent.Owner = userService.GetUserByID(userId);
-            contentservice.AddNewContent(newContent);
-            //newContent.Owner = UserService.Service.GetUserByID(userId);
-            // Get group! Should be implemented later!
+            // Remember to add the group Id to this funtion later!
+            ContentService.Service.AddNewContent(newContent, userId, profileId);
 
             return RedirectToAction("Index", "Home");
         }

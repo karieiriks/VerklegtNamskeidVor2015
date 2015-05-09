@@ -49,7 +49,8 @@ namespace TravelBookApplication.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
             NewsFeedViewModel model = new NewsFeedViewModel();
-            model.UserDisplayed = UserService.Service.GetUserByID(currentUserId);
+            model.UserDisplayed = UserService.Service.GetUserById(currentUserId);
+            model.ProfileDisplayed = model.UserDisplayed;
             model.Content = UserService.Service.GetNewsFeedItemsForUser(currentUserId);
             return View("UserNewsfeed", model);
         }

@@ -26,7 +26,7 @@ namespace TravelBookApplication.Services
             }
         }
 
-        public ApplicationUser GetUserByID( string Id )
+        public ApplicationUser GetUserById( string Id )
         {
             
             var user = (from users in db.Users
@@ -46,6 +46,16 @@ namespace TravelBookApplication.Services
                                  select content).ToList();
             
             return newsfeedItems;
+        }
+
+        public List<UserContent> GetWallContentForUser(string userId)
+        {
+            var wallContent = (from content in db.Content
+                                where content.ProfileID == userId
+                                orderby content.DateCreated descending
+                                select content).ToList();
+
+            return wallContent;
         }
 
         /*

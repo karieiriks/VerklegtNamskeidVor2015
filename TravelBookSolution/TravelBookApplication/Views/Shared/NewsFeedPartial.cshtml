@@ -1,51 +1,67 @@
 ﻿@model TravelBookApplication.Models.ViewModels.NewsFeedViewModel
 
-@foreach( var item in Model.Content)
+@foreach (var item in Model.Content)
 {
-    <div class="news-item-wrapper">
-        <div class="well news-item-display">
+    <div class="well news-item-wrapper">
+        <div class="news-item-display">
             <div class="owner-display-section">
                 <div id="user-picture-slot">
                     <img src=@Url.Content(Model.ImageDirectory + item.Owner.ProfileImageName) alt="profile image" />
                 </div>
                 <div class="user-name-section">
-                    <h4>@Html.ActionLink(item.Owner.FullName, "Index", "Home")</h4>
+                    <h4>@Html.ActionLink(item.Owner.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h4>
                 </div>
             </div>
-            <hr/>
+            <hr />
             <div class="item-display">
-                @if(item.PostContent != null || item.PhotoName != null)
+                @if (item.PostContent != null || item.PhotoName != null)
                 {
-                    if(item.PostContent != null)
+                    if (item.PostContent != null)
                     {
                         <div class="post-text">
                             <p>@item.PostContent</p>
                         </div>
-                
-                        if(item.PhotoName != null)
+
+                        if (item.PhotoName != null)
                         {
-                            <hr/>
-                        } 
+                            <hr />
+                        }
                     }
-                    if(item.PhotoName != null)
+                    if (item.PhotoName != null)
                     {
-                        <img src=@Url.Content(Model.ImageDirectory + item.PhotoName) alt="content image" class="img-thumbnail"/>
-                    }    
+                        <img src=@Url.Content(Model.ImageDirectory + item.PhotoName) alt="content image" class="img-thumbnail" />
+                    }
                 }
-                else if(item.StoryTitle != null && item.StoryName != null)
+                else if (item.StoryTitle != null && item.StoryName != null)
                 {
-                    <p>Rendering Story</p>    
+                    <p>Rendering Story</p>
                 }
-            
+
             </div>
             <div class="user-widget-display">
+                <hr />
+                <div class="left-widgets">
+                    <button class="news-item-widget btn btn-primary">Like</button>
+                    <span class="number-of-likes"></span>
+                </div>
+                <div class="right-widgets">
+                    <a href="#" class="news-item-widget comment-link">Comment</a>
+                    <a href="#" class="news-item-widget share-link">Share</a>
+                </div>
             </div>
         </div>
-        <div class="comment-section">
-            <div class="user-comment-form">
-                <!--User Comment Form
-                    Includes an image of user
-                    and a text area for user input-->
+        <hr />
+        <div class="well comment-section hidden" >
+            <div class="commenter-display-section">
+                <div id="user-picture-slot">
+                    <img src=@Url.Content(Model.ImageDirectory + item.Owner.ProfileImageName) alt="profile image" />
+                </div>
+                <div class="comment-form">
+                    @using (Html.BeginForm())
+                    {
+                        <input type="text" class="form-control form-inline"/>
+                    }
+                </div>
             </div>
             <div class="comment-display">
                 <!--Comment item go here

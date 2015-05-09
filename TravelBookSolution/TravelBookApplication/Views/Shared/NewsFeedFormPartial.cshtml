@@ -4,14 +4,16 @@
     @using (Html.BeginForm("SubmitPost", "Content", FormMethod.Post, new { enctype = "multipart/form-data" } ) )
     {
         @Html.HiddenFor(m => m.UserDisplayed.Id, new { @id = "user-id", @Name = "user-id" }) @*Ids to add to the post when submited*@
+        @Html.HiddenFor(m => m.ProfileDisplayed.Id, new { @id = "profile-id", @Name = "profile-id" })
         @Html.HiddenFor(m => m.GroupDisplayed.ID, new { @id = "group-id", @Name = "group-id" })
+        
         <div class="news-feed-form-header">
             <label for="post-image-input" class="btn btn-primary">Add an Image</label>
             <input type="file" id="post-image-input" name="uploadimage" accept="image/*" style="display:none" />
         </div>
         <hr/>
         <div class="news-feed-form-body">
-            <textarea id="post-text-area" name="post-text-area" placeholder="write what is on your mind..."></textarea>
+            <textarea id="post-text-area" class="form-control" name="post-text-area" placeholder="write what is on your mind..."></textarea>
         </div>
         <hr/>
         <div class="news-feed-form-footer">

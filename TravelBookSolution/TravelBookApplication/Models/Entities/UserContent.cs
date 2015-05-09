@@ -12,6 +12,7 @@ namespace TravelBookApplication.Models.Entities
 
         // The User who posted
         public string OwnerID { get; set; }
+        public string ProfileID { get; set; }
         public string PhotoName { get; set; }
         public string StoryName { get; set; }
         public string StoryTitle { get; set; }
@@ -19,9 +20,8 @@ namespace TravelBookApplication.Models.Entities
         public DateTime DateCreated { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
+        public virtual ApplicationUser ProfileUser { get; set; }
         //public virtual List<Comment> Comments { get; set; }
-
-        //public virtual ApplicationUser ProfileUser { get; set; }
         //public virtual Group Group { get; set; }
         //public virtual Album Album { get; set; }
         //public virtual List<ApplicationUser> Likers { get; set; }

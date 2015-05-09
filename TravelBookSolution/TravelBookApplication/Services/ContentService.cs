@@ -26,9 +26,11 @@ namespace TravelBookApplication.Services
             }
         }
 
-        public void AddNewContent(UserContent content)
+        public void AddNewContent(UserContent content, string ownerId, string profileId)
         {
             content.DateCreated = DateTime.Now;
+            content.OwnerID = ownerId;
+            content.ProfileID = profileId;
             db.Content.Add(content);
             db.SaveChanges();
         }

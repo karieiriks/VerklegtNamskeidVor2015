@@ -16,7 +16,7 @@ namespace TravelBookApplication.Controllers
             string currentUserId = User.Identity.GetUserId();
             UserService service = new UserService();
             NewsFeedViewModel model = new NewsFeedViewModel();
-            model.UserDisplayed = service.GetUserByID(currentUserId);
+            model.UserDisplayed = service.GetUserById(currentUserId);
 
 
             return View("Group", model);
