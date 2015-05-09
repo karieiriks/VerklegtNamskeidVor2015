@@ -42,6 +42,7 @@ namespace TravelBookApplication.Controllers
 			}
         }
 
+<<<<<<< HEAD
         public bool test()
         {
             return false;
@@ -61,6 +62,8 @@ namespace TravelBookApplication.Controllers
             return View();
         }
 
+=======
+>>>>>>> 4d48e37de39c482bc00ecf9480bacc368c98cbda
         public ActionResult SearchForUser(FormCollection coll)
         {
             return View("Index");
@@ -75,37 +78,5 @@ namespace TravelBookApplication.Controllers
             model.Content = UserService.Service.GetNewsFeedItemsForUser(currentUserId);
             return View("UserNewsfeed", model);
         }
-
-		/*[HttpPost]
-		public ActionResult Register(RegisterViewModel r)
-		{
-			if(ModelState.IsValid)
-			{
-				ApplicationUser u = new ApplicationUser();
-				UpdateModel(u);
-				//service
-				return RedirectToAction("UserNewsFeed");
-			}
-			else
-			{
-				return View(r);
-			}
-		}
-
-		[HttpPost]
-		public ActionResult Login(LoginViewModel l)
-		{
-			if(ModelState.IsValid)
-			{
-				ApplicationUser u = new ApplicationUser();
-				UpdateModel(u);
-				//service
-				return RedirectToAction("UserNewsFeed");
-			}
-			else
-			{
-				return View(l);
-			}
-		}*/
     }
 }

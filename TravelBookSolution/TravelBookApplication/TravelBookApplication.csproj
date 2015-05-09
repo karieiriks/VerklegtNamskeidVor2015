@@ -254,6 +254,7 @@
     <Content Include="Views\Shared\Group.cshtml" />
     <Content Include="Views\Shared\NewsFeedPartial.cshtml" />
     <Content Include="Views\Shared\NewsFeedFormPartial.cshtml" />
+    <Content Include="Views\Profile\UserWall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

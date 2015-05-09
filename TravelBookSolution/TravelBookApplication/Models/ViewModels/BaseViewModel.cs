@@ -11,6 +11,7 @@ namespace TravelBookApplication.Models.ViewModels
     {
         private string imageDirectory = ConfigurationManager.AppSettings.Get("ImageDirectory");
         public ApplicationUser UserDisplayed { get; set; }
+        public ApplicationUser ProfileDisplayed { get; set; }
         public Group GroupDisplayed { get; set; }
 
         public string ImageDirectory 
