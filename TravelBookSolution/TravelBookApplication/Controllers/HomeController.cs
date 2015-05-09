@@ -16,6 +16,8 @@ namespace TravelBookApplication.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
+            ViewBag.Message = "YO";
+
             if(User.Identity.IsAuthenticated == true)
             {
                 return RedirectToAction("UserNewsfeed", "Home", null);
@@ -40,6 +42,11 @@ namespace TravelBookApplication.Controllers
 			}
         }
 
+        public bool test()
+        {
+            return false;
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -61,9 +68,10 @@ namespace TravelBookApplication.Controllers
 
         public ActionResult UserNewsfeed()
         {
+            ViewBag.Message = "You shall not PASS!";
             string currentUserId = User.Identity.GetUserId();
             NewsFeedViewModel model = new NewsFeedViewModel();
-            model.UserDisplayed = UserService.Service.GetUserByID(currentUserId);
+            model.UserDisplayed = UserService.Service.GetUserById(currentUserId);
             model.Content = UserService.Service.GetNewsFeedItemsForUser(currentUserId);
             return View("UserNewsfeed", model);
         }

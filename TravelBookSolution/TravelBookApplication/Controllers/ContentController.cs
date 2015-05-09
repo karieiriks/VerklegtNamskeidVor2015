@@ -67,7 +67,7 @@ namespace TravelBookApplication.Controllers
             UserService userService = new UserService();
             ContentService contentservice = new ContentService();
 
-            newContent.Owner = userService.GetUserByID(userId);
+            newContent.Owner = userService.GetUserById(userId);
             contentservice.AddNewContent(newContent);
             //newContent.Owner = UserService.Service.GetUserByID(userId);
             // Get group! Should be implemented later!
