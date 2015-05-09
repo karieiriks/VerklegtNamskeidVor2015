@@ -35,6 +35,19 @@ namespace TravelBookApplication.Services
 
             return user;
         }
+
+        public List<UserContent> GetNewsFeedItemsForUser(string userId)
+        { // This function has to be modified to get all content by friends and the content which friends shared
+            // Currently the function only selects items that the user posted
+
+            var newsfeedItems = (from content in db.Content
+                                 where content.OwnerID == userId
+                                 orderby content.DateCreated descending
+                                 select content).ToList();
+            
+            return newsfeedItems;
+        }
+
         /*
         public ApplicationUser GetUserByName(string userName)
         {

@@ -118,6 +118,7 @@ input[type="checkbox"].input-validation-error {
 .news-item-display {
     padding-top: 5px;
     padding-bottom: 5px;
+    margin: 0px;
 }
 
 #post-text-area {
@@ -128,11 +129,15 @@ input[type="checkbox"].input-validation-error {
     min-height: 100px;
 }
 
-.news-feed-form {
+.news-feed-form, .news-item-wrapper {
     width: 700px;
     margin: auto;
 }
 
 .news-feed-form hr {
     margin: 10px;
+}
+
+.item-display img {
+    width: 100%;
 }
