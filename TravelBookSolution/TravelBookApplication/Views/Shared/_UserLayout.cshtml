@@ -11,7 +11,7 @@
                 <img src= @Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image" />
             </div>
             <div class="user-name-section">
-                <h6>@Html.ActionLink(Model.UserDisplayed.FullName, "UserNewsFeed", "Home")</h6>
+                <h6>@Html.ActionLink(Model.UserDisplayed.FullName, "UserWall", "Profile", new { id = Model.UserDisplayed.Id }, new { })</h6>
             </div>
         </div>
         <hr />

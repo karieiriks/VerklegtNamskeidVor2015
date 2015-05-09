@@ -1,14 +1,17 @@
-﻿@{
-    Layout = "_MainLayout.cshtml";
+﻿@model TravelBookApplication.Models.ViewModels.BaseViewModel
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <div class="sidebar">
     <nav id="side-nav">
         <div id="profile-picture-container">
             <div id="profile-picture-slot">
+                <img src=@Url.Content(Model.ImageDirectory + Model.ProfileDisplayed.ProfileImageName) alt="profile image" />
             </div>
             <div class="profile-name-section">
-                <h4>Sverrir Magnússon</h4>
+                <h4>@Model.ProfileDisplayed.FullName</h4>
                 <button id="profile-button" class="btn btn-primary">Change Profile</button>
             </div>
         </div>

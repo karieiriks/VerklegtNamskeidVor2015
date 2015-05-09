@@ -1,0 +1,8 @@
+﻿@model TravelBookApplication.Models.ViewModels.NewsFeedViewModel
+
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+@Html.Partial("NewsFeedFormPartial", Model)
+@Html.Partial("NewsFeedPartial", Model)

@@ -40,20 +40,6 @@ namespace TravelBookApplication.Controllers
 			}
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         public ActionResult SearchForUser(FormCollection coll)
         {
             return View("Index");
@@ -67,37 +53,5 @@ namespace TravelBookApplication.Controllers
             model.Content = UserService.Service.GetNewsFeedItemsForUser(currentUserId);
             return View("UserNewsfeed", model);
         }
-
-		/*[HttpPost]
-		public ActionResult Register(RegisterViewModel r)
-		{
-			if(ModelState.IsValid)
-			{
-				ApplicationUser u = new ApplicationUser();
-				UpdateModel(u);
-				//service
-				return RedirectToAction("UserNewsFeed");
-			}
-			else
-			{
-				return View(r);
-			}
-		}
-
-		[HttpPost]
-		public ActionResult Login(LoginViewModel l)
-		{
-			if(ModelState.IsValid)
-			{
-				ApplicationUser u = new ApplicationUser();
-				UpdateModel(u);
-				//service
-				return RedirectToAction("UserNewsFeed");
-			}
-			else
-			{
-				return View(l);
-			}
-		}*/
     }
 }

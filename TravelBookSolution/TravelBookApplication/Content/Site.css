@@ -121,6 +121,9 @@ input[type="checkbox"].input-validation-error {
     margin: 0px;
 }
 
+#profile-picture-slot > img {
+    width: 100%;
+}
 #post-text-area {
     width: 100% !important;
     height: 100% !important;
