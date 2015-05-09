@@ -2,53 +2,81 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TravelBookApplication;
+using System.Web.Script.Serialization;
 using TravelBookApplication.Controllers;
+using TravelBookApplication.Models;
+using NUnit;
+using Moq;
+using NCrunch.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TravelBookApplication.Models.ViewModels;
 
 namespace TravelBookApplication.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
-        [TestMethod]
-        public void Index()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
+        //[TestMethod]
+        //public void test()
+        //{
+        //    HomeController controller = new HomeController();
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+        //    var result = controller.test();
 
-            // Assert
-            Assert.IsNotNull(result);
-        }
+        //    Assert.IsFalse(result);
+        //}
 
-        [TestMethod]
-        public void About()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
+        //[TestMethod]
+        //public void Index()
+        //{
+        //    // arrange
+        //    HomeController controller = new HomeController();
 
-            // Act
-            ViewResult result = controller.About() as ViewResult;
+        //    // act
+        //    var result = controller.Index();
 
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
+        //    // assert
+        //    Assert.IsNotNull(result);
+        //}
 
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
+        //[TestMethod]
+        //public void About()
+        //{
+        //    // Arrange
+        //    HomeController controller = new HomeController();
 
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
+        //    // Act
+        //    var result = controller.About();
 
-            // Assert
-            Assert.IsNotNull(result);
-        }
+        //    // Assert
+        //    Assert.IsNotNull(result);
+        //}
+
+        //[TestMethod]
+        //public void Contact()
+        //{
+        //    // Arrange
+        //    HomeController controller = new HomeController();
+
+        //    // Act
+        //    var result = controller.Contact();
+
+        //    // Assert
+        //    Assert.IsNotNull(result);
+        //}
+        //[TestMethod]
+        //public void UserNewsfeed()
+        //{
+        //    // Arrange
+        //    HomeController controller = new HomeController();
+
+        //    // Act
+        //    var result = controller.UserNewsfeed();
+
+        //    // Assert
+        //    Assert.IsNotNull(result);
+        //}
     }
 }

@@ -28,12 +28,17 @@ namespace TravelBookApplication.Services
 
         public ApplicationUser GetUserById( string Id )
         {
-            
+
             var user = (from users in db.Users
                         where users.Id == Id
                         select users).SingleOrDefault();
 
             return user;
+        }
+
+        public int number()
+        {
+            return 1337;
         }
 
         public List<UserContent> GetNewsFeedItemsForUser(string userId)

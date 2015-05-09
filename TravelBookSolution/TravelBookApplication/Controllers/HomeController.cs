@@ -47,6 +47,7 @@ namespace TravelBookApplication.Controllers
 
         public ActionResult UserNewsfeed()
         {
+            ViewBag.Message = "You shall not PASS!";
             string currentUserId = User.Identity.GetUserId();
             NewsFeedViewModel model = new NewsFeedViewModel();
             model.UserDisplayed = UserService.Service.GetUserById(currentUserId);
