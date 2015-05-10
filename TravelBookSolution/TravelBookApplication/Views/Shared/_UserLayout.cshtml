@@ -16,8 +16,8 @@
         </div>
         <hr />
         <ul class="nav nav-pills nav-stacked user-actions">
-            <li>@Html.ActionLink("Friends", "NewsFeed", "Home")</li>
-            <li>@Html.ActionLink("Messages", "NewsFeed", "Home")</li>
+            <li>@Html.ActionLink("Friends", "UserFriends", "Profile", new { id = Model.UserDisplayed.Id }, new { })</li>
+            <li>@Html.ActionLink("Messages", "UserNewsfeed", "Home")</li>
         </ul>
         <hr />
         <div class="group-display">
