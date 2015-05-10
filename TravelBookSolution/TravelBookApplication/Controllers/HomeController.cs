@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using TravelBookApplication.Models;
@@ -33,9 +35,14 @@ namespace TravelBookApplication.Controllers
 			return View();
 		}
 
-        public ActionResult SearchForUser(FormCollection coll)
+		[HttpGet]
+		public ActionResult Search(string value)
         {
-            return View("Index");
+			var users = UserService.Service.GetUsersBySubstring(value);
+			string imgDir = Url.Content(ConfigurationManager.AppSettings.Get("ImageDirectory"));
+			var item = new {imageDirectory = imgDir, searchResults = users};
+			
+			return Json(item, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult UserNewsfeed()

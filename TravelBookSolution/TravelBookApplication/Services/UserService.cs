@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
+using System.Web.Mvc;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
 
@@ -95,6 +97,14 @@ namespace TravelBookApplication.Services
 
             return usersList;
         }
+
+	    public List<ApplicationUser> GetUsersBySubstring(string value)
+	    {
+			var users = (from u in db.Users.Where(a => a.FullName.Contains(value))
+						 select u).ToList();
+
+		    return users;
+	    }
 
         /*
         public ApplicationUser GetUserByName(string userName)
