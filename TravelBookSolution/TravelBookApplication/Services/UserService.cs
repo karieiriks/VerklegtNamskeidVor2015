@@ -66,26 +66,21 @@ namespace TravelBookApplication.Services
             return wallContent;
         }
 
-        public void CreateFriendship(string userOneId, string userTwoId)
-        {
-            ApplicationUser userOne = GetUserById(userOneId), userTwo = GetUserById(userTwoId);
-            userOne.Friends.Add(new Friendship { User = userOne, Friend = userTwo });
-            userTwo.Friends.Add(new Friendship { User = userTwo, Friend = userOne });
-            db.SaveChanges();
-        }
-
         public List<ApplicationUser> GetFriendsForUser( string userId )
         {
             var friends = (from friendships in db.Friendships
                            where friendships.UserId == userId
-                           select friendships.Friend).ToList();
+                           select friendships.Friend).OrderBy(f => f.FullName);
 
-            return friends;
+            return friends.ToList();
         }
 
-        public List<ApplicationUser>GetFriendRequestsForUser( string userId )
+        public List<ApplicationUser> GetFriendRequestsForUser(string userid)
         {
-            return new List<ApplicationUser>();
+            var friendRequests = (from request in db.FriendRequests
+                                 where request.ToUserId == userid
+                                 select request.FromUser).OrderBy(f => f.FullName);
+            return friendRequests.ToList();
         }
 
         public List<ApplicationUser> GetAllUsers()
@@ -94,6 +89,58 @@ namespace TravelBookApplication.Services
                              select users).ToList();
 
             return usersList;
+        }
+
+        public bool IsFriends(string userOneId, string userTwoId )
+        {
+            var friendUser = (from friend in db.Friendships
+                              where friend.UserId == userOneId
+                              && friend.FriendId == userTwoId
+                              select friend.Friend).SingleOrDefault();
+
+            return friendUser == null ? false : true;
+        }
+
+        public bool HasFriendRequestFromUser(string userId, string requesterId)
+        {
+            var request = (from requests in db.FriendRequests
+                           where requests.ToUserId == userId && requests.FromUserId == requesterId
+                           select requests).SingleOrDefault();
+
+            return request == null ? false : true;
+        }
+
+        public void AddFriendRequest(string userId, string fromUserId)
+        {
+
+            FriendRequest request = new FriendRequest { ToUserId = userId, FromUserId = fromUserId };
+            request.FromUser = GetUserById(fromUserId);
+            request.ToUser = GetUserById(userId);
+            db.FriendRequests.Add(request);
+            db.SaveChanges();
+        }
+
+        public void DeleteFriendRequest(string userId, string fromUserId )
+        {
+            var request = (from requests in db.FriendRequests
+                           where requests.ToUserId == userId && requests.FromUserId == fromUserId
+                           select requests).SingleOrDefault();
+
+            if(request != null)
+            {
+                db.FriendRequests.Remove(request);
+                db.SaveChanges();
+            }   
+        }
+
+        public void CreateFriendship(string userOneId, string userTwoId)
+        {
+            ApplicationUser userOne = GetUserById(userOneId), userTwo = GetUserById(userTwoId);
+            userOne.Friends.Add(new Friendship { User = userOne, Friend = userTwo });
+            userTwo.Friends.Add(new Friendship { User = userTwo, Friend = userOne });
+            DeleteFriendRequest(userOneId, userTwoId);
+            DeleteFriendRequest(userTwoId, userOneId);
+            db.SaveChanges();
         }
 
         /*

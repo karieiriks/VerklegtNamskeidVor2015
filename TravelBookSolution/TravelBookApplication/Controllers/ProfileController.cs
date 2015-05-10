@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TravelBookApplication.Models.ViewModels;
 using TravelBookApplication.Services;
 using Microsoft.AspNet.Identity;
+using TravelBookApplication.Models;
 
 namespace TravelBookApplication.Controllers
 {
@@ -35,6 +36,29 @@ namespace TravelBookApplication.Controllers
             model.ProfileDisplayed = UserService.Service.GetUserById(id);
             model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SendFriendRequestToUser(string toUserId)
+        {
+            string fromUserId = User.Identity.GetUserId();
+
+            if (UserService.Service.HasFriendRequestFromUser(toUserId, fromUserId))
+            {
+                return Json(true);
+            }
+
+            UserService.Service.AddFriendRequest(toUserId, fromUserId);
+
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult AcceptFriendRequestFromUser(string fromUserId)
+        {
+            string userId = User.Identity.GetUserId();
+            UserService.Service.CreateFriendship(userId, fromUserId);
+            return Json("");
         }
     }
 }
