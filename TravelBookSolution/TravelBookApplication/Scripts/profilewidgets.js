@@ -21,15 +21,25 @@
 
         $.post("/Profile/AcceptFriendRequestFromUser", { fromUserId: userId }, function (data) {
             $(requestItem).appendTo(".friends-wrapper");
-            //$(requestItem).fadeOut(500, function () { $(this).remove(); });
             $(requestItem).children(".request-widgets").remove();
-            var requestwrapper = $(this).parents(".friendrequests-wrapper");
-            var itemsLeft = $(requestwrapper).children(".friendlisting-item");
-
-            if(itemsLeft.length == 0)
-            {
-                $("<p>You do not have any friend requests</p>").appendTo(requestwrapper);
-            }
         });
+    });
+
+    $(".decline-widget").on("click", function () {
+        var requestItem = $(this).parents(".friendlisting-item");
+        var userId = $(this).parents(".request-widgets").children("input").val();
+
+        $.post("/Profile/DeclineFriendRequestFromUser", { fromUserId: userId }, function (data) {
+            $(requestItem).fadeOut(500, function () { $(this).remove(); });
+        });
+    });
+
+    $(".friendrequests-wrapper").change(function () {
+        var requestitems = $(this).children(".friendlisting-item");
+        alert("Change!");
+        if(requestitems.length <= 0)
+        {
+            $("<p>You have no friend requests</p>").appendTo(this);
+        }
     })
 })

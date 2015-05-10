@@ -58,7 +58,15 @@ namespace TravelBookApplication.Controllers
         {
             string userId = User.Identity.GetUserId();
             UserService.Service.CreateFriendship(userId, fromUserId);
-            return Json("");
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult DeclineFriendRequestFromUser(string fromUserId)
+        {
+            string userId = User.Identity.GetUserId();
+            UserService.Service.DeleteFriendRequest(userId, fromUserId);
+            return Json(true);
         }
 
         public ActionResult UserImages(string id)

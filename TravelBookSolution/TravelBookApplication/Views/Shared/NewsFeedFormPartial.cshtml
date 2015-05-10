@@ -10,6 +10,8 @@
         <div class="news-feed-form-header">
             <label for="post-image-input" class="btn btn-primary">Add an Image</label>
             <input type="file" id="post-image-input" name="uploadimage" accept="image/*" style="display:none" />
+            <span class="file-name-section"></span>
+            <button id="file-clear" type="button" class="close hidden"><span aria-hidden="true">&times;</span></button>
         </div>
         <hr/>
         <div class="news-feed-form-body">
@@ -17,7 +19,55 @@
         </div>
         <hr/>
         <div class="news-feed-form-footer">
-            <button type="submit" class="btn btn-primary">Post</button>
+            <button id="post-button" type="submit" class="btn btn-primary">Post</button>
         </div>   
     }
+</div>
+
+<div class="well news-item-wrapper hidden">
+    <div class="news-item-display">
+        <div class="owner-display-section">
+            <div class="user-picture-slot">
+                <img alt="profile image" />
+            </div>
+            <div class="user-name-section">
+                <h4></h4>
+            </div>
+        </div>
+        <hr />
+        <div class="item-display">
+            <div class="post-text">
+                <p></p>
+            </div>
+            <hr />
+            <img alt="content image" class="img-thumbnail" />
+        </div>
+        <div class="user-widget-display">
+            <hr />
+            <div class="left-widgets">
+                <button class="news-item-widget btn btn-primary">Like</button>
+                <span class="number-of-likes"></span>
+            </div>
+            <div class="right-widgets">
+                <a href="#" class="news-item-widget comment-link">Comment</a>
+                <a href="#" class="news-item-widget share-link">Share</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="well comment-section hidden">
+        <div class="commenter-display-section">
+            <div class="user-picture-slot">
+                <img alt="profile image" />
+            </div>
+            <div class="comment-form">
+                @using (Html.BeginForm())
+                {
+                    <input type="text" class="form-control form-inline" />
+                }
+            </div>
+        </div>
+        <div class="comment-display">
+        </div>
+    </div>
 </div>

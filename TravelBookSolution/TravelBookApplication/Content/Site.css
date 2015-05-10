@@ -217,3 +217,8 @@ input[type="checkbox"].input-validation-error {
     max-height : 200px;
     max-width: 200px;
 }
+
+#file-clear {
+    float: none;
+    margin-left: 20px;
+}
