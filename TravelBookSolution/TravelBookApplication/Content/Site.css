@@ -201,3 +201,14 @@ input[type="checkbox"].input-validation-error {
 .spacer{
     height:200px;
 }
+
+.userimage-item
+{
+    padding:10px;
+    display: inline-block;
+}
+#userimage-slot img
+{
+    max-height : 200px;
+    max-width: 200px;
+}

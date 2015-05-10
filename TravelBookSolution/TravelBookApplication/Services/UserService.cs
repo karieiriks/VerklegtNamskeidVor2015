@@ -96,6 +96,16 @@ namespace TravelBookApplication.Services
             return usersList;
         }
 
+        public List<UserContent> GetUserImages(string userId)
+        {
+            var contentList = (from userContent in db.Content
+                               where userContent.OwnerID == userId
+                               && userContent.PhotoName != null
+                               orderby userContent.DateCreated descending
+                               select userContent).ToList();
+            return contentList; 
+        }
+
         /*
         public ApplicationUser GetUserByName(string userName)
         {

@@ -25,7 +25,7 @@ namespace TravelBookApplication.Controllers
             ApplicationUser userTwo = users[3];
             UserService.Service.CreateFriendship(userOne.Id, userTwo.Id);*/
 
-            if(User.Identity.IsAuthenticated == true)
+            if(User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("UserNewsfeed", "Home", null);
             }
