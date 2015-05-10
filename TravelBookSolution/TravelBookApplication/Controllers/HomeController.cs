@@ -11,11 +11,20 @@ using Microsoft.AspNet.Identity;
 
 namespace TravelBookApplication.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+
 		[HttpGet]
+        [AllowAnonymous]
 		public ActionResult Index()
 		{
+            
+            /*var users = UserService.Service.GetAllUsers();
+            ApplicationUser userOne = users[1];
+            ApplicationUser userTwo = users[3];
+            UserService.Service.CreateFriendship(userOne.Id, userTwo.Id);*/
+
             if(User.Identity.IsAuthenticated == true)
             {
                 return RedirectToAction("UserNewsfeed", "Home", null);
@@ -24,22 +33,6 @@ namespace TravelBookApplication.Controllers
 			return View();
 		}
 
-		[HttpPost]
-        public ActionResult Index(ApplicationUser p)
-        {
-			if(ModelState.IsValid)
-			{
-				ApplicationUser u = new ApplicationUser();
-				UpdateModel(u);
-				// service
-				return RedirectToAction("NewsFeed");
-			}
-			else
-			{
-				return View(p);
-			}
-        }
-
         public ActionResult SearchForUser(FormCollection coll)
         {
             return View("Index");
@@ -47,7 +40,6 @@ namespace TravelBookApplication.Controllers
 
         public ActionResult UserNewsfeed()
         {
-            ViewBag.Message = "You shall not PASS!";
             string currentUserId = User.Identity.GetUserId();
             NewsFeedViewModel model = new NewsFeedViewModel();
             model.UserDisplayed = UserService.Service.GetUserById(currentUserId);

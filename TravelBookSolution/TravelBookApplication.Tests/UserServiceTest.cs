@@ -27,8 +27,8 @@ namespace TravelBookApplication.Tests.Services
             UserService service = new UserService();
 
             //Act
-            
-            var result = service.GetNewsFeedItemsForUser("Male");
+
+            var result = service.GetUserById("048b8c7adde3");
             
             //Assert
             Assert.IsInstanceOfType(result, typeof(ApplicationUser));

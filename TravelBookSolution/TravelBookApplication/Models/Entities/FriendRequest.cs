@@ -9,15 +9,10 @@ namespace TravelBookApplication.Models.Entities
 {
     public class FriendRequest
     {
-        [Key, Column(Order = 1)]
-        public string UserOneID { get; set; }
-        [Key, Column(Order = 2)]
-        public string UserTwoID { get; set; }
+        public string ToUserId { get; set; }
+        public string FromUserId { get; set; }
 
-        [ForeignKey("UserOneID")]
-        public ApplicationUser UserOne { get; set; }
-
-        [ForeignKey("UserTwoID")]
-        public ApplicationUser UserTwo { get; set; }
+        public virtual ApplicationUser ToUser { get; set; }
+        public virtual ApplicationUser FromUser { get; set; }
     }
 }

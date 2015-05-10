@@ -9,14 +9,9 @@ namespace TravelBookApplication.Models.Entities
 {
     public class Friendship
     {
-        [Key, Column(Order = 1)]
-        public string UserOneID { get; set; }
-        [Key, Column(Order = 2)]
-        public string UserTwoID { get; set; }
-
-        [ForeignKey("UserOneID")]
-        public virtual  ApplicationUser UserOne { get; set; }
-        [ForeignKey("UserTwoID")]
-        public virtual ApplicationUser UserTwo { get; set; }
+        public string UserId { get; set; }
+        public string FriendId { get; set; }
+        public virtual  ApplicationUser User { get; set; }
+        public virtual ApplicationUser Friend { get; set; }
     }
 }

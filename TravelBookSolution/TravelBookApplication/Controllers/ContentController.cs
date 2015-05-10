@@ -66,6 +66,7 @@ namespace TravelBookApplication.Controllers
             string groupId = formCollection["group-id"];
 
             // Remember to add the group Id to this funtion later!
+            
             ContentService.Service.AddNewContent(newContent, userId, profileId);
 
             return RedirectToAction("Index", "Home");

@@ -178,3 +178,22 @@ input[type="checkbox"].input-validation-error {
 .comment-link, .left-widgets .btn {
     margin-right: 20px;
 }
+
+.friendlisting-item {
+    padding: 10px;
+    display: inline-block;
+    width: 250px;
+}
+
+.request-widgets {
+    margin: 0px auto;
+    width: 110px;
+}
+
+.accept-widget{
+    float: left;
+}
+
+.decline-widget{
+    float: right;
+}

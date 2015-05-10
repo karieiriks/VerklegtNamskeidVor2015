@@ -36,21 +36,24 @@ namespace TravelBookApplication.Services
             return user;
         }
 
-        public int number()
-        {
-            return 1337;
-        }
-
         public List<UserContent> GetNewsFeedItemsForUser(string userId)
-        { // This function has to be modified to get all content by friends and the content which friends shared
-            // Currently the function only selects items that the user posted
+        {
 
             var newsfeedItems = (from content in db.Content
-                                 where content.OwnerID == userId
-                                 orderby content.DateCreated descending
-                                 select content).ToList();
-            
-            return newsfeedItems;
+                             where content.OwnerID == userId
+                             select content).ToList();
+
+            var friends = GetFriendsForUser(userId);
+
+            foreach( var friend in friends )
+            {
+                foreach(var content in friend.Content)
+                {
+                    newsfeedItems.Add(content);
+                }
+            }
+
+            return newsfeedItems.OrderByDescending(c => c.DateCreated).ToList();
         }
 
         public List<UserContent> GetWallContentForUser(string userId)
@@ -61,6 +64,36 @@ namespace TravelBookApplication.Services
                                 select content).ToList();
 
             return wallContent;
+        }
+
+        public void CreateFriendship(string userOneId, string userTwoId)
+        {
+            ApplicationUser userOne = GetUserById(userOneId), userTwo = GetUserById(userTwoId);
+            userOne.Friends.Add(new Friendship { User = userOne, Friend = userTwo });
+            userTwo.Friends.Add(new Friendship { User = userTwo, Friend = userOne });
+            db.SaveChanges();
+        }
+
+        public List<ApplicationUser> GetFriendsForUser( string userId )
+        {
+            var friends = (from friendships in db.Friendships
+                           where friendships.UserId == userId
+                           select friendships.Friend).ToList();
+
+            return friends;
+        }
+
+        public List<ApplicationUser>GetFriendRequestsForUser( string userId )
+        {
+            return new List<ApplicationUser>();
+        }
+
+        public List<ApplicationUser> GetAllUsers()
+        {
+            var usersList = (from users in db.Users
+                             select users).ToList();
+
+            return usersList;
         }
 
         /*
