@@ -34,5 +34,12 @@ namespace TravelBookApplication.Tests.Services
             Assert.IsInstanceOfType(result, typeof(ApplicationUser));
 
         }
+        [TestMethod]
+        public void GetAllUsersTest()
+        {
+            UserService service = new UserService();
+    
+        }
     }
+    
 }

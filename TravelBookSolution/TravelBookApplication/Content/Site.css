@@ -202,3 +202,18 @@ input[type="checkbox"].input-validation-error {
 .friendrequests-wrapper {
     min-height: 200px;
 }
+
+#my-search-modal .modal-body {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.userimage-item {
+    padding:10px;
+    display: inline-block;
+}
+
+#userimage-slot img {
+    max-height : 200px;
+    max-width: 200px;
+}

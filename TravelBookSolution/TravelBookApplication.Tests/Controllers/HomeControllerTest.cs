@@ -28,18 +28,18 @@ namespace TravelBookApplication.Tests.Controllers
         //    Assert.IsFalse(result);
         //}
 
-        //[TestMethod]
-        //public void Index()
-        //{
-        //    // arrange
-        //    HomeController controller = new HomeController();
+        [TestMethod]
+        public void Index()
+        {
+            // arrange
+            HomeController controller = new HomeController();
 
-        //    // act
-        //    var result = controller.Index();
+            // act
+            var result = controller.Index();
 
-        //    // assert
-        //    Assert.IsNotNull(result);
-        //}
+            // assert
+            Assert.IsInstanceOfType(result, typeof(ActionResult));
+        }
 
         //[TestMethod]
         //public void About()

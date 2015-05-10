@@ -1,0 +1,32 @@
+﻿@model TravelBookApplication.Models.ViewModels.ImageListingViewModel
+
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+@if(Model.UserDisplayed.Id == Model.ProfileDisplayed.Id)
+{
+    <div class="userimages-wrapper">
+        <h2>Images</h2>
+        <hr />
+        @if(Model.Images.Count != 0)
+        {
+            foreach (var images in Model.Images)
+            {
+                <div class="userimage-item">
+                    <div id="userimage-slot">
+                        <img class="img-thumbnail" src=@Url.Content(Model.ImageDirectory + images.PhotoName) alt="user image"/>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="blank-images"></div>
+            <p>You have no images.</p>
+        }
+    </div>
+}
+
+
+    

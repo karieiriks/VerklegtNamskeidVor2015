@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
+using System.Web.Mvc;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
 
@@ -141,6 +143,27 @@ namespace TravelBookApplication.Services
             DeleteFriendRequest(userOneId, userTwoId);
             DeleteFriendRequest(userTwoId, userOneId);
             db.SaveChanges();
+        }
+
+	    public List<ApplicationUser> GetUsersBySubstring(string value)
+	    {
+            var users = (from u in db.Users.Where(a => a.FullName.Contains(value))
+						 select u).ToList();
+            /*(from u in db.Users
+                         where u.FullName.Contains(value)
+                         select u).ToList();*/
+
+		    return users;
+	    }
+
+        public List<UserContent> GetUserImages(string userId)
+        {
+            var contentList = (from userContent in db.Content
+                               where userContent.OwnerID == userId
+                               && userContent.PhotoName != null
+                               orderby userContent.DateCreated descending
+                               select userContent).ToList();
+            return contentList; 
         }
 
         /*
