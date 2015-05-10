@@ -206,3 +206,13 @@ input[type="checkbox"].input-validation-error {
     max-height: 400px;
     overflow: auto;
 }
+
+.userimage-item {
+    padding:10px;
+    display: inline-block;
+}
+
+#userimage-slot img {
+    max-height : 200px;
+    max-width: 200px;
+}

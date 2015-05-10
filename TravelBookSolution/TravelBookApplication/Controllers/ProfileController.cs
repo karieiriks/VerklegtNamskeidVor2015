@@ -36,5 +36,13 @@ namespace TravelBookApplication.Controllers
             model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
             return View(model);
         }
+        public ActionResult UserImages(string id)
+        {
+            ImageListingViewModel model = new ImageListingViewModel();
+            model.Images = UserService.Service.GetUserImages(id);
+            model.ProfileDisplayed = UserService.Service.GetUserById(id);
+            model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
+            return View(model);
+        }
     }
 }
