@@ -4,5 +4,9 @@
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
-@Html.Partial("NewsFeedFormPartial", Model)
+@if(TravelBookApplication.Services.UserService.Service.IsFriends(Model.UserDisplayed.Id, Model.ProfileDisplayed.Id)
+    || Model.ProfileDisplayed.Id == Model.UserDisplayed.Id)
+{
+    @Html.Partial("NewsFeedFormPartial", Model)   
+}
 @Html.Partial("NewsFeedPartial", Model)

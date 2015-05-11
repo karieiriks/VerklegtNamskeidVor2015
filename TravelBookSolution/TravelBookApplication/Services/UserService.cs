@@ -4,8 +4,11 @@ using System.Configuration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
+using System.Web.Mvc;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
+using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Services
 {
@@ -36,6 +39,10 @@ namespace TravelBookApplication.Services
             return user;
         }
 
+        public int number()
+        {
+            return 1337;
+        }
         public List<UserContent> GetNewsFeedItemsForUser(string userId)
         {
 
@@ -66,26 +73,21 @@ namespace TravelBookApplication.Services
             return wallContent;
         }
 
-        public void CreateFriendship(string userOneId, string userTwoId)
-        {
-            ApplicationUser userOne = GetUserById(userOneId), userTwo = GetUserById(userTwoId);
-            userOne.Friends.Add(new Friendship { User = userOne, Friend = userTwo });
-            userTwo.Friends.Add(new Friendship { User = userTwo, Friend = userOne });
-            db.SaveChanges();
-        }
-
         public List<ApplicationUser> GetFriendsForUser( string userId )
         {
             var friends = (from friendships in db.Friendships
                            where friendships.UserId == userId
-                           select friendships.Friend).ToList();
+                           select friendships.Friend).OrderBy(f => f.FullName);
 
-            return friends;
+            return friends.ToList();
         }
 
-        public List<ApplicationUser>GetFriendRequestsForUser( string userId )
+        public List<ApplicationUser> GetFriendRequestsForUser(string userid)
         {
-            return new List<ApplicationUser>();
+            var friendRequests = (from request in db.FriendRequests
+                                 where request.ToUserId == userid
+                                 select request.FromUser).OrderBy(f => f.FullName);
+            return friendRequests.ToList();
         }
 
         public List<ApplicationUser> GetAllUsers()
@@ -95,6 +97,69 @@ namespace TravelBookApplication.Services
 
             return usersList;
         }
+
+        public bool IsFriends(string userOneId, string userTwoId )
+        {
+            var friendUser = (from friend in db.Friendships
+                              where friend.UserId == userOneId
+                              && friend.FriendId == userTwoId
+                              select friend.Friend).SingleOrDefault();
+
+            return friendUser == null ? false : true;
+        }
+
+        public bool HasFriendRequestFromUser(string userId, string requesterId)
+        {
+            var request = (from requests in db.FriendRequests
+                           where requests.ToUserId == userId && requests.FromUserId == requesterId
+                           select requests).SingleOrDefault();
+
+            return request == null ? false : true;
+        }
+
+        public void AddFriendRequest(string userId, string fromUserId)
+        {
+
+            FriendRequest request = new FriendRequest { ToUserId = userId, FromUserId = fromUserId };
+            request.FromUser = GetUserById(fromUserId);
+            request.ToUser = GetUserById(userId);
+            db.FriendRequests.Add(request);
+            db.SaveChanges();
+        }
+
+        public void DeleteFriendRequest(string userId, string fromUserId )
+        {
+            var request = (from requests in db.FriendRequests
+                           where requests.ToUserId == userId && requests.FromUserId == fromUserId
+                           select requests).SingleOrDefault();
+
+            if(request != null)
+            {
+                db.FriendRequests.Remove(request);
+                db.SaveChanges();
+            }   
+        }
+
+        public void CreateFriendship(string userOneId, string userTwoId)
+        {
+            ApplicationUser userOne = GetUserById(userOneId), userTwo = GetUserById(userTwoId);
+            userOne.Friends.Add(new Friendship { User = userOne, Friend = userTwo });
+            userTwo.Friends.Add(new Friendship { User = userTwo, Friend = userOne });
+            DeleteFriendRequest(userOneId, userTwoId);
+            DeleteFriendRequest(userTwoId, userOneId);
+            db.SaveChanges();
+        }
+
+	    public List<ApplicationUser> GetUsersBySubstring(string value)
+	    {
+            var users = (from u in db.Users.Where(a => a.FullName.Contains(value))
+						 select u).ToList();
+            /*(from u in db.Users
+                         where u.FullName.Contains(value)
+                         select u).ToList();*/
+
+		    return users;
+	    }
 
         public List<UserContent> GetUserImages(string userId)
         {
@@ -124,5 +189,19 @@ namespace TravelBookApplication.Services
         public void RemoveUser(Models.ApplicationDbContext user)
         {
         }*/
+
+        public static Album GetAlbumById(int id, IAlbumRepository db)
+        {
+            return (from x in db.Albums
+                where x.ID == id
+                select x).SingleOrDefault();
+            
+        }
+
+        public static Album AddAlbum(Album album, IAlbumRepository db)
+        {
+            db.Save(album);
+            return album;
+        }
     }
 }

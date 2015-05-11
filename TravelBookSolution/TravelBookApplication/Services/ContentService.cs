@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
+using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Services
 {
@@ -33,6 +34,13 @@ namespace TravelBookApplication.Services
             content.ProfileID = profileId;
             db.Content.Add(content);
             db.SaveChanges();
+        }
+        public static Comment GetAlbumById(int id, ICommentRepository db)
+        {
+            return (from x in db.Comments
+                    where x.ID == id
+                    select x).SingleOrDefault();
+
         }
     }
 }

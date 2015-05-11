@@ -9,8 +9,9 @@ namespace TravelBookApplication.Models.Repositories
 {
     public interface IAlbumRepository
     {
-        IQueryable<Album> Albums { get; }
+        List<Album> Albums { get; }
         Album Save(Album album);
         void Delete(Album album);
+        Album GetAlbumById(int id);
     }
 }

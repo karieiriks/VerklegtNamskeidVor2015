@@ -106,8 +106,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mock\MockAlbumRepository.cs" />
+    <Compile Include="Mock\MockCommentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Queries\UnitTest1.cs" />
+    <Compile Include="Queries\UnitTest2.cs" />
     <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>

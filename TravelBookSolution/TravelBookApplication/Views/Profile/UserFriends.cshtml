@@ -15,7 +15,7 @@
             {
                 <div class="well friendlisting-item">
                     <div class="user-display-section">
-                        <div id="user-picture-slot">
+                        <div class="user-picture-slot">
                             <img src=@Url.Content(Model.ImageDirectory + friendRequest.ProfileImageName) alt="profile image" />
                         </div>
                         <div class="user-name-section">
@@ -23,6 +23,7 @@
                         </div>
                     </div>
                     <div class="request-widgets">
+                        <input type="hidden" value=@friendRequest.Id />
                         <a href="#" class="friendlisting-widget accept-widget">Accept</a>
                         <a href="#" class="friendlisting-widget decline-widget">Decline</a>
                     </div>
@@ -31,10 +32,9 @@
         }
         else
         {
-            <div class="spacer">
-                <p>You have no friends requests.</p>
-            </div>
-        }  
+            <p>You do not have any friend requests</p>   
+        }
+
     </div>
 }
 
@@ -47,7 +47,7 @@
         {
             <div class="well friendlisting-item">
                 <div class="user-display-section">
-                    <div id="user-picture-slot">
+                    <div class="user-picture-slot">
                         <img src=@Url.Content(Model.ImageDirectory + friend.ProfileImageName) alt="profile image" />
                     </div>
                     <div class="user-name-section">

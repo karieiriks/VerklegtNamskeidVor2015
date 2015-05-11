@@ -18,17 +18,17 @@ namespace TravelBookApplication.Models
 
         public virtual List<UserContent> Content { get; set; }
         public virtual List<Friendship> Friends { get; set; }
-        //public virtual List<FriendRequest> FriendRequests { get; set; }
+        public virtual List<FriendRequest> FriendRequests { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        //public DbSet<Album> Albums { get; set; }
-        //public DbSet<Comment> Comments { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         //public DbSet<Group> Groups { get; set; }
         //public DbSet<Message> Messages { get; set; }
         public DbSet<UserContent> Content { get; set; }
-        //public DbSet<FriendRequest> FriendRequests { get; set; }
+        public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
 
         public ApplicationDbContext()
@@ -64,6 +64,18 @@ namespace TravelBookApplication.Models
                 .HasRequired(f => f.Friend)
                 .WithMany()
                 .HasForeignKey(f => f.FriendId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<FriendRequest>().HasKey(r => new { r.ToUserId, r.FromUserId });
+            modelBuilder.Entity<FriendRequest>()
+                .HasRequired(r => r.ToUser)
+                .WithMany()
+                .HasForeignKey(r => r.ToUserId);
+
+            modelBuilder.Entity<FriendRequest>()
+                .HasRequired(r => r.FromUser)
+                .WithMany()
+                .HasForeignKey(r => r.FromUserId)
                 .WillCascadeOnDelete(false);
         }
     }

@@ -84,7 +84,7 @@ input[type="checkbox"].input-validation-error {
     margin: 0px;
 }
 
-#user-picture-slot {
+.user-picture-slot {
     width: 50px;
     /*height: 50px;*/
     background-color: #F00;
@@ -92,7 +92,7 @@ input[type="checkbox"].input-validation-error {
     margin-right: 14px;
 }
 
-#user-picture-slot > img {
+.user-picture-slot > img {
     width: 100%;
     position: relative;
 }
@@ -145,7 +145,7 @@ input[type="checkbox"].input-validation-error {
     width: 100%;
 }
 
-#user-picture-slot, .commenter-display-section {
+.user-picture-slot, .commenter-display-section {
     height: 50px;
 }
 
@@ -183,6 +183,7 @@ input[type="checkbox"].input-validation-error {
     padding: 10px;
     display: inline-block;
     width: 250px;
+    margin-bottom: 5px;
 }
 
 .request-widgets {
@@ -198,12 +199,16 @@ input[type="checkbox"].input-validation-error {
     float: right;
 }
 
-.spacer{
-    height:200px;
+.friendrequests-wrapper {
+    min-height: 200px;
 }
 
-.userimage-item
-{
+#my-search-modal .modal-body {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.userimage-item {
     padding:10px;
     display: inline-block;
 }
@@ -218,8 +223,23 @@ input[type="checkbox"].input-validation-error {
     max-height : 200px;
     max-width: 200px;
 }
-#userimage-slot img:hover
-{
-    max-height : 800px;
-    max-width : 800px;
+
+#userimage-slot img {
+    max-height : 200px;
+    max-width: 200px;
+}
+
+#file-clear {
+    float: none;
+    margin-left: 20px;
+}
+
+.file-name-section {
+    display: inline-block;
+    max-width: 430px;
+    overflow: hidden;
+}
+
+#file-input-error{
+    color: red;
 }

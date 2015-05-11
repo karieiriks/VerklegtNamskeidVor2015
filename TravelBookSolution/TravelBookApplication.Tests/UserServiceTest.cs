@@ -13,6 +13,7 @@ using Moq;
 using NCrunch.Framework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TravelBookApplication.Models.ViewModels;
+using TravelBookApplication.Models.Entities;
 
 
 namespace TravelBookApplication.Tests.Services
@@ -24,14 +25,18 @@ namespace TravelBookApplication.Tests.Services
         public void UserTest()
         {
             //Arrange
-            UserService service = new UserService();
+          /*  UserService service = new UserService();
+            var user = new UserContent();
+            {
+                FullName = "derp";
+            };
 
             //Act
 
-            var result = service.GetUserById("048b8c7adde3");
+           // var result = service.number();
             
             //Assert
-            Assert.IsInstanceOfType(result, typeof(ApplicationUser));
+            Assert.IsInstanceOfType(user, typeof(int));*/
 
         }
         [TestMethod]

@@ -9,7 +9,7 @@ namespace TravelBookApplication.Models.Repositories
 {
     public interface ICommentRepository
     {
-        IQueryable<Comment> Comments { get; }
+        List<Comment> Comments { get; }
         Comment Save(Comment comment);
         void Delete(Comment comment);
     }
