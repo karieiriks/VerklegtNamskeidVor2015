@@ -222,3 +222,13 @@ input[type="checkbox"].input-validation-error {
     float: none;
     margin-left: 20px;
 }
+
+.file-name-section {
+    display: inline-block;
+    max-width: 430px;
+    overflow: hidden;
+}
+
+#file-input-error{
+    color: red;
+}
