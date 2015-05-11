@@ -11,6 +11,12 @@
                     </div>
                     <div class="user-name-section">
                         <h4>@Html.ActionLink(item.Owner.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h4>
+                        @if (item.OwnerId != item.ProfileId && item.ProfileId != Model.ProfileDisplayed.Id && item.ProfileUser != null)
+                        {
+                            <div class="newsfeed-username">
+                                <h6> posted on @Html.ActionLink(item.ProfileUser.FullName, "UserWall", "Profile", new { id = item.ProfileId }, new { }) wall</h6>
+                            </div>
+                        }
                     </div>
                 </div>
                 <hr />

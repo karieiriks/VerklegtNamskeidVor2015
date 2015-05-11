@@ -6,7 +6,7 @@
 
 @if (Model.UserDisplayed.Id == Model.ProfileDisplayed.Id)
 {
-    <div class="friendrequests-wrapper">
+    <div class="friendrequests-wrapper well">
         <h2>Friend Requests</h2>
         <hr />
         @if(Model.FriendRequests.Count != 0)
@@ -38,7 +38,7 @@
     </div>
 }
 
-<div class="friends-wrapper">
+<div class="friends-wrapper well">
     <h2>Friends</h2>
     <hr />
     @if(Model.Friends.Count != 0)

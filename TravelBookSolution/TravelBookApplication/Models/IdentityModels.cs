@@ -48,11 +48,11 @@ namespace TravelBookApplication.Models
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(s => s.Content)
                 .WithRequired(s => s.Owner)
-                .HasForeignKey(s => s.OwnerID);
+                .HasForeignKey(s => s.OwnerId);
 
+            //Gæti þurft að laga eftir endurbyggingu gagnagrunns
             modelBuilder.Entity<UserContent>()
-                .HasOptional(s => s.ProfileUser)
-                .WithOptionalPrincipal();
+                .HasOptional(s => s.ProfileUser);
 
             modelBuilder.Entity<Friendship>().HasKey(f => new { f.UserId, f.FriendId });
             modelBuilder.Entity<Friendship>()
