@@ -1,11 +1,14 @@
 ﻿@model TravelBookApplication.Models.ViewModels.BaseViewModel
 
 <div class="well news-feed-form">
-    @using (Html.BeginForm("SubmitPost", "Content", FormMethod.Post, new { enctype = "multipart/form-data" } ) )
+    @using (Html.BeginForm("SubmitPost", "Content", FormMethod.Post, new { id = "post-form" ,enctype = "multipart/form-data" } ) )
     {
         @Html.HiddenFor(m => m.UserDisplayed.Id, new { @id = "user-id", @Name = "user-id" }) @*Ids to add to the post when submited*@
         @Html.HiddenFor(m => m.ProfileDisplayed.Id, new { @id = "profile-id", @Name = "profile-id" })
         @Html.HiddenFor(m => m.GroupDisplayed.ID, new { @id = "group-id", @Name = "group-id" })
+        @Html.HiddenFor(m => m.ControllerName, new { @id = "controller-name", @Name = "controller-name"})
+        @Html.HiddenFor(m => m.ActionName, new { @id = "action-name", @Name = "action-name"})
+        @Html.HiddenFor(m => m.RouteValue, new { @id = "route-value", @Name = "route-value"})
         
         <div class="news-feed-form-header">
             <label for="post-image-input" class="btn btn-primary">Add an Image</label>

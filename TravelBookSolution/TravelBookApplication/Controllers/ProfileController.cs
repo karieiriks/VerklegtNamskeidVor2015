@@ -24,6 +24,9 @@ namespace TravelBookApplication.Controllers
             wallContent.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
             wallContent.ProfileDisplayed = UserService.Service.GetUserById(id);
             wallContent.Content = UserService.Service.GetWallContentForUser(id);
+            wallContent.ActionName = this.ControllerContext.RouteData.Values["action"].ToString();
+            wallContent.ControllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+            wallContent.RouteValue = wallContent.ProfileDisplayed.Id;
 
             return View(wallContent);
         }
