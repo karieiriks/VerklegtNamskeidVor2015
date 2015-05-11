@@ -207,8 +207,19 @@ input[type="checkbox"].input-validation-error {
     padding:10px;
     display: inline-block;
 }
+
+.userimage-item:fullscreen
+{
+    display: block;
+}
+
 #userimage-slot img
 {
     max-height : 200px;
     max-width: 200px;
+}
+#userimage-slot img:hover
+{
+    max-height : 800px;
+    max-width : 800px;
 }
