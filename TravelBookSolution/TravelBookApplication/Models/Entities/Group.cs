@@ -8,12 +8,12 @@ namespace TravelBookApplication.Models.Entities
 {
     public class Group
     {
-        public string ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool IsPublic { get; set; }
         public int MemberCount { get; set; }
-        public virtual List<ApplicationUser> Members { get; set; }
-        public virtual List<ApplicationUser> MembersRequests { get; set; }
-        //public virtual List<UserContent> GroupContent { get; set; }
+        public virtual List<Membership> Members { get; set; }
+        public virtual List<MemberRequest> MembersRequests { get; set; }
+        public virtual List<UserContent> GroupContent { get; set; }
     }
 }

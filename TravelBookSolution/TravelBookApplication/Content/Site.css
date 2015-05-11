@@ -293,3 +293,32 @@ body{
     height: 20px;
     overflow: hidden;
 }
+
+.group-item {
+    width: 240px;
+    display: inline-block;
+}
+
+.group-panel-header > h2 {
+    display: inline-block;
+}
+
+.btn:focus {
+    outline: thin dotted #333;
+    outline-offset: -2px;
+}
+.group-create {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+    float: right;
+}
+
+.modal-dialog {
+    width: 350px;
+}
+
+.modal-buttons-center {
+    width: 150px;
+    margin: auto;
+}

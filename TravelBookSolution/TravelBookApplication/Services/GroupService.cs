@@ -25,29 +25,40 @@ namespace TravelBookApplication.Services
             }
         }
 
-         public Group GetGroupByID(string Id)
-         {
-            /* var group = (from groups in db.Groups
-                          where groups.Id == Id
-                          select groups).SingleOrDefault();
+        public void AddNewGroup(Group group, string userId)
+        {
+            ApplicationUser creator = UserService.Service.GetUserById(userId);
+            db.Groups.Add(group);
 
-             group.ProfileImageName = ConfigurationManager.AppSettings.Get("ImageDirectory") + group.ProfileImageName;
-             
-             return group;*/
-             return new Group();
-         }/*
-         public ApplicationUser GetGroupByName(string groupName)
-         {
-             var group = (from groups in db.Groups
-                          where groups.UserName == groupName
-                         select groupName).FirstOrDefault();
+            Membership membership = new Membership
+            {
+                GroupId = group.Id,
+                UserId = creator.Id,
+                User = creator,
+                Group = group
+            };
 
-             return group;
-         }
+            group.Members.Add(membership);
+            group.MemberCount = 1;
+            db.SaveChanges();
+        }
 
-         public void UpdateUser(Models.ApplicationDbContext user)
-         {
-         }
-        */
+        public List<Group> GetAllGroups()
+        {
+            var allGroups = (from groups in db.Groups
+                          where groups.IsPublic == true
+                          select groups).ToList();
+
+            return allGroups;
+        }
+
+        public List<Group> GetGroupsForUser(string userId)
+        {
+            var userGroups = (from memberships in db.Memberships
+                              where memberships.UserId == userId
+                              select memberships.Group).ToList();
+
+            return userGroups;
+        }
     }
 }

@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("My Wall", "CurrentUserWall", "Profile")</li>
-                        <li>@Html.ActionLink("Groups", "UserNewsfeed", "Home")</li>
+                        <li>@Html.ActionLink("Groups", "GroupList", "Group")</li>
                         <li>@Html.ActionLink("Messages", "UserNewsfeed", "Home")</li>
                     </ul>
                 
@@ -66,6 +66,7 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/Scripts/SideBarScript.js")
         @Scripts.Render("~/Scripts/searchbar.js")
+        @Scripts.Render("~/Scripts/groupscript.js")
         @Scripts.Render("~/Scripts/newsfeed-widgets.js")
         @Scripts.Render("~/Scripts/profilewidgets.js")
         @Scripts.Render("~/bundles/bootstrap")

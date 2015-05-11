@@ -8,7 +8,7 @@ namespace TravelBookApplication.Models.Entities
 {
     public class Message
     {
-        public string ID { get; set; }
+        public string Id { get; set; }
         public string About { get; set; }
         public string Content { get; set; }
         public DateTime DateSent { get; set; }

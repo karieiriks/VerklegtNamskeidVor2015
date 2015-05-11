@@ -20,7 +20,13 @@
         var userId = $(this).parents(".request-widgets").children("input").val();
 
         $.post("/Profile/AcceptFriendRequestFromUser", { fromUserId: userId }, function (data) {
-            $(requestItem).appendTo(".friends-wrapper");
+            var friendsWrapper = $(".friends-wrapper");
+
+            if ($(friendsWrapper).children(".friendlisting-item").length == 0)
+            {
+                $(".friends-wrapper p").html("");
+            }
+            $(requestItem).appendTo(friendsWrapper);
             $(requestItem).children(".request-widgets").remove();
         });
     });

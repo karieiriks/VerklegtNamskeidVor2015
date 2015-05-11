@@ -25,11 +25,13 @@ namespace TravelBookApplication.Models
     {
         public DbSet<Album> Albums { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        //public DbSet<Group> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; }
         //public DbSet<Message> Messages { get; set; }
         public DbSet<UserContent> Content { get; set; }
         public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<MemberRequest> MemberRequests { get; set; }
+        public DbSet<Membership> Memberships { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")
@@ -76,6 +78,33 @@ namespace TravelBookApplication.Models
                 .HasRequired(r => r.FromUser)
                 .WithMany()
                 .HasForeignKey(r => r.FromUserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Group>()
+                .HasMany(g => g.GroupContent);
+
+            modelBuilder.Entity<MemberRequest>().HasKey(r => new { r.GroupId, r.UserId });
+            modelBuilder.Entity<MemberRequest>()
+                .HasRequired(r => r.Group)
+                .WithMany()
+                .HasForeignKey(r => r.GroupId);
+
+            modelBuilder.Entity<MemberRequest>()
+                .HasRequired(r => r.User)
+                .WithMany()
+                .HasForeignKey(r => r.UserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Membership>().HasKey(r => new { r.GroupId, r.UserId });
+            modelBuilder.Entity<Membership>()
+                .HasRequired(r => r.Group)
+                .WithMany()
+                .HasForeignKey(r => r.GroupId);
+
+            modelBuilder.Entity<Membership>()
+                .HasRequired(r => r.User)
+                .WithMany()
+                .HasForeignKey(r => r.UserId)
                 .WillCascadeOnDelete(false);
         }
     }

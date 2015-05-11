@@ -1,0 +1,87 @@
+﻿@model TravelBookApplication.Models.ViewModels.GroupListingViewModel
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>*@
+
+<div id="tabs" class="well">
+    <ul class="nav nav-pills">
+        <li class="active"><a href="#tab1" data-toggle="tab">My Groups</a></li>
+        <li><a href="#tab2" data-toggle="tab">All Groups</a></li>
+    </ul>
+    <div class="tab-content group-container">
+        <div class=" tab-pane active" id="tab1">
+            <div class="group-panel-header">
+                <h2>My Groups</h2>
+                <button class="group-create btn btn-primary">Create a Group</button>
+            </div>
+            @foreach(var group in Model.UserGroups)
+            {
+                <div class="well group-item">
+                    <div class="group-name">
+                        <h5>@Html.ActionLink(group.Name, "Index", "Home")</h5>
+                    </div>
+                    <div class="member-count">
+                        @group.MemberCount members
+                    </div>
+                </div>
+            }
+        </div>
+        <div class=" tab-pane" id="tab2">
+            <div class="group-panel-header">
+                <h2>All Groups</h2>
+                <button class="group-create btn btn-primary">Create a Group</button>
+            </div>
+            @foreach (var group in Model.AllGroups)
+            {
+                <div class="well group-item">
+                    <div class="group-name">
+                        <h5>@Html.ActionLink(group.Name, "Index", "Home")</h5>
+                    </div>
+                    <div class="member-count">
+                        @group.MemberCount members
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div id="group-create-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Create a Group</h4>
+            </div>
+            @using(Html.BeginForm("CreateGroup", "Group", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <label for="group-name">Group Name</label>
+                    <input type="text" class ="form-control" id="group-name" name="group-name"/>
+                    <input type="radio" id="public" name="visibility" value="1" checked="checked">
+                    <label for="public">Public</label>
+                    <input type="radio" id="private" name="visibility" value="0">
+                    <label for="private">Private</label>
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-buttons-center">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>   
+            }
+        </div>
+    </div>
+</div>

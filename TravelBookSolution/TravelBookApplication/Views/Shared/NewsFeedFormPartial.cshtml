@@ -5,7 +5,7 @@
     {
         @Html.HiddenFor(m => m.UserDisplayed.Id, new { @id = "user-id", @Name = "user-id" }) @*Ids to add to the post when submited*@
         @Html.HiddenFor(m => m.ProfileDisplayed.Id, new { @id = "profile-id", @Name = "profile-id" })
-        @Html.HiddenFor(m => m.GroupDisplayed.ID, new { @id = "group-id", @Name = "group-id" })
+        @Html.HiddenFor(m => m.GroupDisplayed.Id, new { @id = "group-id", @Name = "group-id" })
         @Html.HiddenFor(m => m.ControllerName, new { @id = "controller-name", @Name = "controller-name"})
         @Html.HiddenFor(m => m.ActionName, new { @id = "action-name", @Name = "action-name"})
         @Html.HiddenFor(m => m.RouteValue, new { @id = "route-value", @Name = "route-value"})
@@ -26,52 +26,4 @@
             <button id="post-button" type="submit" class="btn btn-primary">Post</button>
         </div>   
     }
-</div>
-
-<div class="well news-item-wrapper hidden">
-    <div class="news-item-display">
-        <div class="owner-display-section">
-            <div class="user-picture-slot">
-                <img alt="profile image" />
-            </div>
-            <div class="user-name-section">
-                <h4></h4>
-            </div>
-        </div>
-        <hr />
-        <div class="item-display">
-            <div class="post-text">
-                <p></p>
-            </div>
-            <hr />
-            <img alt="content image" class="img-thumbnail" />
-        </div>
-        <div class="user-widget-display">
-            <hr />
-            <div class="left-widgets">
-                <button class="news-item-widget btn btn-primary">Like</button>
-                <span class="number-of-likes"></span>
-            </div>
-            <div class="right-widgets">
-                <a href="#" class="news-item-widget comment-link">Comment</a>
-                <a href="#" class="news-item-widget share-link">Share</a>
-            </div>
-        </div>
-    </div>
-    <hr />
-    <div class="well comment-section hidden">
-        <div class="commenter-display-section">
-            <div class="user-picture-slot">
-                <img alt="profile image" />
-            </div>
-            <div class="comment-form">
-                @using (Html.BeginForm())
-                {
-                    <input type="text" class="form-control form-inline" />
-                }
-            </div>
-        </div>
-        <div class="comment-display">
-        </div>
-    </div>
 </div>
