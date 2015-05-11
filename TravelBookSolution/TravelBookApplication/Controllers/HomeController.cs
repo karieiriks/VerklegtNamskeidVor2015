@@ -21,18 +21,6 @@ namespace TravelBookApplication.Controllers
         [AllowAnonymous]
 		public ActionResult Index()
 		{
-            
-            /*var users = UserService.Service.GetAllUsers();
-            ApplicationUser userOne = users[1];
-            ApplicationUser userTwo = users[3];
-            UserService.Service.CreateFriendship(userOne.Id, userTwo.Id);
-             */
-
-            /*var users = UserService.Service.GetAllUsers();
-            ApplicationUser userOne = users[0];
-            ApplicationUser userTwo = users[3];
-            UserService.Service.AddFriendRequest(userOne.Id, userTwo.Id);*/
-
             if(User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("UserNewsfeed", "Home", null);

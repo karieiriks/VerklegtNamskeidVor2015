@@ -232,3 +232,11 @@ input[type="checkbox"].input-validation-error {
 #file-input-error{
     color: red;
 }
+
+.newsfeed-username {
+    display: inline-block;
+}
+
+.newsfeed-username > h6 {
+    margin: 0px;
+}

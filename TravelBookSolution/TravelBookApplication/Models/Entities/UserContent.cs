@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,8 +12,8 @@ namespace TravelBookApplication.Models.Entities
         public int Id { get; set; }
 
         // The User who posted
-        public string OwnerID { get; set; }
-        public string ProfileID { get; set; }
+        public string OwnerId { get; set; }
+        public string ProfileId { get; set; }
         public string PhotoName { get; set; }
         public string StoryName { get; set; }
         public string StoryTitle { get; set; }
@@ -20,6 +21,7 @@ namespace TravelBookApplication.Models.Entities
         public DateTime DateCreated { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
+        [ForeignKey("ProfileId")]
         public virtual ApplicationUser ProfileUser { get; set; }
         //public virtual List<Comment> Comments { get; set; }
         //public virtual Group Group { get; set; }

@@ -42,7 +42,7 @@ namespace TravelBookApplication.Services
         {
 
             var newsfeedItems = (from content in db.Content
-                             where content.OwnerID == userId
+                             where content.OwnerId == userId
                              select content).ToList();
 
             var friends = GetFriendsForUser(userId);
@@ -61,7 +61,7 @@ namespace TravelBookApplication.Services
         public List<UserContent> GetWallContentForUser(string userId)
         {
             var wallContent = (from content in db.Content
-                                where content.ProfileID == userId
+                                where content.ProfileId == userId
                                 orderby content.DateCreated descending
                                 select content).ToList();
 
@@ -159,7 +159,7 @@ namespace TravelBookApplication.Services
         public List<UserContent> GetUserImages(string userId)
         {
             var contentList = (from userContent in db.Content
-                               where userContent.OwnerID == userId
+                               where userContent.OwnerId == userId
                                && userContent.PhotoName != null
                                orderby userContent.DateCreated descending
                                select userContent).ToList();
