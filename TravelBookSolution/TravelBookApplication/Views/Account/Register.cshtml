@@ -16,7 +16,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName)
+                @Html.TextBoxFor(model => model.FirstName, htmlAttributes: new { @id = "first-name" })
                 @Html.ValidationMessageFor(model => model.FirstName)
             </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName)
+                @Html.TextBoxFor(model => model.LastName, htmlAttributes: new { @id = "last-name" })
                 @Html.ValidationMessageFor(model => model.LastName)
             </div>
         </div>
@@ -95,3 +95,5 @@
     </div>
 }
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/register.js")
