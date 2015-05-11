@@ -4,27 +4,6 @@
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
-<<<<<<< HEAD
-@if (TravelBookApplication.Services.UserService.Service.IsFriends(Model.UserDisplayed.Id, Model.ProfileDisplayed.Id)
-    || Model.ProfileDisplayed.Id == Model.UserDisplayed.Id)
-{
-    @Html.Partial("NewsFeedFormPartial", Model)
-}
-
-@if(Model.UserDisplayed.Id == Model.ProfileDisplayed.Id)
-{
-    <div class="userimages-wrapper">
-        <h2>Images</h2>
-        <hr />
-        @if(Model.Images.Count != 0)
-        {
-            foreach (var images in Model.Images)
-            {
-                <div class="userimage-item">
-                    <div id="userimage-slot">
-                        <img class="img-thumbnail" src=@Url.Content(Model.ImageDirectory + images.PhotoName) alt="user image" onclick="expandImage()"/>
-                    </div>
-=======
 <div class="userimages-wrapper well">
     <h2>Images</h2>
     <hr />
@@ -35,7 +14,6 @@
             <div class="userimage-item">
                 <div id="userimage-slot">
                     <img class="img-thumbnail" src=@Url.Content(Model.ImageDirectory + images.PhotoName) alt="user image" />
->>>>>>> 94184b135198eb9d128085c8e13908bcf133c91b
                 </div>
             </div>
         }
@@ -48,6 +26,3 @@
 </div>
 
 @Scripts.Render("~/Scripts/Images.js")
-
-
-    
