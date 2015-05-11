@@ -56,8 +56,4 @@
     $("#file-clear").click(function () {
         clearFileInput();
     });
-
-    $("#post-button").click(function () {
-
-    });
 })

@@ -22,8 +22,8 @@
             <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("My Wall", "CurrentUserWall", "Profile")</li>
-                        <li>@Html.ActionLink("Groups", "NewsFeed", "Home")</li>
-                        <li>@Html.ActionLink("Messages", "NewsFeed", "Home")</li>
+                        <li>@Html.ActionLink("Groups", "UserNewsfeed", "Home")</li>
+                        <li>@Html.ActionLink("Messages", "UserNewsfeed", "Home")</li>
                     </ul>
                 
                 @using (Html.BeginForm("SearchForUser", "NewsFeed", FormMethod.Get, new { @class = "navbar-form navbar-left", @role = "search" }))
