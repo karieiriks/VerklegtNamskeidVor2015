@@ -58,7 +58,6 @@ input[type="checkbox"].input-validation-error {
 
 .sidebar{
     float:left;
-    position:fixed;
     overflow:hidden;
     width: 250px;
 }
@@ -148,7 +147,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .news-feed-form, .news-item-wrapper {
-    width: 700px;
+    max-width: 700px;
     margin: auto;
 }
 
@@ -276,4 +275,10 @@ body{
 .login-container, .registration-container{
     width: 660px;
     margin-top: 70px;
+}
+
+.news-item-wrapper h4 {
+    margin: 0px;
+    height: 20px;
+    overflow: hidden;
 }
