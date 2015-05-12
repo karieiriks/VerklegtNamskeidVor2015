@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
+using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Services
 {
@@ -59,6 +60,15 @@ namespace TravelBookApplication.Services
                               select memberships.Group).ToList();
 
             return userGroups;
+        }
+
+        public Group GetGroupById(int id, IGroupRepository db)
+        {
+            var group = (from x in db.Groups
+                        where x.Id == id
+                        select x).SingleOrDefault();
+
+            return group;
         }
     }
 }

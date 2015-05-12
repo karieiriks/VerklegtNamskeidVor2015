@@ -8,7 +8,7 @@ namespace TravelBookApplication.Models.Repositories
 {
     public interface IGroupRepository
     {
-        IQueryable<UserContent> UserContents { get; }
+        List<Group> Groups { get; }
         Group Save(Group group);
         void Delete(Group group);
     }
