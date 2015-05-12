@@ -162,6 +162,7 @@ namespace TravelBookApplication.Services
             };
 
             DeleteMemberRequestFromUser(groupId, userId);
+            group.MemberCount++;
             db.Memberships.Add(membership);
             db.SaveChanges();
         }

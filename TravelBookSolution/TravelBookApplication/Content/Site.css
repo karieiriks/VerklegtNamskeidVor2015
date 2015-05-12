@@ -115,7 +115,7 @@ input[type="checkbox"].input-validation-error {
 
 .user-name-section {
     height: 50px;
-    margin-left: 50px;
+    display:inline-block;
     overflow: hidden;
 }
 
@@ -363,4 +363,26 @@ body{
 
 #member-requests-section > h2 {
     display: inline-block;
+}
+
+.user-info {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 75%;
+}
+
+.widget-container {
+    display: inline-block;
+    float: right;
+    max-width: 25%;
+}
+
+.invite-button {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+.result-modal-footer{
+    text-align: center;
 }

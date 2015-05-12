@@ -92,5 +92,12 @@ namespace TravelBookApplication.Controllers
             GroupService.Service.DeleteMemberRequestFromUser(groupId, userId);
             return Json(true);
         }
+
+        [HttpPost]
+        public ActionResult AddMemberToGroup( int groupId, string userId )
+        {
+            GroupService.Service.CreateMembership(groupId, userId);
+            return Json(true);
+        }
     }
 }

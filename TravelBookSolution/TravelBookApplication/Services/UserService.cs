@@ -39,22 +39,30 @@ namespace TravelBookApplication.Services
             return user;
         }
 
-        public int number()
-        {
-            return 1337;
-        }
         public List<UserContent> GetNewsFeedItemsForUser(string userId)
         {
-
             var newsfeedItems = (from content in db.Content
-                             where content.OwnerId == userId
-                             select content).ToList();
+                                 where content.OwnerId == userId && content.GroupId == null
+                                 select content).ToList();
 
             var friends = GetFriendsForUser(userId);
 
             foreach( var friend in friends )
             {
                 foreach(var content in friend.Content)
+                {
+                    if(content.GroupId == null)
+                    {
+                        newsfeedItems.Add(content);
+                    }
+                }
+            }
+
+            var groups = GroupService.Service.GetGroupsForUser(userId);
+
+            foreach( var gr in groups)
+            {
+                foreach(var content in gr.GroupContent)
                 {
                     newsfeedItems.Add(content);
                 }
@@ -154,9 +162,6 @@ namespace TravelBookApplication.Services
 	    {
             var users = (from u in db.Users.Where(a => a.FullName.Contains(value))
 						 select u).ToList();
-            /*(from u in db.Users
-                         where u.FullName.Contains(value)
-                         select u).ToList();*/
 
 		    return users;
 	    }
@@ -170,25 +175,6 @@ namespace TravelBookApplication.Services
                                select userContent).ToList();
             return contentList; 
         }
-
-        /*
-        public ApplicationUser GetUserByName(string userName)
-        {
-            var user = (from users in db.Users
-                        where users.UserName == userName
-                        select users).FirstOrDefault();
-
-            return user;
-        }
-       
-        public void UpdateUser(Models.ApplicationDbContext user)
-        {
-            
-        }
-      
-        public void RemoveUser(Models.ApplicationDbContext user)
-        {
-        }*/
 
         public static Album GetAlbumById(int id, IAlbumRepository db)
         {

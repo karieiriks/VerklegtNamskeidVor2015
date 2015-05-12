@@ -61,5 +61,29 @@ namespace TravelBookApplication.Controllers
             model.Content = UserService.Service.GetNewsFeedItemsForUser(currentUserId);
             return View("UserNewsfeed", model);
         }
+
+        [HttpGet]
+        public ActionResult GetFriendListForUser( string userId, int groupid )
+        {
+            var user = UserService.Service.GetUserById( userId );
+
+            List<UserDisplayInfo> friends = new List<UserDisplayInfo>();
+            string ImageDirectory = Url.Content(ConfigurationManager.AppSettings.Get("ImageDirectory")); 
+
+            foreach(var friend in user.Friends)
+            {
+                UserDisplayInfo info = new UserDisplayInfo
+                {
+                    Id = friend.FriendId,
+                    FullName = friend.Friend.FullName,
+                    ProfileImageName = ImageDirectory + friend.Friend.ProfileImageName,
+                    isGroupMember = GroupService.Service.IsMemberOfGroup(friend.FriendId, groupid)
+                };
+
+                friends.Add(info);
+            }
+
+            return Json(new { Friends = friends}, JsonRequestBehavior.AllowGet);
+        }
     }
 }

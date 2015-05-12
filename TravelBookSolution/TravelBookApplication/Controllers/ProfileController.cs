@@ -39,9 +39,9 @@ namespace TravelBookApplication.Controllers
         public ActionResult UserFriends(string id)
         {
             FriendListViewModel model = new FriendListViewModel();
+            model.ProfileDisplayed = UserService.Service.GetUserById(id);
             model.FriendRequests = UserService.Service.GetFriendRequestsForUser(id);
             model.Friends = UserService.Service.GetFriendsForUser(id);
-            model.ProfileDisplayed = UserService.Service.GetUserById(id);
             model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
             return View(model);
         }
