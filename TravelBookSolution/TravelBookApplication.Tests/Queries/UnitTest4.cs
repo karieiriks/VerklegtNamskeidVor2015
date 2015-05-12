@@ -12,15 +12,18 @@ namespace TravelBookApplication.Tests.Queries
         [TestMethod]
         public void UserTest()
         {
-           /* MockUserRepository repo = new MockUserRepository();
-            ApplicationUser user = new ApplicationUser {Id = 1, Gender = "Male"};
-            repo.Users.Add(user);
-
+            // Hérna er rétta virknin
+            #region
+            MockUserRepository repo = new MockUserRepository();
+            ApplicationUser user = new ApplicationUser {Id = "1", Gender = "Male"};
+            repo.Save(user);
+           
             Assert.AreEqual(repo.Users.Count, 1);
-            var result = UserService.Service.GetUserById("1");
+            var result = repo.GetUserById("1", repo);
             var expected = "1";
-            Assert.AreEqual(result, expected);*/
 
+            Assert.AreEqual(result.Id, expected);
+            #endregion
         }
     }
 }

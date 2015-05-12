@@ -31,6 +31,15 @@ namespace TravelBookApplication.Tests.Mock
                 select x).SingleOrDefault();
             Users.Remove(item);
         }
+        public ApplicationUser GetUserById(string Id, IApplicationUserRepository db)
+        {
+
+            var user = (from users in db.Users
+                        where users.Id == Id
+                        select users).SingleOrDefault();
+
+            return user;
+        }
 
     }
 }
