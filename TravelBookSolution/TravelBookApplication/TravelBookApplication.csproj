@@ -229,6 +229,7 @@
     <Content Include="Scripts\newsfeed-widgets.js" />
     <Content Include="Scripts\profilewidgets.js" />
     <Content Include="Scripts\register.js" />
+    <Content Include="Scripts\registerRef.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\searchbar.js" />
