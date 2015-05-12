@@ -274,6 +274,7 @@
     <Content Include="Views\Profile\UserImages.cshtml" />
     <Content Include="Views\Shared\_GroupLayout.cshtml" />
     <Content Include="Views\Group\GroupList.cshtml" />
+    <Content Include="Views\Group\GroupWall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

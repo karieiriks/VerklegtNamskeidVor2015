@@ -3,3 +3,19 @@
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+<div id="group-cover">
+    <div id="group-header" class="well">
+        <h1>@Model.GroupDisplayed.Name</h1>
+        <hr />
+        <nav>
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="#">Wall</a></li>
+                <li role="presentation"><a href="#">Images</a></li>
+                <li role="presentation"><a href="#">Stories</a></li>
+                <li role="presentation"><a href="#">Members</a></li></ul>
+        </nav>
+    </div>
+    <div id="group-body">
+        @RenderBody()
+    </div>
+</div>

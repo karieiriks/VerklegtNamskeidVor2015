@@ -56,14 +56,20 @@ namespace TravelBookApplication.Controllers
             }
 
             if (!String.IsNullOrEmpty(newContent.PostContent) || !String.IsNullOrEmpty(newContent.PhotoName))
-            {// An empty post was submitted
+            {
                 string userId = formCollection["user-id"];
                 string profileId = formCollection["profile-id"];
-                string groupId = formCollection["group-id"];
+                string grId = formCollection["group-id"];
+                int groupId;
 
-                // Remember to add the group Id to this function later!
-
-                ContentService.Service.AddNewContent(newContent, userId, profileId);
+                if(Int32.TryParse(grId, out groupId))
+                {
+                    ContentService.Service.AddNewContent(newContent, userId, profileId, groupId);
+                }
+                else
+                {
+                    ContentService.Service.AddNewContent(newContent, userId, profileId, null);
+                }
             }
 
             string controllerName = formCollection["controller-name"];

@@ -52,6 +52,14 @@ namespace TravelBookApplication.Services
             return allGroups;
         }
 
+        public Group GetGroupById(int groupId)
+        {
+            var group = (from groups in db.Groups
+                         where groups.Id == groupId
+                         select groups).SingleOrDefault();
+            return group;
+        }
+
         public List<Group> GetGroupsForUser(string userId)
         {
             var userGroups = (from memberships in db.Memberships
@@ -59,6 +67,55 @@ namespace TravelBookApplication.Services
                               select memberships.Group).ToList();
 
             return userGroups;
+        }
+
+        public bool IsMemberOfGroup(string userId, int groupId)
+        {
+            var membership = (from memberships in db.Memberships
+                              where memberships.UserId == userId
+                              && memberships.GroupId == groupId
+                              select memberships).SingleOrDefault();
+
+            return membership == null ? false : true;
+        }
+
+        public bool HasMemberRequestFromUser(int groupId, string userId)
+        {
+            var memberRequest = (from memberrequest in db.MemberRequests
+                                 where memberrequest.GroupId == groupId &&
+                                 memberrequest.UserId == userId
+                                 select memberrequest).SingleOrDefault();
+
+            return memberRequest == null ? false : true;
+        }
+
+        public void addMemberRequestToGroup(int groupId, string userId)
+        {
+            var group = GetGroupById(groupId);
+
+            if(group != null)
+            {
+                MemberRequest request = new MemberRequest
+                {
+                    GroupId = groupId,
+                    Group = group,
+                    UserId = userId,
+                    User = UserService.Service.GetUserById(userId)
+                };
+
+                db.MemberRequests.Add(request);
+                db.SaveChanges();
+            }
+        }
+
+        internal List<UserContent> GetNewsfeedItemsForGroup(int groupId)
+        {
+            var groupContent = (from content in db.Content
+                                where content.GroupId == groupId
+                                orderby content.DateCreated descending
+                                select content).ToList();
+
+            return groupContent;
         }
     }
 }

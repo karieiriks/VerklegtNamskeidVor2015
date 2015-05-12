@@ -322,3 +322,26 @@ body{
     width: 150px;
     margin: auto;
 }
+
+#group-name-error {
+    color: red;
+    display: block;
+}
+
+.grouplisting-widget {
+    float: right;
+}
+
+.member-status{
+    color:#AEAEAE;
+}
+
+#group-header {
+    margin: auto auto 20px;
+    width: 700px;
+    text-align: center;
+}
+
+#group-header > hr {
+    margin: 0px 0px 5px;
+}
