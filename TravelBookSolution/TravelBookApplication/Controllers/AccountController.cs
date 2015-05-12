@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using TravelBookApplication.Models;
 using System.Configuration;
+using System.Globalization;
 
 namespace TravelBookApplication.Controllers
 {
@@ -81,9 +82,13 @@ namespace TravelBookApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+
+	            string str1 = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.FirstName);
+	            string str2 = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.LastName);
+
                 string ProfileImageName = ConfigurationManager.AppSettings.Get("DefaultProfileImage");
                 var user = new ApplicationUser() { UserName = model.UserName, 
-					DateOfBirth = model.DateOfBirth, Gender = model.Gender, FullName = model.FirstName + " " + model.LastName,
+					DateOfBirth = model.DateOfBirth, Gender = model.Gender, FullName = str1 + " " + str2,
                  ProfileImageName = ProfileImageName};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
