@@ -31,5 +31,6 @@ namespace TravelBookApplication.Tests.Mock
                 select x).SingleOrDefault();
             Users.Remove(item);
         }
+
     }
 }

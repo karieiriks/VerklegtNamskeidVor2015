@@ -115,6 +115,7 @@
     <Compile Include="Queries\UnitTest1.cs" />
     <Compile Include="Queries\UnitTest2.cs" />
     <Compile Include="Queries\UnitTest3.cs" />
+    <Compile Include="Queries\UnitTest4.cs" />
     <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
