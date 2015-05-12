@@ -1,0 +1,55 @@
+﻿@model TravelBookApplication.Models.ViewModels.MemberListingViewModel
+@{
+    ViewBag.Title = "GroupMembers";
+    Layout = "~/Views/Shared/_GroupLayout.cshtml";
+}
+
+<div id="member-requests-section" class="well">
+    @Html.HiddenFor(m => m.GroupDisplayed.Id, new { @id = "group-id", @Name = "group-id" })
+    <h2>Member Requests</h2>
+    <button class="member-add-button btn btn-primary">Add a friend</button>
+    <hr />
+    @if(Model.Requests.Count != 0)
+    {
+        foreach (var request in Model.Requests)
+        {
+            <div class="well memberlisting-item">
+                <div class="user-display-section">
+                    <div class="user-picture-slot">
+                        <img src=@Url.Content(Model.ImageDirectory + request.User.ProfileImageName) alt="profile image" />
+                    </div>
+                    <div class="user-name-section">
+                        <h6>@Html.ActionLink(request.User.FullName, "UserWall", "Profile", new { id = request.User.Id}, new { })</h6>
+                    </div>
+                </div>
+                <div class="request-widgets">
+                    <input type="hidden" value=@request.User.Id />
+                    <a href="#" class="memberlisting-widget accept-widget">Accept</a>
+                    <a href="#" class="memberlisting-widget decline-widget">Decline</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <span class="request-status">@Model.GroupDisplayed.Name has no member requests</span>
+    }
+</div>
+<div id="members-section" class="well">
+    <h2>Members</h2>
+    <hr />
+    @foreach(var membership in Model.Members)
+    {
+        <div class="well memberlisting-item">
+            <div class="user-display-section">
+                <div class="user-picture-slot">
+                    <img src=@Url.Content(Model.ImageDirectory + membership.User.ProfileImageName) alt="profile image" />
+                </div>
+                <div class="user-name-section">
+                    <h6>@Html.ActionLink(membership.User.FullName, "UserWall", "Profile", new { id = membership.User.Id}, new { })</h6>
+                </div>
+            </div>
+        </div>   
+    }
+</div>
+

@@ -1,0 +1,10 @@
+﻿@model TravelBookApplication.Models.ViewModels.NewsFeedViewModel
+
+@{
+    ViewBag.Title = Model.GroupDisplayed.Name;
+    Layout = "~/Views/Shared/_GroupLayout.cshtml";
+}
+
+@Html.Partial("NewsFeedFormPartial", Model)
+@Html.Partial("NewsFeedPartial", Model)
+

@@ -23,11 +23,33 @@ namespace TravelBookApplication.Controllers
             return View("GroupList", model);
         }
 
-        public ActionResult GroupWall()
+        public ActionResult GroupWall(int? id)
         {
-            string currentUserId = User.Identity.GetUserId();
-            NewsFeedViewModel model = new NewsFeedViewModel();
-            return View("Group", model);
+            if(id.HasValue)
+            {
+                string currentUserId = User.Identity.GetUserId();
+                NewsFeedViewModel model = new NewsFeedViewModel();
+                model.GroupDisplayed = GroupService.Service.GetGroupById(id.Value);
+                model.Content = GroupService.Service.GetNewsfeedItemsForGroup(id.Value);
+                model.UserDisplayed = UserService.Service.GetUserById(currentUserId);
+                model.ActionName = this.ControllerContext.RouteData.Values["action"].ToString();
+                model.ControllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                model.RouteValue = model.GroupDisplayed.Id.ToString();
+
+                return View("GroupWall", model);
+            }
+
+            return RedirectToAction("GroupList");
+        }
+
+        public ActionResult GroupMembers(int id)
+        {
+            MemberListingViewModel model = new MemberListingViewModel();
+            model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
+            model.GroupDisplayed = GroupService.Service.GetGroupById(id);
+            model.Requests = GroupService.Service.GetMemberRequestsForGroup(id);
+            model.Members = GroupService.Service.GetMembershipsForGroup(id);
+            return View("GroupMembers", model);
         }
 
         [HttpPost]
@@ -47,6 +69,28 @@ namespace TravelBookApplication.Controllers
             GroupService.Service.AddNewGroup(group, userId);
 
             return RedirectToAction("GroupList");
+        }
+
+        [HttpPost]
+        public ActionResult SendRequestToGroup(int? groupId)
+        {
+            string userId = User.Identity.GetUserId();
+            GroupService.Service.addMemberRequestToGroup(groupId.Value, userId);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult AcceptMemberRequestFromUser( int groupId, string userId )
+        {
+            GroupService.Service.CreateMembership(groupId, userId);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult DeclineMemberRequestFromUser( int groupId, string userId )
+        {
+            GroupService.Service.DeleteMemberRequestFromUser(groupId, userId);
+            return Json(true);
         }
     }
 }

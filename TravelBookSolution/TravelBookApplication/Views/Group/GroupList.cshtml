@@ -29,7 +29,7 @@
             {
                 <div class="well group-item">
                     <div class="group-name">
-                        <h5>@Html.ActionLink(group.Name, "Index", "Home")</h5>
+                        <h5>@Html.ActionLink(group.Name, "GroupWall", "Group", new { id = group.Id }, new { })</h5> 
                     </div>
                     <div class="member-count">
                         @group.MemberCount members
@@ -44,12 +44,42 @@
             </div>
             @foreach (var group in Model.AllGroups)
             {
+                bool isMember = TravelBookApplication.Services.GroupService.Service.IsMemberOfGroup(Model.UserDisplayed.Id, group.Id);
+                
                 <div class="well group-item">
                     <div class="group-name">
-                        <h5>@Html.ActionLink(group.Name, "Index", "Home")</h5>
+                        @if(isMember == true)
+                        {
+                            <h5>@Html.ActionLink(group.Name, "GroupWall", "Group", new { id = group.Id }, new { })</h5> 
+                        }
+                        else
+                        {
+                            <h5>@group.Name</h5>
+                        }
                     </div>
                     <div class="member-count">
                         @group.MemberCount members
+                    </div>
+                    <div class="group-widgets">
+                        @if (isMember == false)
+                        {
+                            if (TravelBookApplication.Services.GroupService.Service.HasMemberRequestFromUser(group.Id, Model.UserDisplayed.Id))
+                            {
+                                <span class="grouplisting-widget member-status">Request sent</span>
+                            }
+                            else
+                            {
+                                <input type="hidden" class = "group-id"  value=@group.Id />
+                                <a href="#" class="grouplisting-widget join-widget">Join</a>
+                                <span class="grouplisting-widget member-status hidden">Request sent</span>   
+                            }
+                        }
+                        else
+                        {
+                            
+                            <span class="grouplisting-widget member-status">Already a member</span>
+                            
+                        }
                     </div>
                 </div>
             }
@@ -65,11 +95,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Create a Group</h4>
             </div>
-            @using(Html.BeginForm("CreateGroup", "Group", FormMethod.Post))
+            @using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { @id = "group-create-form" }))
             {
                 <div class="modal-body">
                     <label for="group-name">Group Name</label>
                     <input type="text" class ="form-control" id="group-name" name="group-name"/>
+                    <span id="group-name-error"></span>
                     <input type="radio" id="public" name="visibility" value="1" checked="checked">
                     <label for="public">Public</label>
                     <input type="radio" id="private" name="visibility" value="0">

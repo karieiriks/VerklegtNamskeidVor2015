@@ -25,9 +25,9 @@ namespace TravelBookApplication.Tests.Queries
             repo.Save(gru4);
             
             Assert.AreEqual(repo.Groups.Count, 4);
-            var results = GroupService.Service.GetGroupById(1, repo);
-            var expected = "gayBoyz";
-            Assert.AreEqual(results.Name, expected);
+            //var results = GroupService.Service.GetGroupById(1, repo);
+            //var expected = "gayBoyz";
+           // Assert.AreEqual(results.Name, expected);
         }
     }
 }

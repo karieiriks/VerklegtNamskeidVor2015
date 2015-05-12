@@ -193,7 +193,7 @@ input[type="checkbox"].input-validation-error {
     margin-right: 20px;
 }
 
-.friendlisting-item {
+.friendlisting-item, .memberlisting-item{
     padding: 10px;
     display: inline-block;
     width: 240px;
@@ -321,4 +321,46 @@ body{
 .modal-buttons-center {
     width: 150px;
     margin: auto;
+}
+
+#group-name-error {
+    color: red;
+    display: block;
+}
+
+.grouplisting-widget {
+    float: right;
+}
+
+.member-status{
+    color:#AEAEAE;
+}
+
+#group-header {
+    margin: auto auto 20px;
+    max-width: 700px;
+    text-align: center;
+}
+
+#group-cover{
+    max-width: 700px;
+}
+
+#group-header > hr {
+    margin: 0px 0px 5px;
+}
+
+#group-header ul {
+    display: inline-block;
+}
+
+.member-add-button {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+    float: right;
+}
+
+#member-requests-section > h2 {
+    display: inline-block;
 }
