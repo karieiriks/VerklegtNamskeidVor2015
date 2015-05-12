@@ -9,7 +9,7 @@ namespace TravelBookApplication.Models.Repositories
 {
     public interface IApplicationUserRepository
     {
-        IQueryable<ApplicationUser> ApplicationUsers { get; }
+        List<ApplicationUser> Users { get; }
         ApplicationUser Save(ApplicationUser applicationUser);
         void Delete(ApplicationUser applicationUser);
     }

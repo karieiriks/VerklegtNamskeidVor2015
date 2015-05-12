@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
-    alert("ready");
     $("#birthday").datepicker({
         showOtherMonths: true,
-        selectOtherMonths: true
+        selectOtherMonths: true,
+        changeYear: true,
+        yearRange: "1900:+0"
     });
 });

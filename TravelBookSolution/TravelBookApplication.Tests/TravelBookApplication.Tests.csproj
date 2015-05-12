@@ -108,10 +108,14 @@
   <ItemGroup>
     <Compile Include="Mock\MockAlbumRepository.cs" />
     <Compile Include="Mock\MockCommentRepository.cs" />
+    <Compile Include="Mock\MockGroupRepository.cs" />
+    <Compile Include="Mock\MockUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Queries\UnitTest1.cs" />
     <Compile Include="Queries\UnitTest2.cs" />
+    <Compile Include="Queries\UnitTest3.cs" />
+    <Compile Include="Queries\UnitTest4.cs" />
     <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>

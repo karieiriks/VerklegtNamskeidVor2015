@@ -9,7 +9,7 @@ namespace TravelBookApplication.Models.Repositories
 {
     public interface IMessageRepository
     {
-        IQueryable<Message> Messages { get; }
+        List<Message> Messages { get; }
         Message Save(Message message);
         void Delete(Message message);
     }

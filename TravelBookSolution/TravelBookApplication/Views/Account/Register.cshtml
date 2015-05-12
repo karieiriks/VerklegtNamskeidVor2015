@@ -4,6 +4,9 @@
     ViewBag.Title = "NewRegister";
 }
 
+<link type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <div class="well registration-container">
     <h2>Register to TravelBook</h2>
 
@@ -43,7 +46,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.DateOfBirth, htmlAttributes: new {@id = "birthday"})
+                    @Html.TextBoxFor(model => model.DateOfBirth, htmlAttributes: new { @id = "birthday" })
                     @Html.ValidationMessageFor(model => model.DateOfBirth)
                 </div>
             </div>
@@ -97,5 +100,9 @@
     }
 </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/Scripts/register.js")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/register.js")
