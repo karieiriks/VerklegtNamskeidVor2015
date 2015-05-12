@@ -10,6 +10,7 @@ using TravelBookApplication.Models.Entities;
 using TravelBookApplication.Models.ViewModels;
 using TravelBookApplication.Services;
 using Microsoft.AspNet.Identity;
+using System.Globalization;
 
 namespace TravelBookApplication.Controllers
 {
@@ -50,7 +51,7 @@ namespace TravelBookApplication.Controllers
 
             return Json(item, JsonRequestBehavior.AllowGet);
         }
-
+		
         public ActionResult UserNewsfeed()
         {
             string currentUserId = User.Identity.GetUserId();

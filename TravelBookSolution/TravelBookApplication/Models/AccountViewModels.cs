@@ -75,13 +75,13 @@ namespace TravelBookApplication.Models
 		public string ConfirmPassword { get; set; }
 
 		[Required]
-		[RegularExpression(@"^[a-zA-Z\s]+$",
+		[RegularExpression(@"[^0-9]+[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]*[a-zA-Z]*",
 							ErrorMessage = "Name can not include numbers")]
 		[Display(Name = "First name")]
 		public string FirstName { get; set; }
 
 		[Required]
-		[RegularExpression(@"^[a-zA-Z\s]+$",
+		[RegularExpression(@"[^0-9]+[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]*[a-zA-Z]*",
 							ErrorMessage = "Name can not include numbers")]
 		[Display(Name = "Last name")]
 		public string LastName { get; set; }
