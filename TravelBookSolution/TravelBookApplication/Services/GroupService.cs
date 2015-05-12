@@ -108,7 +108,7 @@ namespace TravelBookApplication.Services
             }
         }
 
-        internal List<UserContent> GetNewsfeedItemsForGroup(int groupId)
+        public List<UserContent> GetNewsfeedItemsForGroup(int groupId)
         {
             var groupContent = (from content in db.Content
                                 where content.GroupId == groupId
@@ -116,6 +116,53 @@ namespace TravelBookApplication.Services
                                 select content).ToList();
 
             return groupContent;
+        }
+
+        public List<MemberRequest> GetMemberRequestsForGroup( int id )
+        {
+            var requests = (from request in db.MemberRequests
+                            where request.GroupId == id
+                            select request).ToList();
+
+            return requests;
+        }
+
+        public List<Membership> GetMembershipsForGroup( int id)
+        {
+            var memberships = (from membership in db.Memberships
+                               where membership.GroupId == id
+                               select membership).ToList();
+
+            return memberships;
+        }
+
+        public void DeleteMemberRequestFromUser( int groupId, string userId )
+        {
+            var request = (from requests in db.MemberRequests
+                           where requests.GroupId == groupId &&
+                           requests.UserId == userId
+                           select requests).SingleOrDefault();
+
+            if(request != null)
+            {
+                db.MemberRequests.Remove(request);
+                db.SaveChanges();
+            }
+        }
+
+        public void CreateMembership( int groupId, string userId)
+        {
+            ApplicationUser user = UserService.Service.GetUserById(userId);
+            Group group = GetGroupById(groupId);
+            Membership membership = new Membership
+            {
+                User = user,
+                Group = group
+            };
+
+            DeleteMemberRequestFromUser(groupId, userId);
+            db.Memberships.Add(membership);
+            db.SaveChanges();
         }
     }
 }

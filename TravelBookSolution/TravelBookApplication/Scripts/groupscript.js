@@ -6,16 +6,22 @@ $(document).ready(function () {
     var errormessage = $("#group-name-error");
     var groupname = $("#group-name");
     var joinwidgets = $(".join-widget");
+    var groupacceptwidgets = $(".memberlisting-widget.accept-widget");
+    var groupdeclinewidgets = $(".memberlisting-widget.decline-widget");
+    var friendaddbutton = $(".member-add-button");
+    var groupId = $("#group-id").val();
 
     button.on("click", function () {
         createmodal.modal("show");
     });
 
     joinwidgets.click(function () {
-        var groupid = $(this).parents(".group-widgets").children("input.group-id").val();
+        var widget = $(this);
+        var groupid = $(widget).parents(".group-widgets").children("input.group-id").val();
 
         $.post("/Group/SendRequestToGroup", { groupId: groupid }, function (event) {
-            alert("request sent");
+            $(widget).hide();
+            $(widget).parents(".group-widgets").children(".member-status").removeClass("hidden");
         })
     })
 
@@ -30,5 +36,17 @@ $(document).ready(function () {
         {
             errormessage.html("");
         }
+    })
+
+    groupacceptwidgets.click(function (event) {
+        var widget = $(this);
+        event.preventDefault();
+        var userId = $(this).parents(".request-widgets").children("input").val();
+        
+        $.post("/Group/AcceptMemberRequestFromUser", { groupId : groupId, userId : userId  }, function (data) {
+            var item = $(widget).parents(".memberlisting-item");
+            item.appendTo("#members-section");
+            $(item).children(".request-widgets").remove();
+        });
     })
 })

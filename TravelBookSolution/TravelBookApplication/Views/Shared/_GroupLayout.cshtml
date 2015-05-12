@@ -9,10 +9,11 @@
         <hr />
         <nav>
             <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="#">Wall</a></li>
+                <li role="presentation">@Html.ActionLink("Wall", "GroupWall", "Group", new { id = Model.GroupDisplayed.Id }, new { })</li>
                 <li role="presentation"><a href="#">Images</a></li>
                 <li role="presentation"><a href="#">Stories</a></li>
-                <li role="presentation"><a href="#">Members</a></li></ul>
+                <li role="presentation">@Html.ActionLink("Members", "GroupMembers", "Group", new { id = Model.GroupDisplayed.Id }, new { })</li>
+            </ul>
         </nav>
     </div>
     <div id="group-body">

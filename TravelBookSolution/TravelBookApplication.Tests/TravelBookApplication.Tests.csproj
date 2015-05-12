@@ -106,7 +106,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mock\AlbumRepo.cs" />
     <Compile Include="Mock\MockAlbumRepository.cs" />
     <Compile Include="Mock\MockCommentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

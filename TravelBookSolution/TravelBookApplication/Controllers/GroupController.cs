@@ -39,7 +39,17 @@ namespace TravelBookApplication.Controllers
                 return View("GroupWall", model);
             }
 
-            return RedirectToAction("Index", "Home", new { });
+            return RedirectToAction("GroupList");
+        }
+
+        public ActionResult GroupMembers(int id)
+        {
+            MemberListingViewModel model = new MemberListingViewModel();
+            model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
+            model.GroupDisplayed = GroupService.Service.GetGroupById(id);
+            model.Requests = GroupService.Service.GetMemberRequestsForGroup(id);
+            model.Members = GroupService.Service.GetMembershipsForGroup(id);
+            return View("GroupMembers", model);
         }
 
         [HttpPost]
@@ -66,6 +76,20 @@ namespace TravelBookApplication.Controllers
         {
             string userId = User.Identity.GetUserId();
             GroupService.Service.addMemberRequestToGroup(groupId.Value, userId);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult AcceptMemberRequestFromUser( int groupId, string userId )
+        {
+            GroupService.Service.CreateMembership(groupId, userId);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult DeclineMemberRequestFromUser( int groupId, string userId )
+        {
+            GroupService.Service.DeleteMemberRequestFromUser(groupId, userId);
             return Json(true);
         }
     }

@@ -192,6 +192,7 @@
     <Compile Include="Models\ViewModels\FriendListViewModel.cs" />
     <Compile Include="Models\ViewModels\GroupListingViewModel.cs" />
     <Compile Include="Models\ViewModels\ImageListingViewModel.cs" />
+    <Compile Include="Models\ViewModels\MemberListingViewModel.cs" />
     <Compile Include="Models\ViewModels\NewsFeedViewModel.cs" />
     <Compile Include="Models\ViewModels\WelcomePageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +277,7 @@
     <Content Include="Views\Shared\_GroupLayout.cshtml" />
     <Content Include="Views\Group\GroupList.cshtml" />
     <Content Include="Views\Group\GroupWall.cshtml" />
+    <Content Include="Views\Group\GroupMembers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,7 @@
         })
     })
 
-    $(".accept-widget").on("click", function () {
+    $(".friendlisting-item .accept-widget").on("click", function () {
         var requestItem = $(this).parents(".friendlisting-item");
         var userId = $(this).parents(".request-widgets").children("input").val();
 
@@ -31,7 +31,7 @@
         });
     });
 
-    $(".decline-widget").on("click", function () {
+    $(".friendlisting-item .decline-widget").on("click", function () {
         var requestItem = $(this).parents(".friendlisting-item");
         var userId = $(this).parents(".request-widgets").children("input").val();
 
