@@ -7,26 +7,26 @@
             <div class="news-item-display">
                 <div class="owner-display-section">
                     <div class="user-picture-slot">
-                        <img src=@Url.Content(Model.ImageDirectory + item.Owner.ProfileImageName) alt="profile image" />
+                        <img src=@Url.Content(Model.ImageDirectory + item.Owner.ProfileImageName) alt="profile image"/>
                     </div>
                     <div class="user-name-section">
-                        <h4>@Html.ActionLink(item.Owner.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h4>
+                        <h4>@Html.ActionLink(item.Owner.FullName, "UserWall", "Profile", new {id = item.Owner.Id}, new {})</h4>
                         <div class="newsfeed-username">
                             @if (item.ProfileUser != null)
                             {
                                 if (item.OwnerId != item.ProfileId && item.ProfileId != Model.ProfileDisplayed.Id && item.ProfileUser != null)
                                 {
-                                    <h6> posted on @Html.ActionLink(item.ProfileUser.FullName, "UserWall", "Profile", new { id = item.ProfileId }, new { }) wall</h6>
+                                    <h6> posted on @Html.ActionLink(item.ProfileUser.FullName, "UserWall", "Profile", new {id = item.ProfileId}, new {}) wall</h6>
                                 }
                             }
                             @if (item.Group != null && Model.GroupDisplayed == null)
                             {
-                                <h6> posted on @Html.ActionLink(item.Group.Name, "GroupWall", "Group", new { id = item.GroupId }, new { }) group wall</h6>
+                                <h6> posted on @Html.ActionLink(item.Group.Name, "GroupWall", "Group", new {id = item.GroupId}, new {}) group wall</h6>
                             }
-                        </div> 
+                        </div>
                     </div>
                 </div>
-                <hr />
+                <hr/>
                 <div class="item-display">
                     @if (item.PostContent != null || item.PhotoName != null)
                     {
@@ -38,12 +38,12 @@
 
                             if (item.PhotoName != null)
                             {
-                                <hr />
+                                <hr/>
                             }
                         }
                         if (item.PhotoName != null)
                         {
-                            <img src=@Url.Content(Model.ImageDirectory + item.PhotoName) alt="content image" class="img-thumbnail" />
+                            <img src=@Url.Content(Model.ImageDirectory + item.PhotoName) alt="content image" class="img-thumbnail"/>
                         }
                     }
                     else if (item.StoryTitle != null && item.StoryName != null)
@@ -53,7 +53,7 @@
 
                 </div>
                 <div class="user-widget-display">
-                    <hr />
+                    <hr/>
                     <div class="left-widgets">
                         <button class="news-item-widget btn btn-primary">Like</button>
                         <span class="number-of-likes"></span>
@@ -64,27 +64,37 @@
                     </div>
                 </div>
             </div>
-            <hr />
+            <hr/>
             <div class="well comment-section hidden">
                 <div class="commenter-display-section">
                     <div class="user-picture-slot">
-                        <img src=@Url.Content(Model.ImageDirectory + item.Owner.ProfileImageName) alt="profile image" />
+                        <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image"/>
                     </div>
                     <div class="comment-form">
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm("SubmitComment", "Content", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
                         {
-                            <input type="text" class="form-control form-inline" />
+                            @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"}) @*Ids to add to the post when submited*@
+                            <input type="hidden" value="@item.Id" name="content-id"/>
+                            @*@Html.HiddenFor(m => m.ProfileDisplayed.Id, new { @Name = "profile-id" })
+                            @Html.HiddenFor(m => m.GroupDisplayed.Id, new { @Name = "group-id" })
+                            @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
+                            @Html.HiddenFor(m => m.ActionName, new { @Name = "action-name" })
+                            @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })*@
+                            <input type="text" class="form-control form-inline" name="comment-text-area" onkeypress="return addComment(event)"/>
                         }
                     </div>
                 </div>
                 <div class="comment-display">
+
                     <!--Comment item go here
-                        where each comment item has
-                        an image of the user and a link
-                        to his profile which displays his name followed
-                        by the comment of the user-->
+                    where each comment item has
+                    an image of the user and a link
+                    to his profile which displays his name followed
+                    by the comment of the user-->
                 </div>
             </div>
         </div>
     }
 </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/CommentDisplay.js")

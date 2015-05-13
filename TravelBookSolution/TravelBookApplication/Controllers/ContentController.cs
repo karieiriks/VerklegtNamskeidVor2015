@@ -83,5 +83,36 @@ namespace TravelBookApplication.Controllers
 
             return RedirectToAction(actionName, controllerName, new { id = routeValue });
         }
+
+		[HttpPost]
+	    public ActionResult SubmitComment(FormCollection formCollection)
+	    {
+		    Comment newComment = new Comment();
+		    string text = formCollection["comment-text-area"];
+
+		    if (!string.IsNullOrEmpty(text))
+		    {
+			    newComment.Body = text;
+		    }
+
+		    if (!String.IsNullOrEmpty(newComment.Body))
+		    {
+				string userId = formCollection["user-id"];
+				string contentId = formCollection["content-id"];
+			
+				ContentService.Service.AddNewComment(newComment, userId, contentId);
+		    }
+
+			string controllerName = formCollection["controller-name"];
+			string actionName = formCollection["action-name"];
+			string routeValue = formCollection["route-value"];
+
+			if (String.IsNullOrEmpty(routeValue))
+			{
+				return RedirectToAction("Index", "Home");
+			}
+
+			return RedirectToAction(actionName, controllerName, new { id = routeValue });
+	    }
     }
 }
