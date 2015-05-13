@@ -19,7 +19,7 @@ namespace TravelBookApplication.Tests.Queries
 
             Assert.AreEqual(repo.Comments.Count, 1);
 
-            var results = ContentService.GetAlbumById(1, repo);
+            var results = ContentService.GetCommentById(1, repo);
             var expectedID = 1;
             Assert.AreEqual(results.ID, expectedID);
         }

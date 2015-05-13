@@ -43,7 +43,7 @@ namespace TravelBookApplication.Services
             db.Content.Add(content);
             db.SaveChanges();
         }
-        public static Comment GetAlbumById(int id, ICommentRepository db)
+        public static Comment GetCommentById(int id, ICommentRepository db)
         {
             return (from x in db.Comments
                     where x.ID == id
