@@ -86,10 +86,5 @@ namespace TravelBookApplication.Controllers
             model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
             return View(model);
         }
-
-        public void Albums(Album album)
-        {
-            UserService.AddAlbum(album, _albumService);
-        }
     }
 }

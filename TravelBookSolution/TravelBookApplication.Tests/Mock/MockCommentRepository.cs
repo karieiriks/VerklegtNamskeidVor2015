@@ -8,7 +8,7 @@ using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Tests.Mock
 {
-    internal class MockCommentRepository : ICommentRepository
+    public class MockCommentRepository : ICommentRepository
     {
         private List<Comment> com = new List<Comment>();
 
