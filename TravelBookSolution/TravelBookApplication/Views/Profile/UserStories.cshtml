@@ -34,23 +34,57 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Create Story</h4>
             </div>
-            @using(Html.BeginForm())
+            @using (Html.BeginForm("SubmitStory", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                for(int i = 0; i < 2; i++)
-                {
-                    <div class="modal-body scene-section">
-                    <div class="scene-container">
-                        <input type="file">
-                    </div>
+                <input type="hidden" id="scene-count" name="scene-count" value="" />
+                <div class="modal-body scene-section">
+                    @for(int i = 0; i < 2; i++)
+                    {@*Mock scenes, should be dynamic*@
+                        <div class="scene-main-wrapper well">
+                            <span class="scene-header">Scene @i</span>
+                            <div class="scene-wrapper">
+                                <label for="file-@i" class="file-status"></label>
+                                @*<input type="file" id="file-@i" name ="file" class="img-input" accept="image/*" style="display:none">*@
+                                @Html.TextBox(string.Format("fileUpload[{0}]", i), null, new { type = "file", id = "file-" + i, @class = "img-input", @style = "display:none" })
+                                <input type="hidden" class="scene-number" value="@i" />
+                                <input type="hidden" id="description-@i" name="description-@i" value=""/>
+                                <div class="scene-container">
+                                    <img id="img-@i" src="@Url.Content("~/Content/Add-Image.png")" class="" />
+                                </div>
+                                <button class="btn btn-default description-button">Add description</button>
+                            </div>
+                        </div>
+                    }
                 </div>   
-                }
                 <div class="modal-footer">
                     <div class="result-modal-footer">
-                        <button type="submit" class="btn btn-primary" >Submit</button>
+                        <button type="submit" id="story-submit" class="btn btn-primary" >Submit</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+
+
+<div id="description-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body description-section">
+                <input type="hidden" class="scene-id" value="" />
+                <textarea id="description-text" class="form-control"></textarea>  
+            </div>
+            <div class="modal-footer">
+                <div class="result-modal-footer">
+                    <button type="button" class="btn btn-primary description-save-button">Ok</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
