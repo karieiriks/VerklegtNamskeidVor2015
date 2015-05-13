@@ -49,30 +49,9 @@ namespace TravelBookApplication.Tests.Queries
         public void GetAlbumCountTest()
         {
             MockAlbumRepository repo = Initialize();
-
-            var results = repo.GetAlbumById(2);
-            var expectedID = 2;
-            var expectedImageCount = 22;
-            Assert.AreEqual(results.ID, expectedID);
-            Assert.AreEqual(results.ImageCount, expectedImageCount);
-
-            results = repo.GetAlbumById(3);
-            expectedID = 3;
-            expectedImageCount = 32;
-            Assert.AreEqual(results.ID, expectedID);
-            Assert.AreEqual(results.ImageCount, expectedImageCount);
-
-            results = repo.GetAlbumById(4);
-            expectedID = 4;
-            expectedImageCount = 6;
-            Assert.AreEqual(results.ID, expectedID);
-            Assert.AreEqual(results.ImageCount, expectedImageCount);
-
-            results = repo.GetAlbumById(5);
-            expectedID = 5;
-            expectedImageCount = 18;
-            Assert.AreEqual(results.ID, expectedID);
-            Assert.AreEqual(results.ImageCount, expectedImageCount);
+            var result = repo.Albums.Count;
+            var expectedResult = 5;
+            Assert.AreEqual(result, expectedResult);
 
         }
 
@@ -93,6 +72,15 @@ namespace TravelBookApplication.Tests.Queries
             var result = repo.GetAlbumByName("spain", repo);
             var expectedResult = "spain";
             Assert.AreEqual(result.Name, expectedResult);
+        }
+
+        [TestMethod]
+        public void GetImagesInAlbumCount()
+        {
+            MockAlbumRepository repo = Initialize();
+            var result = repo.GetAlbumById(3);
+            var expectedResult = 32;
+            Assert.AreEqual(result.ImageCount, expectedResult);
         }
 
     }

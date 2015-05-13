@@ -26,7 +26,7 @@
                         <li>@Html.ActionLink("Messages", "UserNewsfeed", "Home")</li>
                     </ul>
                 
-                @using (Html.BeginForm("SearchForUser", "NewsFeed", FormMethod.Get, new { @class = "navbar-form navbar-left", @role = "search" }))
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-form navbar-left", @role = "search" }))
                 {
                     <div class="form-group">
                         <input id="search-bar" type="text" class="form-control" placeholder="Search">

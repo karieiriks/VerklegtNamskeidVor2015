@@ -48,15 +48,15 @@ namespace TravelBookApplication.Services
 	    {
 		    comment.DateCreated = DateTime.Now;
 		    comment.UserId = userId;
-		    comment.Content = GetContentById(contentId);
+		    comment.Content = GetCommentById(contentId);
 
 		    db.Comments.Add(comment);
 		    db.SaveChanges();
 	    }
 
-	    public UserContent GetContentById(string contentId)
+	    public UserContent GetCommentById(string CommentId)
 	    {
-		    var number = Convert.ToInt32(contentId);
+		    var number = Convert.ToInt32(CommentId);
 
 		    return (from c in db.Content
 					where c.Id == number

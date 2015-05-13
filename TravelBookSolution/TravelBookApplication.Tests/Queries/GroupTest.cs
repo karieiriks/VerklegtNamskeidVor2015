@@ -28,6 +28,7 @@ namespace TravelBookApplication.Tests.Queries
             return repo;
 
         }
+
         [TestMethod]
         public void GroupCountTest()
         {
