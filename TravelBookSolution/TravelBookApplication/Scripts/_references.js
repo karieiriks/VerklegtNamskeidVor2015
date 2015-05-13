@@ -1,5 +1,4 @@
-﻿/// <reference path="jquery-ui-1.11.4.js" />
-/// <autosync enabled="true" />
+﻿/// <autosync enabled="true" />
 /// <reference path="modernizr-2.6.2.js" />
 /// <reference path="jquery-1.10.2.js" />
 /// <reference path="bootstrap.js" />
@@ -15,4 +14,8 @@
 /// <reference path="register.js" />
 /// <reference path="groupscript.js" />
 /// <reference path="registerref.js" />
-/// <reference path="jquery-ui-1.11.4.min.js" />
+<<<<<<< HEAD
+/// <reference path="commentdisplay.js" />
+=======
+/// <reference path="storyscript.js" />
+>>>>>>> 242c8050fc99072230cf04c1fb1ec05bf584d37b

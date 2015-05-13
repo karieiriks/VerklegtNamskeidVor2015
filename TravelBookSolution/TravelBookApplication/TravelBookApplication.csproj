@@ -216,6 +216,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CommentDisplay.js" />
     <Content Include="Scripts\groupscript.js" />
     <Content Include="Scripts\Images.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -235,6 +236,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\searchbar.js" />
     <Content Include="Scripts\SideBarScript.js" />
+    <Content Include="Scripts\storyscript.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -278,6 +280,7 @@
     <Content Include="Views\Group\GroupList.cshtml" />
     <Content Include="Views\Group\GroupWall.cshtml" />
     <Content Include="Views\Group\GroupMembers.cshtml" />
+    <Content Include="Views\Profile\UserStories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

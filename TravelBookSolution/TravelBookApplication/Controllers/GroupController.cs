@@ -63,7 +63,9 @@ namespace TravelBookApplication.Controllers
                 Name = collection["group-name"],
                 IsPublic = isPublic,
                 Members = new List<Membership>(),
-                MembersRequests = new List<MemberRequest>()
+                MembersRequests = new List<MemberRequest>(),
+                GroupContent = new List<UserContent>()
+                
             };
 
             GroupService.Service.AddNewGroup(group, userId);
