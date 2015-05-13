@@ -106,6 +106,19 @@ namespace TravelBookApplication.Models
                 .WithMany()
                 .HasForeignKey(r => r.UserId)
                 .WillCascadeOnDelete(false);
+
+	        modelBuilder.Entity<Comment>().HasKey(c => c.Id);
+	        modelBuilder.Entity<Comment>()
+		        .HasRequired(c => c.User)
+		        .WithMany()
+		        .HasForeignKey(c => c.UserId);
+
+	        modelBuilder.Entity<Comment>()
+		        .HasRequired(c => c.Content)
+		        .WithMany(c => c.Comments)
+		        .HasForeignKey(c => c.ContentId)
+				.WillCascadeOnDelete(false);
+
         }
     }
 }

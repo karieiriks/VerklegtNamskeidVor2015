@@ -175,19 +175,5 @@ namespace TravelBookApplication.Services
                                select userContent).ToList();
             return contentList; 
         }
-
-        public static Album GetAlbumById(int id, IAlbumRepository db)
-        {
-            return (from x in db.Albums
-                where x.ID == id
-                select x).SingleOrDefault();
-            
-        }
-
-        public static Album AddAlbum(Album album, IAlbumRepository db)
-        {
-            db.Save(album);
-            return album;
-        }
     }
 }

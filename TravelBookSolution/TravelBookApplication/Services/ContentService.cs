@@ -4,6 +4,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
 using TravelBookApplication.Models.Repositories;
@@ -43,12 +44,23 @@ namespace TravelBookApplication.Services
             db.Content.Add(content);
             db.SaveChanges();
         }
-        public static Comment GetAlbumById(int id, ICommentRepository db)
-        {
-            return (from x in db.Comments
-                    where x.ID == id
-                    select x).SingleOrDefault();
+	    public void AddNewComment(Comment comment, string userId, string contentId)
+	    {
+		    comment.DateCreated = DateTime.Now;
+		    comment.UserId = userId;
+		    comment.Content = GetCommentById(contentId);
 
-        }
+		    db.Comments.Add(comment);
+		    db.SaveChanges();
+	    }
+
+	    public UserContent GetCommentById(string CommentId)
+	    {
+		    var number = Convert.ToInt32(CommentId);
+
+		    return (from c in db.Content
+					where c.Id == number
+					select c).SingleOrDefault();
+	    }
     }
 }

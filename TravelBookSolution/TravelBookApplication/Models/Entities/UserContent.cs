@@ -24,7 +24,7 @@ namespace TravelBookApplication.Models.Entities
         public virtual ApplicationUser ProfileUser { get; set; }
         [ForeignKey("GroupId")]
         public virtual Group Group { get; set; }
-        //public virtual List<Comment> Comments { get; set; }
+        public virtual List<Comment> Comments { get; set; }
         //public virtual Album Album { get; set; }
         //public virtual List<ApplicationUser> Likers { get; set; }
         //public virtual List<ApplicationUser> Sharers { get; set; }

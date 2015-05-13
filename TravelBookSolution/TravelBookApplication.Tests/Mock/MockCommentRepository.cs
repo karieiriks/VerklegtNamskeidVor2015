@@ -8,7 +8,7 @@ using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Tests.Mock
 {
-    internal class MockCommentRepository : ICommentRepository
+    public class MockCommentRepository : ICommentRepository
     {
         private List<Comment> com = new List<Comment>();
 
@@ -26,10 +26,16 @@ namespace TravelBookApplication.Tests.Mock
         public void Delete(Comment a)
         {
             var s = (from x in Comments
-                     where a.ID == x.ID
+                     where a.Id == x.Id
                      select a).SingleOrDefault();
             Comments.Remove(s);
         }
-        
+         public Comment GetCommentById(int id, ICommentRepository db)
+        {
+            return (from x in db.Comments
+                    where x.Id == id
+                    select x).SingleOrDefault();
+
+        }
     }
 }
