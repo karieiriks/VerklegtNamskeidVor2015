@@ -12,6 +12,8 @@ using Moq;
 using NCrunch.Framework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TravelBookApplication.Models.ViewModels;
+using TravelBookApplication.Tests.Mock;
+
 
 namespace TravelBookApplication.Tests.Controllers
 {
@@ -22,10 +24,11 @@ namespace TravelBookApplication.Tests.Controllers
         //public void test()
         //{
         //    HomeController controller = new HomeController();
+        //    MockUserRepository repo = new MockUserRepository();
+        //    ApplicationUser user = new ApplicationUser { Id = "1", Gender = "Male" };
+        //    repo.Save(user);
+        //    var result = controller. 
 
-        //    var result = controller.test();
-
-        //    Assert.IsFalse(result);
         //}
 
         //[TestMethod]
