@@ -340,6 +340,7 @@ body{
     margin: auto auto 20px;
     max-width: 700px;
     text-align: center;
+    overflow:hidden
 }
 
 #group-cover{
@@ -368,13 +369,11 @@ body{
 .user-info {
     display: inline-block;
     overflow: hidden;
-    max-width: 75%;
 }
 
 .widget-container {
     display: inline-block;
     float: right;
-    max-width: 25%;
 }
 
 .invite-button {
@@ -385,4 +384,51 @@ body{
 
 .result-modal-footer{
     text-align: center;
+}
+
+.added-button, .invite-button {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+    font-size: 10px;
+}
+
+.group-name {
+    overflow: hidden;
+}
+
+
+/*new*/
+
+.user-name-section {
+    display: inline-block;
+    overflow: hidden;
+    height: 50px;
+    max-width: 120px;
+}
+
+.user-picture-slot {
+    float: left;
+    margin-right: 14px;
+    max-width: 50px;
+}
+
+.user-name-section > h6 {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px;
+}
+
+.well{
+    overflow:hidden;
+}
+
+.newsfeeditem-owner-name{
+    max-width:100%
+}
+
+.result-section{
+    max-height: 500px;
+    overflow: auto;
 }

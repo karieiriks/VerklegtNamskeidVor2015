@@ -8,7 +8,7 @@ using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Tests.Mock
 {
-    internal class MockUserRepository : IApplicationUserRepository
+     public class MockUserRepository : IApplicationUserRepository
     {
         private List<ApplicationUser> use = new List<ApplicationUser>();
 
@@ -39,6 +39,13 @@ namespace TravelBookApplication.Tests.Mock
                         select users).SingleOrDefault();
 
             return user;
+        }
+        public List<ApplicationUser> GetUsersBySubstring(string value, IApplicationUserRepository db)
+        {
+            var users = (from u in db.Users.Where(a => a.FullName.Contains(value))
+                         select u).ToList();
+
+            return users;
         }
 
     }

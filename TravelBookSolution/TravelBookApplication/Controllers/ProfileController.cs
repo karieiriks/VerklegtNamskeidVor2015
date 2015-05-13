@@ -46,6 +46,15 @@ namespace TravelBookApplication.Controllers
             return View(model);
         }
 
+        public ActionResult UserStories(string id)
+        {
+            NewsFeedViewModel model = new NewsFeedViewModel();
+            model.UserDisplayed = UserService.Service.GetUserById(id);
+            model.ProfileDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
+            model.Content = UserService.Service.GetUserImages(id);
+            return View("UserStories", model);
+        }
+
         [HttpPost]
         public ActionResult SendFriendRequestToUser(string toUserId)
         {

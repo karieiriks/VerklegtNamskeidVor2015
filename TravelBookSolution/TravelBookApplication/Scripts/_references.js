@@ -14,4 +14,8 @@
 /// <reference path="register.js" />
 /// <reference path="groupscript.js" />
 /// <reference path="registerref.js" />
+<<<<<<< HEAD
 /// <reference path="commentdisplay.js" />
+=======
+/// <reference path="storyscript.js" />
+>>>>>>> 242c8050fc99072230cf04c1fb1ec05bf584d37b

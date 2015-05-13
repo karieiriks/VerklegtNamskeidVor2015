@@ -1,0 +1,56 @@
+﻿@model TravelBookApplication.Models.ViewModels.NewsFeedViewModel
+
+@{
+    ViewBag.Title = @Model.ProfileDisplayed.FullName + " Stories";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="well">
+    <div class="stories-header">
+        <h2>@ViewBag.Title</h2>
+
+        @if(Model.ProfileDisplayed.Id == Model.UserDisplayed.Id)
+        {
+            <button id="story-create" class="btn btn-primary" >Add Story</button>   
+        }
+    </div>
+    <div class="story-content">
+        @foreach(var story in Model.Content)
+        {@*Using Images at the moment but we should change to story*@
+            <div class="story-wrapper well">
+                <div class="story-info">
+                    <input type="hidden" class="story-id" value="@story.Id">
+                    <a href="#">@story.PhotoName</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="story-create-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Create Story</h4>
+            </div>
+            @using(Html.BeginForm())
+            {
+                for(int i = 0; i < 2; i++)
+                {
+                    <div class="modal-body scene-section">
+                    <div class="scene-container">
+                        <input type="file">
+                    </div>
+                </div>   
+                }
+                <div class="modal-footer">
+                    <div class="result-modal-footer">
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
