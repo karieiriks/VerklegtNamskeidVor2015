@@ -48,19 +48,37 @@ namespace TravelBookApplication.Services
 	    {
 		    comment.DateCreated = DateTime.Now;
 		    comment.UserId = userId;
-		    comment.Content = GetCommentById(contentId);
+		    comment.User = UserService.Service.GetUserById(userId);
+		    comment.Content = GetContentById(contentId);
 
 		    db.Comments.Add(comment);
 		    db.SaveChanges();
 	    }
 
-	    public UserContent GetCommentById(string CommentId)
+	    public UserContent GetContentById(string commentId)
 	    {
-		    var number = Convert.ToInt32(CommentId);
+		    var number = Convert.ToInt32(commentId);
 
 		    return (from c in db.Content
 					where c.Id == number
 					select c).SingleOrDefault();
 	    }
+
+	    public List<Comment> GetCommentsOnPost(int id)
+	    {
+		    var comments = (from c in db.Comments
+							where c.Id == id
+							select c).ToList();
+
+		    return comments;
+	    }
+
+       /* public static Comment GetAlbumById(int id, ICommentRepository db)
+        {
+            return (from x in db.Comments
+                    where x.Id == id
+                    select x).SingleOrDefault();
+
+        }*/
     }
 }

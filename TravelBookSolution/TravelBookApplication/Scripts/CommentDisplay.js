@@ -1,8 +1,18 @@
-﻿$(Document).ready(function() {
+﻿$(document).ready(function () {
     alert("ready");
-    function addComment(e) {
-        if (e.keyCode == 13) {
-            
-        }
-    }
+
+    $("comment-text-area").onkeypress(function addComment(e) {
+        e.preventDefault();
+        var theComment = document.getElementsByName("comment-text-area")[0].value;
+        alert(comment);
+        $.ajax({
+            type: "POST",
+            url: "/Content/SubmitComment",
+            data: { comment: theComment },
+            dataType: "json",
+            success: function(data) {
+                $(".comment-body").html(data);
+            }
+        });
+    });
 });

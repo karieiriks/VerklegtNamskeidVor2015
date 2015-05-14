@@ -16,14 +16,18 @@ namespace TravelBookApplication.Tests.Queries
         public MockGroupRepository Initailize()
         {
             MockGroupRepository repo = new MockGroupRepository();
-            Group gru = new Group { Id = 1, Name = "gayBoyz", MemberCount = 100 };
+            Group gru = new Group { Id = 1, Name = "Heimsreisur", MemberCount = 100, IsPublic = true};
             repo.Save(gru);
-            Group gru2 = new Group { Id = 1231, Name = "gayBoyz", MemberCount = 1002 };
+            Group gru2 = new Group { Id = 1231, Name = "Alicante", MemberCount = 1002, IsPublic = true};
             repo.Save(gru2);
-            Group gru3 = new Group { Id = 453, Name = "NegraStrákar", MemberCount = 1300 };
+            Group gru3 = new Group { Id = 453, Name = "Florida", MemberCount = 1300, IsPublic = true};
             repo.Save(gru3);
-            Group gru4 = new Group { Id = 0, Name = "pedos", MemberCount = 900 };
+            Group gru4 = new Group { Id = 25 , Name = "Alaska", MemberCount = 900, IsPublic = true};
             repo.Save(gru4);
+            Group gru5 = new Group { Id = 4, Name = "Chile", MemberCount = 12, IsPublic = false};
+            repo.Save(gru5);
+            Group gru6 = new Group { Id = 36, Name = "Kína", MemberCount = 86, IsPublic = true};
+            repo.Save(gru6);
 
             return repo;
 
@@ -33,11 +37,20 @@ namespace TravelBookApplication.Tests.Queries
         public void GroupCountTest()
         {
             MockGroupRepository repo = Initailize();
+            var result = repo.Groups.Count;
+            var expectedResult = 6;
+            Assert.AreEqual(result, expectedResult);
+        }
 
-            Assert.AreEqual(repo.Groups.Count, 4);
-            var results = repo.GetGroupById(1);
-            var expected = "gayBoyz";
-            Assert.AreEqual(results.Name, expected);
+        [TestMethod]
+        
+        public void GetGroupByIdTest()
+        {
+            MockGroupRepository repo = Initailize();
+            var results = repo.GetGroupById(453);
+            var expectedResult = "Florida";
+            Assert.AreEqual(results.Name, expectedResult);
         }
     }
 }
+

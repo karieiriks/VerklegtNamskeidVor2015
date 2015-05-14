@@ -73,28 +73,40 @@
                     <div class="comment-form">
                         @using (Html.BeginForm("SubmitComment", "Content", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
                         {
-                            @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"}) @*Ids to add to the post when submited*@
+                            @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"})
                             <input type="hidden" value="@item.Id" name="content-id"/>
-                            @*@Html.HiddenFor(m => m.ProfileDisplayed.Id, new { @Name = "profile-id" })
-                            @Html.HiddenFor(m => m.GroupDisplayed.Id, new { @Name = "group-id" })
                             @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
                             @Html.HiddenFor(m => m.ActionName, new { @Name = "action-name" })
-                            @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })*@
-                            <input type="text" class="form-control form-inline" name="comment-text-area" onkeypress="return addComment(event)"/>
+                            @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })
+                            <input type="text" class="form-control form-inline" name="comment-text-area" onkeypress="addComment(event)"/>
                         }
                     </div>
                 </div>
                 <div class="comment-display">
-
-                    <!--Comment item go here
-                    where each comment item has
-                    an image of the user and a link
-                    to his profile which displays his name followed
-                    by the comment of the user-->
+                    @if (item.Comments != null)
+                    {
+                        foreach (var comment in item.Comments)
+                         {
+                            <hr/>
+                             <div class="comment-wrapper">
+                                 <small class="pull-right" style="font-size: 12px">@comment.DateCreated<span class="glyphicon glyphicon-time pull-right" style="margin-left: 2px"></span></small>
+                                 <div class="comment-user-picture-container">
+                                     <div class="comment-user-picture-slot">
+                                         <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image"/>
+                                     </div>
+                                     <div class="user-name-section newsfeeditem-owner-name">
+                                        <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h6>
+                                     </div>
+                                 </div>
+                                 <span class="comment-body">
+                                        @comment.Body
+                                    </span>
+                             </div>
+                        <hr/>
+                         }
+                    }
                 </div>
             </div>
         </div>
     }
 </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts/CommentDisplay.js")
