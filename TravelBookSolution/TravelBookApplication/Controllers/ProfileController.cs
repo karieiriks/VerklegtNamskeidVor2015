@@ -49,8 +49,8 @@ namespace TravelBookApplication.Controllers
         public ActionResult UserStories(string id)
         {
             NewsFeedViewModel model = new NewsFeedViewModel();
-            model.UserDisplayed = UserService.Service.GetUserById(id);
-            model.ProfileDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
+            model.UserDisplayed = UserService.Service.GetUserById(User.Identity.GetUserId());
+            model.ProfileDisplayed = UserService.Service.GetUserById(id);
             model.Content = UserService.Service.GetUserStories(id);
             return View("UserStories", model);
         }
