@@ -44,7 +44,7 @@ namespace TravelBookApplication.Services
             db.Content.Add(content);
             db.SaveChanges();
         }
-	    public void AddNewComment(Comment comment, string userId, string contentId)
+	    public void AddNewComment(Comment comment, string userId, int contentId)
 	    {
 		    comment.DateCreated = DateTime.Now;
 		    comment.UserId = userId;
@@ -55,19 +55,17 @@ namespace TravelBookApplication.Services
 		    db.SaveChanges();
 	    }
 
-	    public UserContent GetContentById(string commentId)
+	    public UserContent GetContentById(int contentId)
 	    {
-		    var number = Convert.ToInt32(commentId);
-
 		    return (from c in db.Content
-					where c.Id == number
+					where c.Id == contentId
 					select c).SingleOrDefault();
 	    }
 
 	    public List<Comment> GetCommentsOnPost(int id)
 	    {
 		    var comments = (from c in db.Comments
-							where c.Id == id
+							where c.ContentId == id
 							select c).ToList();
 
 		    return comments;

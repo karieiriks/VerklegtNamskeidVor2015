@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using TravelBookApplication.Models;
 using TravelBookApplication.Models.Entities;
 using TravelBookApplication.Services;
 
@@ -122,34 +124,51 @@ namespace TravelBookApplication.Controllers
         }
 
 		[HttpPost]
-	    public ActionResult SubmitComment(FormCollection formCollection)
+	    public ActionResult SubmitComment(Comment item)
 	    {
-		    Comment newComment = new Comment();
-		    string text = formCollection["comment-text-area"];
+		    //Comment newComment = new Comment();
+		    string text = item.Body;
 
 		    if (!string.IsNullOrEmpty(text))
 		    {
-			    newComment.Body = text;
+			    item.Body = text;
 		    }
 
-		    if (!String.IsNullOrEmpty(newComment.Body))
+		    if (!String.IsNullOrEmpty(item.Body))
 		    {
-				string userId = formCollection["user-id"];
-				string contentId = formCollection["content-id"];
-			
-				ContentService.Service.AddNewComment(newComment, userId, contentId);
-		    }
+				string userId = item.UserId;
+				int contentId = item.ContentId;
 
+			    //item.User.FullName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+				ContentService.Service.AddNewComment(item, userId, contentId);
+			    var com = ContentService.Service.GetCommentsOnPost(contentId);
+				List<CommentInfo> commentList = new List<CommentInfo>();
+			    string imageDirectory = Url.Content(ConfigurationManager.AppSettings.Get("ImageDirectory"));
+
+			    foreach (var comment in com)
+			    {
+				    commentList.Add( new CommentInfo
+				    {
+					    Body = comment.Body,
+						FullName = comment.User.FullName,
+						Id = comment.User.Id,
+						ProfileImageName = Path.Combine(imageDirectory, comment.User.ProfileImageName),
+						TimePosted = comment.DateCreated.ToString("dd-MMMM-yy h:mm:ss tt")
+				    });
+			    }
+				return Json(commentList);
+		    }
+			/*
 			string controllerName = formCollection["controller-name"];
 			string actionName = formCollection["action-name"];
 			string routeValue = formCollection["route-value"];
-
+			
 			if (String.IsNullOrEmpty(routeValue))
 			{
 				return RedirectToAction("Index", "Home");
 			}
-
-			return RedirectToAction(actionName, controllerName, new { id = routeValue });
+			*/
+			return Json(item);
 	    }
 
 	    public List<Comment> GetAllComments(int id)

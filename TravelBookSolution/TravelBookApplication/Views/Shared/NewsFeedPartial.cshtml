@@ -78,7 +78,8 @@
                             @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
                             @Html.HiddenFor(m => m.ActionName, new { @Name = "action-name" })
                             @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })
-                            <input type="text" class="form-control form-inline" name="comment-text-area" onkeypress="addComment(event)"/>
+                            //<input type="text" class="form-control form-inline" name="comment-text-area"/>
+                            <textarea class="form-control form-inline" name="comment-text-area"></textarea>
                         }
                     </div>
                 </div>
