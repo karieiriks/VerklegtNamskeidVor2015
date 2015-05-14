@@ -1,5 +1,4 @@
 ﻿
-
 function readURL(input, imgid) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -14,18 +13,38 @@ function readURL(input, imgid) {
 
 $(document).ready(function () {
 
-    createbutton = $("#story-create");
-    createmodal = $("#story-create-modal");
-    descriptionmodal = $("#description-modal");
-    descriptiontitle = $("#description-modal .modal-title");
-    descsave = $(".description-save-button");
+    var createbutton = $("#story-create");
+    var createmodal = $("#story-create-modal");
+    var descriptionmodal = $("#description-modal");
+    var descriptiontitle = $("#description-modal .modal-title");
+    var descsave = $(".description-save-button");
+    var storysection = $(".story-section");
+    var displaymodal = $("#story-display-modal");
+    var addnewscenepanel = $("#add-new-scene-panel");
+    var scenetemplate = $(".scene-template");
+    var addscenessection = $(".scenes-added-section");
+    var sceneCount = $("#scene-count");
+    var storytitle = $("#story-title");
 
-    $(createbutton).click(function(){
+    var clearCreationModal = function () {
+        $(sceneCount).val(0);
+        $(addscenessection).html("");
+        $("#title-error").html("");
+    }
+
+    $(createbutton).click(function () {
+        clearCreationModal();
+
         createmodal.modal("show");
     })
 
-    $(".img-input").change(function () {
-        imgid = $(this).parents(".scene-wrapper").children(".scene-container").children("img").attr("id");
+    $(".img-input").on("change", function () {
+        var wrapper = $(this).parents(".scene-wrapper");
+        var imgid = $(wrapper).find("img").attr("id");
+        $(wrapper).find(".description-button").removeAttr("disabled");
+        var errorstatus = $(this).parents(".scene-main-wrapper").find(".file-error-status");
+        errorstatus.html("");
+        
         readURL(this, imgid);
     })
 
@@ -42,6 +61,7 @@ $(document).ready(function () {
     })
 
     $(descsave).on("click", function () {
+        alert("lol");
         var text = $("#description-text").val();
         var sceneid = $(".scene-id").val();
         var sceneitem = $("#description-" + sceneid).parents(".scene-wrapper");
@@ -49,10 +69,72 @@ $(document).ready(function () {
         $(descriptionmodal).modal("hide");
     });
 
-    $("#story-submit").on("click", function () {
+    $("#story-submit").on("click", function (event) {
 
-        var scenes = $(".scene-section").children(".scene-main-wrapper");
+        if($(storytitle).val() == "" || $(storytitle).val() == null)
+        {
+            event.preventDefault();
+            $("#title-error").html("You must give the story a title");
+        }
 
-        $("#scene-count").val(scenes.length);
+        var inputs = $(addscenessection).find(".img-input");
+        
+        $(inputs).each(function () {
+            if($(this).val() == "" || $(this).val() == null)
+            {
+                event.preventDefault();
+                var errorstatus = $(this).parents(".scene-main-wrapper").find(".file-error-status");
+                errorstatus.html("Please insert an image for the scene");
+            }
+        })
+
+    });
+
+    $(".story-link").on("click", function (event) {
+        event.preventDefault();
+        var item = $(this).parents(".story-wrapper");
+        var storyimg = $(item).children(".story-info").children("img");
+        var displayimg = $(storyimg).clone();
+        displayimg.removeClass("hidden");
+        storysection.html("");
+        displayimg.appendTo(storysection);
+        displaymodal.modal("show");
+    });
+
+    $(addnewscenepanel).on("click", function () {
+        var newscene = $(scenetemplate).clone(true, true);
+        newscene.removeClass("scene-template").removeClass("hidden");
+        var currNumbOfScenes = Number($(sceneCount).val());
+        $(newscene).find(".scene-header").html("Scene " + currNumbOfScenes);
+        $(newscene).find("label").attr({
+            for: "file-" + currNumbOfScenes
+        });
+
+        $(newscene).find("input[type=file]").attr({
+            id: "file-" + currNumbOfScenes,
+            name : "fileUpload[" + currNumbOfScenes + "]"
+        });
+
+        $(newscene).find(".description-input").attr({
+            id: "description-" + currNumbOfScenes,
+            name: "description-" + currNumbOfScenes
+        });
+
+        $(newscene).find("img").attr({
+            id: "img-" + currNumbOfScenes
+        });
+
+        $(newscene).find(".scene-number").val(currNumbOfScenes);
+
+
+        $(newscene).appendTo(addscenessection);
+        currNumbOfScenes = currNumbOfScenes + 1;
+        $(sceneCount).val(currNumbOfScenes);
+    });
+
+    $(".scene-main-wrapper").hover(function () {
+        $(this).css("background-color", "rgba(170, 71, 71, 0.45)");
+    }, function () {
+        $(this).css("background-color", "rgba(255, 255, 255, 0.98)")
     })
-})
+});

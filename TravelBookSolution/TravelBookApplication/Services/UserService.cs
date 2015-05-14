@@ -175,5 +175,14 @@ namespace TravelBookApplication.Services
                                select userContent).ToList();
             return contentList; 
         }
+
+        public List<UserContent> GetUserStories(string userId)
+        {
+            return (from userContent in db.Content
+                    where userContent.OwnerId == userId
+                    && userContent.StoryName != null && userContent.StoryTitle != null
+                    orderby userContent.DateCreated descending
+                    select userContent).ToList();
+        }
     }
 }

@@ -12,7 +12,22 @@ namespace TravelBookApplication.Services
 {
     public class StoryService
     {
-        public FileInfo CreateStory(List<string> texts, List<FileInfo> images, string storyTitle, string storyDirectory)
+        private static StoryService service = null;
+
+        public static StoryService Service
+        {
+            get
+            {
+                if (service == null)
+                {
+                    service = new StoryService();
+                }
+
+                return service;
+            }
+        }
+
+        public FileInfo CreateStory(List<string> texts, List<FileInfo> images, string storyfileName, string storyDirectory)
         {
             int imageWidth = int.Parse(ConfigurationManager.AppSettings.Get("StoryImageWidth"));
 
@@ -72,7 +87,7 @@ namespace TravelBookApplication.Services
                 }
             }
 
-            FileInfo story =  CombineImages(combinedList, Path.Combine(storyDirectory, storyTitle));
+            FileInfo story =  CombineImages(combinedList, Path.Combine(storyDirectory, storyfileName.Replace(" ", "")));
             DeleteFiles(deletionList);
             return story;
         }
@@ -214,7 +229,7 @@ namespace TravelBookApplication.Services
             }
         }
 
-        private string GetNewPathForFile(string path)
+        public string GetNewPathForFile(string path)
         {
             int index = 0;
             string directory = System.IO.Path.GetDirectoryName(path) + "\\",

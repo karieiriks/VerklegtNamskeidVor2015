@@ -10,6 +10,7 @@ namespace TravelBookApplication.Models.ViewModels
     public class BaseViewModel
     {
         private string imageDirectory = ConfigurationManager.AppSettings.Get("ImageDirectory");
+        private string storyDirectory = ConfigurationManager.AppSettings.Get("StoryDirectory");
         public ApplicationUser UserDisplayed { get; set; }
         public ApplicationUser ProfileDisplayed { get; set; }
         public Group GroupDisplayed { get; set; }
@@ -23,10 +24,13 @@ namespace TravelBookApplication.Models.ViewModels
             {
                 return imageDirectory;
             }
+        }
 
-            set
+        public string StoryDirectory 
+        { 
+            get
             {
-                imageDirectory = value;
+                return storyDirectory;
             }
         }
     }
