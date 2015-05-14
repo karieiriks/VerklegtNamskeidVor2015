@@ -97,12 +97,16 @@ namespace TravelBookApplication.Controllers
 
             string storyTitle = formCollection["story-title"];
             StoryService service = new StoryService();
-            FileInfo Story = service.CreateStory(descriptions, imageInfo, storyTitle + ".jpg", storyDirectory);
+            filename = storyTitle.Substring(0 ,Math.Min(storyTitle.Length, 5)) + ".jpg";
 
-            UserContent newContent = new UserContent{
+            FileInfo Story = service.CreateStory(descriptions, imageInfo, filename, storyDirectory);
+
+            UserContent newContent = new UserContent
+            {
                 StoryTitle = storyTitle,
                 StoryName = Path.GetFileName(Story.FullName),
             };
+
             string userId = formCollection["user-id"];
 
             ContentService.Service.AddNewContent(newContent, userId, userId, null);
@@ -145,16 +149,6 @@ namespace TravelBookApplication.Controllers
 			    }
 				return Json(commentList);
 		    }
-			/*
-			string controllerName = formCollection["controller-name"];
-			string actionName = formCollection["action-name"];
-			string routeValue = formCollection["route-value"];
-			
-			if (String.IsNullOrEmpty(routeValue))
-			{
-				return RedirectToAction("Index", "Home");
-			}
-			*/
 			return Json(item);
 	    }
 

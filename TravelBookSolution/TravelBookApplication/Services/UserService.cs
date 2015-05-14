@@ -170,6 +170,7 @@ namespace TravelBookApplication.Services
         {
             var contentList = (from userContent in db.Content
                                where userContent.OwnerId == userId
+                               && userContent.GroupId == null
                                && userContent.PhotoName != null
                                orderby userContent.DateCreated descending
                                select userContent).ToList();

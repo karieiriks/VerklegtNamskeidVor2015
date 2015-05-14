@@ -19,10 +19,12 @@
         @foreach(var story in Model.Content)
         {
             <div class="story-wrapper well">
-                <div class="story-info">
-                    <a href="#" class="story-link">@story.StoryTitle</a>
-                    <img src="@Url.Content(Model.StoryDirectory + story.StoryName)" class="hidden"/>
+                <div class="story-image-container">
+                    <img src="@Url.Content(Model.StoryDirectory + story.StoryName)" alt="story-image" class="img-thumbnail" />
                 </div>
+                <span class="story-title-container">
+                    <a href="#" class="story-link">@story.StoryTitle</a>
+                </span>
             </div>
         }
     </div>

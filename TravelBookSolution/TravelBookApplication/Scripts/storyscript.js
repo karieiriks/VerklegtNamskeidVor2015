@@ -91,12 +91,14 @@ $(document).ready(function () {
 
     $(".story-link").on("click", function (event) {
         event.preventDefault();
+        var title = $(this).html();
         var item = $(this).parents(".story-wrapper");
-        var storyimg = $(item).children(".story-info").children("img");
+        var storyimg = $(item).find("img");
         var displayimg = $(storyimg).clone();
         displayimg.removeClass("hidden");
         storysection.html("");
         displayimg.appendTo(storysection);
+        $(displaymodal).find(".modal-title").html(title);
         displaymodal.modal("show");
     });
 

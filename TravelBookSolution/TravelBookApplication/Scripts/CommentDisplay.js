@@ -3,15 +3,18 @@
         if (event.which === 13) {
             event.preventDefault();
             var contentitem = $(this).parents(".news-item-wrapper");
+            var commentdisplay = $(contentitem).find(".comment-display");
             var theComment = {
-                "Body": $("textarea[name$='comment-text-area']").val(),
-                "ContentId": $("input[name$='content-id']").val(),
-                "UserId": $("input[name$='user-id']").val()
+                "Body": $(contentitem).find("textarea[name$='comment-text-area']").val(),
+                "ContentId": $(contentitem).find("input[name$='content-id']").val(),
+                "UserId": $(contentitem).find("input[name$='user-id']").val()
             }
+
             $.post("/Content/SubmitComment", theComment, function (data) {
-                $("textarea[name$='comment-text-area']").val("");
+                $(contentitem).find("textarea[name$='comment-text-area']").val("");
                 var comments = $(contentitem).find(".comment-wrapper");
                 for (var i = comments.length; i < data.length; i++) {
+                    $("<hr />").appendTo(commentdisplay);
                     var newWrapper = $("<div></div>").addClass("comment-wrapper");
                     // the posting time
                     var newCommentTime = $("<small>" + data[i].TimePosted + "</small>");
@@ -38,7 +41,8 @@
                     var newCommentBody = $("<span>" + data[i].Body + "</span>");
                     $(newCommentBody).appendTo(newWrapper).addClass("comment-body");
 
-                    $(newWrapper).appendTo(".comment-display");
+                    $(newWrapper).appendTo(commentdisplay);
+                    $("<hr />").appendTo(commentdisplay);
                 }
             });
         }

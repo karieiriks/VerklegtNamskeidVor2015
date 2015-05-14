@@ -48,7 +48,14 @@
                     }
                     else if (item.StoryTitle != null && item.StoryName != null)
                     {
-                        <p>Rendering Story</p>
+                        <div class="story-wrapper well">
+                            <div class="story-image-container">
+                                <img src="@Url.Content(Model.StoryDirectory + item.StoryName)" alt="story-image" class="img-thumbnail" />
+                            </div>
+                            <span class="story-title-container">
+                                <a href="#" class="story-link">@item.StoryTitle</a>
+                            </span>
+                        </div>
                     }
 
                 </div>
@@ -71,15 +78,14 @@
                         <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image"/>
                     </div>
                     <div class="comment-form">
-                        @using (Html.BeginForm("SubmitComment", "Content", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                        @using (Html.BeginForm("SubmitComment", "Content", FormMethod.Post, new {@class = "form-horizontal comment-form", role = "form"}))
                         {
                             @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"})
                             <input type="hidden" value="@item.Id" name="content-id"/>
                             @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
                             @Html.HiddenFor(m => m.ActionName, new { @Name = "action-name" })
                             @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })
-                            //<input type="text" class="form-control form-inline" name="comment-text-area"/>
-                            <textarea class="form-control form-inline" name="comment-text-area"></textarea>
+                            <textarea class="form-control comment-text-area" name="comment-text-area" placeholder="Write your comment here..."></textarea>
                         }
                     </div>
                 </div>
@@ -111,3 +117,5 @@
         </div>
     }
 </div>
+
+@Html.Partial("StoryDisplayModal")
