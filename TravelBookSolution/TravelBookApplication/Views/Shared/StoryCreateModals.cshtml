@@ -1,0 +1,90 @@
+﻿
+<div id="story-create-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Create Story</h4>
+            </div>
+            @using (Html.BeginForm("SubmitStory", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" id="scene-count" name="scene-count" value="" />
+                <input type="hidden" id="user-id" name="user-id" value="@Model.UserDisplayed.Id" />
+                <div class="modal-body scene-section">
+                    <div class="story-create-header">
+                        <label for="story-title">Title</label>
+                        <input type="text" id="story-title" name="story-title" class="form-control" />
+                        <span id="title-error"></span>
+                    </div>
+                    <div class="scenes-added-section">
+                    </div>
+                    <div id="add-new-scene-panel" class="well scene-main-wrapper">
+                        <span class="add-scene-title">Add new scene</span>
+                        <div class="scene-wrapper">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="result-modal-footer">
+                        <button type="submit" id="story-submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div id="description-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body description-section">
+                <input type="hidden" class="scene-id" value="" />
+                <textarea id="description-text" class="form-control"></textarea>
+            </div>
+            <div class="modal-footer">
+                <div class="result-modal-footer">
+                    <button type="button" class="btn btn-primary description-save-button">Ok</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="scene-main-wrapper well scene-template hidden">
+    <span class="scene-header"></span>
+    <div class="scene-wrapper">
+        <span class="file-error-status"></span>
+        <label for="" class="file-status"></label>
+        <input type="file" id="" class="img-input" style="display:none"/>
+        <input type="hidden" class="scene-number" value="" />
+        <input type="hidden" id="" name="" class="description-input" value="" />
+        <div class="scene-container">
+            <img id="" src="@Url.Content("~/Content/Add-Image.png")" class="" />
+        </div>
+        <button class="btn btn-default description-button" disabled>Add description</button>
+    </div>
+</div>
+
+
+@*
+<div class="scene-main-wrapper well">
+    <span class="scene-header">Scene @i</span>
+    <div class="scene-wrapper">
+        <label for="file-@i" class="file-status"></label>
+        @Html.TextBox(string.Format("fileUpload[{0}]", i), null, new { type = "file", id = "file-" + i, @class = "img-input", @style = "display:none" })
+        <input type="hidden" class="scene-number" value="@i" />
+        <input type="hidden" id="description-@i" name="description-@i" value="" />
+        <div class="scene-container">
+            <img id="img-@i" src="@Url.Content("~/Content/Add-Image.png")" class="" />
+        </div>
+        <button class="btn btn-default description-button">Add description</button>
+    </div>
+</div>
+*@

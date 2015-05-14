@@ -34,7 +34,7 @@ namespace TravelBookApplication.Controllers
 
                 if (System.IO.File.Exists(path))
                 {
-                    path = GetNewPathForFile(path);
+                    path = StoryService.Service.GetNewPathForFile(path);
                 }
 
                 uploadImage.SaveAs(path);
@@ -87,7 +87,7 @@ namespace TravelBookApplication.Controllers
 
                 if(System.IO.File.Exists(filename))
                 {
-                    filename = GetNewPathForFile(filename);
+                    filename = StoryService.Service.GetNewPathForFile(filename);
                 }
 
                 imageInfo.Add(new FileInfo(filename));
@@ -95,32 +95,19 @@ namespace TravelBookApplication.Controllers
                 index++;
             }
 
+            string storyTitle = formCollection["story-title"];
             StoryService service = new StoryService();
-            FileInfo Story = service.CreateStory(descriptions, imageInfo, "Story.jpg", storyDirectory);
-            return RedirectToAction("Index", "Home");
-        }
+            FileInfo Story = service.CreateStory(descriptions, imageInfo, storyTitle + ".jpg", storyDirectory);
 
-        private string GetNewPathForFile( string path )
-        {
-            int index = 0;
-            string directory = System.IO.Path.GetDirectoryName(path) + "\\",
-                filename = System.IO.Path.GetFileNameWithoutExtension(path),
-                extension = System.IO.Path.GetExtension(path);
+            UserContent newContent = new UserContent{
+                StoryTitle = storyTitle,
+                StoryName = Path.GetFileName(Story.FullName),
+            };
+            string userId = formCollection["user-id"];
 
-            StringBuilder builder = new StringBuilder();
+            ContentService.Service.AddNewContent(newContent, userId, userId, null);
 
-            do
-            {
-                index++;
-                builder.Clear();
-                builder.Append(directory);
-                builder.Append(filename);
-                builder.Append("(" + index + ")");
-                builder.Append(extension);
-                path = builder.ToString();
-            } while (System.IO.File.Exists(String.Format(path)));
-
-            return path;
+            return RedirectToAction("UserStories", "Profile", new { id = userId });
         }
 
 		[HttpPost]

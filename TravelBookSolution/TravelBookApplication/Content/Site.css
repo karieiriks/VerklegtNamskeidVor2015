@@ -254,7 +254,7 @@ input[type="checkbox"].input-validation-error {
     overflow: hidden;
 }
 
-#file-input-error{
+#file-input-error, #title-error, .file-error-status{
     color: red;
 }
 
@@ -307,7 +307,7 @@ body{
     outline: thin dotted #333;
     outline-offset: -2px;
 }
-.group-create {
+.group-create, #story-create {
     position: relative;
     top: 50%;
     transform: translateY(50%);
@@ -493,6 +493,7 @@ span.comment-body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 0;
 }
 
 #story-create-modal .modal-dialog {
@@ -510,12 +511,23 @@ span.comment-body {
 
 .file-status {
     height: 100%;
-    position: absolute;
     width: 100%;
     margin: 0px;
     z-index: 999999;
+    position: absolute;
+    cursor: pointer;
 }
 
+.file-error-status{
+    width : 100%;
+    margin: 0px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 109%);
+    font-size: 15px;
+    top: 50%;
+    z-index: 1;
+}
 
 .scene-wrapper {
     position: relative;
@@ -545,4 +557,44 @@ span.comment-body {
     min-height: 100% !important;
     overflow: auto;
     max-height: 100% !important;
+}
+
+#story-title {
+    display: inline-block;
+}
+
+.story-create-header {
+    margin-bottom: 20px;
+}
+
+.story-section {
+    overflow: auto;
+    max-height: 600px;
+}
+
+#story-display-modal .modal-dialog {
+    width: 800px;
+}
+
+#add-new-scene-panel {
+    max-height: 282px;
+    position: relative;
+    background-color: rgba(175, 175, 248, 0.12);
+    cursor: pointer;
+}
+
+.scenes-added-section {
+    display: inline;
+}
+
+.add-scene-title {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    top: 50%;
+}
+
+.stories-header > h2 {
+    display: inline-block;
 }
