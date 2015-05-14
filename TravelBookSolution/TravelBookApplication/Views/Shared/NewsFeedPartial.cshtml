@@ -78,7 +78,7 @@
                             @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
                             @Html.HiddenFor(m => m.ActionName, new { @Name = "action-name" })
                             @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })
-                            <input type="text" class="form-control form-inline" name="comment-text-area" onkeypress="return addComment(event)"/>
+                            <input type="text" class="form-control form-inline" name="comment-text-area" onkeypress="addComment(event)"/>
                         }
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                                          <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image"/>
                                      </div>
                                      <div class="user-name-section newsfeeditem-owner-name">
-                                         <h6>@Html.ActionLink(Model.UserDisplayed.FullName, "UserWall", "Profile", new {id = item.Owner.Id}, new {})</h6>
+                                        <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h6>
                                      </div>
                                  </div>
                                  <span class="comment-body">
