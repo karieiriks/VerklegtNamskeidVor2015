@@ -8,7 +8,7 @@ using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Tests.Mock
 {
-    class MockGroupRepository : IGroupRepository
+    public class MockGroupRepository : IGroupRepository
     {
         private List<Group> gru = new List<Group>();
 

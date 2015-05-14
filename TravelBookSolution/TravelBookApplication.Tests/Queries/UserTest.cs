@@ -7,7 +7,7 @@ using TravelBookApplication.Tests.Mock;
 namespace TravelBookApplication.Tests.Queries
 {
     [TestClass]
-    public class UnitTest4
+    public class UserTest
     {
         [TestInitialize]
         public MockUserRepository Initialize()
@@ -30,17 +30,21 @@ namespace TravelBookApplication.Tests.Queries
 
             #endregion
         }
+        
         [TestMethod]
-        public void UserTest()
+        public void UserCountTest()
         {
-            // Hérna er rétta virknin
             MockUserRepository repo = Initialize();
-            Assert.AreEqual(repo.Users.Count, 6);
-            var result = repo.GetUserById("1", repo);
-            var expected = "1";
-
+            var expectedCount = 6;
+            Assert.AreEqual(repo.Users.Count, expectedCount);
+        }
+        [TestMethod]
+        public void UserByIdTest()
+        {
+            MockUserRepository repo = Initialize();
+            var result = repo.GetUserById("5", repo);
+            var expected = "5";
             Assert.AreEqual(result.Id, expected);
-            
         }
 
         [TestMethod]
@@ -48,7 +52,7 @@ namespace TravelBookApplication.Tests.Queries
         {
             MockUserRepository repo = Initialize();
             var result = repo.GetUsersBySubstring("Kári", repo);
-            Assert.AreEqual(result.Count, 1);
+                Assert.AreEqual(result.Count, 1);
         }
     }
 }

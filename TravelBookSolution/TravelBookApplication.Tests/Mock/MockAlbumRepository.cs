@@ -8,7 +8,7 @@ using TravelBookApplication.Models.Repositories;
 
 namespace TravelBookApplication.Tests.Mock
 {
-    class MockAlbumRepository : IAlbumRepository
+    public class MockAlbumRepository : IAlbumRepository
     {
         private List<Album> al = new List<Album>();
 
@@ -38,6 +38,28 @@ namespace TravelBookApplication.Tests.Mock
             return (from x in al
                     where x.ID == id
                     select x).SingleOrDefault();
+        }
+
+        public Album GetAlbumById(int id, IAlbumRepository db)
+        {
+            return (from x in db.Albums
+                    where x.ID == id
+                    select x).SingleOrDefault();
+
+        }
+
+        public Album GetAlbumByName(string name, IAlbumRepository db)
+        {
+            return (from x in db.Albums
+                    where x.Name == name
+                    select x).SingleOrDefault();
+
+        }
+
+        public Album AddAlbum(Album album, IAlbumRepository db)
+        {
+            db.Save(album);
+            return album;
         }
     }
 

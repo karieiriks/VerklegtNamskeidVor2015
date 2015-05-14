@@ -31,24 +31,8 @@ namespace TravelBookApplication.Controllers
                 string path = System.IO.Path.Combine(Server.MapPath(imageDirectory), pic);
 
                 if (System.IO.File.Exists(path))
-                {// an image with this name already exists so we need to create a new name for this image
-                    int index = 0;
-                    string directory = System.IO.Path.GetDirectoryName(path) + "\\",
-                        filename = System.IO.Path.GetFileNameWithoutExtension(path),
-                        extension = System.IO.Path.GetExtension(path);
-
-                    StringBuilder builder = new StringBuilder();
-
-                    do
-                    {
-                        index++;
-                        builder.Clear();
-                        builder.Append(directory);
-                        builder.Append(filename);
-                        builder.Append("(" + index + ")");
-                        builder.Append(extension);
-                        path = builder.ToString();
-                    } while (System.IO.File.Exists(String.Format(path)));
+                {
+                    path = GetNewPathForFile(path);
                 }
 
                 uploadImage.SaveAs(path);
@@ -82,6 +66,59 @@ namespace TravelBookApplication.Controllers
             }
 
             return RedirectToAction(actionName, controllerName, new { id = routeValue });
+        }
+
+        [HttpPost]
+        public ActionResult SubmitStory(FormCollection formCollection, IEnumerable<HttpPostedFileBase> fileUpload)
+        {
+            string storyDirectory = Server.MapPath(ConfigurationManager.AppSettings.Get("StoryDirectory"));
+            List<string> descriptions = new List<string>();
+            List<FileInfo> imageInfo = new List<FileInfo>();
+            int index = 0;
+            string filename;
+
+            foreach(var file in fileUpload)
+            {
+                descriptions.Add(formCollection["description-" + index.ToString()]);
+                filename = Path.GetFileName(file.FileName);
+                filename = Path.Combine(storyDirectory, filename);
+
+                if(System.IO.File.Exists(filename))
+                {
+                    filename = GetNewPathForFile(filename);
+                }
+
+                imageInfo.Add(new FileInfo(filename));
+                file.SaveAs(filename);
+                index++;
+            }
+
+            StoryService service = new StoryService();
+            FileInfo Story = service.CreateStory(descriptions, imageInfo, "Story.jpg", storyDirectory);
+            return RedirectToAction("Index", "Home");
+        }
+
+        private string GetNewPathForFile( string path )
+        {
+            int index = 0;
+            string directory = System.IO.Path.GetDirectoryName(path) + "\\",
+                filename = System.IO.Path.GetFileNameWithoutExtension(path),
+                extension = System.IO.Path.GetExtension(path);
+
+            StringBuilder builder = new StringBuilder();
+
+            do
+            {
+                index++;
+                builder.Clear();
+                builder.Append(directory);
+                builder.Append(filename);
+                builder.Append("(" + index + ")");
+                builder.Append(extension);
+                path = builder.ToString();
+            } while (System.IO.File.Exists(String.Format(path)));
+
+            return path;
         }
 
 		[HttpPost]

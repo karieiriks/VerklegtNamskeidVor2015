@@ -112,10 +112,10 @@
     <Compile Include="Mock\MockUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Queries\UnitTest1.cs" />
-    <Compile Include="Queries\UnitTest2.cs" />
-    <Compile Include="Queries\UnitTest3.cs" />
-    <Compile Include="Queries\UnitTest4.cs" />
+    <Compile Include="Queries\AlbumTest.cs" />
+    <Compile Include="Queries\CommentTest.cs" />
+    <Compile Include="Queries\GroupTest.cs" />
+    <Compile Include="Queries\UserTest.cs" />
     <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
