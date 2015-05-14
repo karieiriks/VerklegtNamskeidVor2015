@@ -73,13 +73,11 @@
                     <div class="comment-form">
                         @using (Html.BeginForm("SubmitComment", "Content", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
                         {
-                            @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"}) @*Ids to add to the post when submited*@
+                            @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"})
                             <input type="hidden" value="@item.Id" name="content-id"/>
-                            @*@Html.HiddenFor(m => m.ProfileDisplayed.Id, new { @Name = "profile-id" })
-                            @Html.HiddenFor(m => m.GroupDisplayed.Id, new { @Name = "group-id" })
                             @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
                             @Html.HiddenFor(m => m.ActionName, new { @Name = "action-name" })
-                            @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })*@
+                            @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })
                             <input type="text" class="form-control form-inline" name="comment-text-area" onkeypress="return addComment(event)"/>
                         }
                     </div>
@@ -89,9 +87,10 @@
                     {
                         foreach (var comment in item.Comments)
                          {
+                            <hr/>
                              <div class="comment-wrapper">
                                  <small class="pull-right" style="font-size: 12px">@comment.DateCreated<span class="glyphicon glyphicon-time pull-right" style="margin-left: 2px"></span></small>
-                                 <div class="user-picture-container">
+                                 <div class="comment-user-picture-container">
                                      <div class="comment-user-picture-slot">
                                          <img src=@Url.Content(Model.ImageDirectory + item.Owner.ProfileImageName) alt="profile image"/>
                                      </div>
@@ -99,10 +98,12 @@
                                          <h6>@Html.ActionLink(item.Owner.FullName, "UserWall", "Profile", new {id = item.Owner.Id}, new {})</h6>
                                      </div>
                                  </div>
+                                 <!--<hr/>-->
                                  <span class="comment-body">
                                         @comment.Body
                                     </span>
                              </div>
+                        <hr/>
                          }
                     }
                     <!--Comment item go here
