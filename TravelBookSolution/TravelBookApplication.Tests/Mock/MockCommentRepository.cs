@@ -37,5 +37,14 @@ namespace TravelBookApplication.Tests.Mock
                     select x).SingleOrDefault();
 
         }
+
+        public List<Comment> GetAllCommentsForPost(int contentId, ICommentRepository db)
+        {
+            var commentList = (from x in db.Comments
+                where x.ContentId == contentId
+                select x).ToList();
+
+            return commentList;
+        }
     }
 }

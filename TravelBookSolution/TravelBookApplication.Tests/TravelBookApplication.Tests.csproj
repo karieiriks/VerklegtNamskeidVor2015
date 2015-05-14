@@ -116,7 +116,6 @@
     <Compile Include="Queries\CommentTest.cs" />
     <Compile Include="Queries\GroupTest.cs" />
     <Compile Include="Queries\UserTest.cs" />
-    <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
