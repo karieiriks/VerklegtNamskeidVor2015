@@ -61,7 +61,6 @@ $(document).ready(function () {
     })
 
     $(descsave).on("click", function () {
-        alert("lol");
         var text = $("#description-text").val();
         var sceneid = $(".scene-id").val();
         var sceneitem = $("#description-" + sceneid).parents(".scene-wrapper");
