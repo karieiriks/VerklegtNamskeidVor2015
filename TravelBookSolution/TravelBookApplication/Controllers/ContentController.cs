@@ -114,5 +114,24 @@ namespace TravelBookApplication.Controllers
 
 			return RedirectToAction(actionName, controllerName, new { id = routeValue });
 	    }
+
+	    public List<Comment> GetAllComments(int id)
+	    {
+		    var comments = ContentService.Service.GetCommentsOnPost(id);
+			List<Comment> postComments = new List<Comment>();
+
+		    foreach (var comment in comments)
+		    {
+			    postComments.Add( new Comment
+			    {
+				    Body = comment.Body,
+					ContentId = comment.ContentId,
+					UserId = comment.UserId,
+					DateCreated = comment.DateCreated
+			    });
+				postComments.Add(comment);
+		    }
+		    return postComments;
+	    }
     }
 }

@@ -1,8 +1,4 @@
 ﻿$(Document).ready(function() {
-    alert("ready");
-    function addComment(e) {
-        if (e.keyCode == 13) {
-            
-        }
-    }
+    var id = 
+    $.get("Content/GetAllComments", )
 });

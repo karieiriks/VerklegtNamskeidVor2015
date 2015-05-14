@@ -64,6 +64,15 @@ namespace TravelBookApplication.Services
 					select c).SingleOrDefault();
 	    }
 
+	    public List<Comment> GetCommentsOnPost(int id)
+	    {
+		    var comments = (from c in db.Comments
+							where c.Id == id
+							select c).ToList();
+
+		    return comments;
+	    }
+
        /* public static Comment GetAlbumById(int id, ICommentRepository db)
         {
             return (from x in db.Comments
