@@ -1,17 +1,18 @@
 ﻿@model TravelBookApplication.Models.ViewModels.FriendListViewModel
 
 @{
+    ViewBag.Title = @Model.ProfileDisplayed.FullName + "'s Friends";
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
-@if (Model.UserDisplayed.Id == Model.ProfileDisplayed.Id)
+@if(Model.UserDisplayed.Id == Model.ProfileDisplayed.Id)
 {
     <div class="friendrequests-wrapper well">
         <h2>Friend Requests</h2>
         <hr />
         @if(Model.FriendRequests.Count != 0)
         {
-            foreach (var friendRequest in Model.FriendRequests)
+            foreach(var friendRequest in Model.FriendRequests)
             {
                 <div class="well friendlisting-item">
                     <div class="user-display-section item-listing-user-display-section">
@@ -34,16 +35,15 @@
         {
             <p>You do not have any friend requests</p>   
         }
-
     </div>
 }
 
 <div class="friends-wrapper well">
-    <h2>Friends</h2>
+    <h2>@ViewBag.Title</h2>
     <hr />
     @if(Model.Friends.Count != 0)
     {
-        foreach (var friend in Model.Friends)
+        foreach(var friend in Model.Friends)
         {
             <div class="well friendlisting-item">
                 <div class="user-display-section">

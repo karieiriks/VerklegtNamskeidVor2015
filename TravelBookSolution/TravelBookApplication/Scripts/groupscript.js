@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     var button = $(".group-create");
     var createmodal = $("#group-create-modal");
     var createform = $("#group-create-form");
@@ -29,14 +28,12 @@ $(document).ready(function () {
     })
 
     createform.submit(function (event) {
-        
-        if (groupname.val() == "" || groupname.val() == null)
-        {
+
+        if (groupname.val() == "" || groupname.val() == null) {
             errormessage.html("You must specify a name of the group");
             event.preventDefault();
         }
-        else
-        {
+        else {
             errormessage.html("");
         }
     })
@@ -45,8 +42,8 @@ $(document).ready(function () {
         var widget = $(this);
         event.preventDefault();
         var userId = $(this).parents(".request-widgets").children("input").val();
-        
-        $.post("/Group/AcceptMemberRequestFromUser", { groupId : groupId, userId : userId  }, function (data) {
+
+        $.post("/Group/AcceptMemberRequestFromUser", { groupId: groupId, userId: userId }, function (data) {
             var item = $(widget).parents(".memberlisting-item");
             item.appendTo("#members-section");
             $(item).children(".request-widgets").remove();
@@ -71,7 +68,7 @@ $(document).ready(function () {
             return;
         }
 
-        $.get("/Home/GetFriendListForUser", { userId: userId, groupId : groupId}, function (data) {
+        $.get("/Home/GetFriendListForUser", { userId: userId, groupId: groupId }, function (data) {
 
             var length = Object.keys(data.Friends).length
 
@@ -87,8 +84,7 @@ $(document).ready(function () {
                 var widgetcontainer = $("<div><div>").addClass("widget-container").appendTo(resultitem);
                 var invitebutton = $("<button>Invite</button>").addClass("invite-button btn btn-primary").appendTo(widgetcontainer);
 
-                if (data.Friends[i].isGroupMember == true)
-                {
+                if (data.Friends[i].isGroupMember == true) {
                     $(invitebutton).removeClass("invite-button").addClass("added-button").attr("disabled", true).html("Member");
                 }
 

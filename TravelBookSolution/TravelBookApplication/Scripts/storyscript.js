@@ -1,6 +1,6 @@
 ﻿
 function readURL(input, imgid) {
-    if (input.files && input.files[0]) {
+    if(input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
@@ -13,30 +13,32 @@ function readURL(input, imgid) {
 
 $(document).ready(function () {
 
-    var createbutton = $("#story-create");
-    var createmodal = $("#story-create-modal");
-    var descriptionmodal = $("#description-modal");
-    var descriptiontitle = $("#description-modal .modal-title");
-    var descsave = $(".description-save-button");
-    var storysection = $(".story-section");
-    var displaymodal = $("#story-display-modal");
-    var addnewscenepanel = $("#add-new-scene-panel");
-    var scenetemplate = $(".scene-template");
-    var addscenessection = $(".scenes-added-section");
+    var createButton = $("#story-create");
+    var createModal = $("#story-create-modal");
+    var descriptionModal = $("#description-modal");
+    var descriptionTitle = $("#description-modal .modal-title");
+    var descSave = $(".description-save-button");
+    var storySection = $(".story-section");
+    var displayModal = $("#story-display-modal");
+    var addNewScenePanel = $("#add-new-scene-panel");
+    var sceneTemplate = $(".scene-template");
+    var addScenesSection = $(".scenes-added-section");
     var sceneCount = $("#scene-count");
-    var storytitle = $("#story-title");
+    var storyTitle = $("#story-title");
+    var storySubmitButton = $("#story-submit");
 
     var clearCreationModal = function () {
         $(sceneCount).val(0);
-        $(addscenessection).html("");
-        $(storytitle).val("");
+        $(addScenesSection).html("");
+        $(storyTitle).val("");
         $("#title-error").html("");
+        $(storySubmitButton).attr({ "disabled": true });
     }
 
-    $(createbutton).click(function () {
+    $(createButton).click(function () {
         clearCreationModal();
 
-        createmodal.modal("show");
+        createModal.modal("show");
     })
 
     $(".img-input").on("change", function () {
@@ -56,32 +58,31 @@ $(document).ready(function () {
         var text = $(scene).children("#description-" + scenenumber).val();
         var title = "Scene " + scenenumber;
         $(".description-section").children(".scene-id").val(scenenumber);
-        $(descriptiontitle).html(title);
+        $(descriptionTitle).html(title);
         $(".description-section").children("#description-text").val(text);
-        descriptionmodal.modal("show");
+        descriptionModal.modal("show");
     })
 
-    $(descsave).on("click", function () {
+    $(descSave).on("click", function () {
         var text = $("#description-text").val();
         var sceneid = $(".scene-id").val();
         var sceneitem = $("#description-" + sceneid).parents(".scene-wrapper");
         $(sceneitem).children("#description-" + sceneid).val(text);
-        $(descriptionmodal).modal("hide");
+        $(descriptionModal).modal("hide");
     });
 
     $("#story-submit").on("click", function (event) {
+        $("#title-error").html("");
 
-        if($(storytitle).val() == "" || $(storytitle).val() == null)
-        {
+        if($(storyTitle).val() == "" || $(storyTitle).val() == null) {
             event.preventDefault();
             $("#title-error").html("You must give the story a title");
         }
 
-        var inputs = $(addscenessection).find(".img-input");
+        var inputs = $(addScenesSection).find(".img-input");
         
         $(inputs).each(function () {
-            if($(this).val() == "" || $(this).val() == null)
-            {
+            if($(this).val() == "" || $(this).val() == null) {
                 event.preventDefault();
                 var errorstatus = $(this).parents(".scene-main-wrapper").find(".file-error-status");
                 errorstatus.html("Please insert an image for the scene");
@@ -97,14 +98,14 @@ $(document).ready(function () {
         var storyimg = $(item).find("img");
         var displayimg = $(storyimg).clone();
         displayimg.removeClass("hidden");
-        storysection.html("");
-        displayimg.appendTo(storysection);
-        $(displaymodal).find(".modal-title").html(title);
-        displaymodal.modal("show");
+        storySection.html("");
+        displayimg.appendTo(storySection);
+        $(displayModal).find(".modal-title").html(title);
+        displayModal.modal("show");
     });
 
-    $(addnewscenepanel).on("click", function () {
-        var newscene = $(scenetemplate).clone(true, true);
+    $(addNewScenePanel).on("click", function () {
+        var newscene = $(sceneTemplate).clone(true, true);
         newscene.removeClass("scene-template").removeClass("hidden");
         var currNumbOfScenes = Number($(sceneCount).val());
         $(newscene).find(".scene-header").html("Scene " + currNumbOfScenes);
@@ -129,9 +130,11 @@ $(document).ready(function () {
         $(newscene).find(".scene-number").val(currNumbOfScenes);
 
 
-        $(newscene).appendTo(addscenessection);
+        $(newscene).appendTo(addScenesSection);
         currNumbOfScenes = currNumbOfScenes + 1;
         $(sceneCount).val(currNumbOfScenes);
+
+        $(storySubmitButton).removeAttr("disabled");
     });
 
     $(".scene-main-wrapper").hover(function () {

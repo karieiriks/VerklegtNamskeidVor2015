@@ -47,10 +47,10 @@ namespace TravelBookApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.Email, model.Password);
-                if (user != null)
+                if(user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
@@ -80,7 +80,7 @@ namespace TravelBookApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
 
 	            string str1 = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.FirstName);
@@ -89,10 +89,10 @@ namespace TravelBookApplication.Controllers
                 string ProfileImageName = ConfigurationManager.AppSettings.Get("DefaultProfileImage");
                 var user = new ApplicationUser() { UserName = model.UserName, 
 					DateOfBirth = model.DateOfBirth, Gender = model.Gender, FullName = str1 + " " + str2,
-                 ProfileImageName = ProfileImageName};
+					ProfileImageName = ProfileImageName};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                if(result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("UserNewsFeed", "Home");
@@ -115,7 +115,7 @@ namespace TravelBookApplication.Controllers
         {
             ManageMessageId? message = null;
             IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
-            if (result.Succeeded)
+            if(result.Succeeded)
             {
                 message = ManageMessageId.RemoveLoginSuccess;
             }
@@ -150,12 +150,12 @@ namespace TravelBookApplication.Controllers
             bool hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
             ViewBag.ReturnUrl = Url.Action("Manage");
-            if (hasPassword)
+            if(hasPassword)
             {
-                if (ModelState.IsValid)
+                if(ModelState.IsValid)
                 {
                     IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-                    if (result.Succeeded)
+                    if(result.Succeeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
@@ -169,12 +169,12 @@ namespace TravelBookApplication.Controllers
             {
                 // User does not have a password so remove any validation errors caused by a missing OldPassword field
                 ModelState state = ModelState["OldPassword"];
-                if (state != null)
+                if(state != null)
                 {
                     state.Errors.Clear();
                 }
 
-                if (ModelState.IsValid)
+                if(ModelState.IsValid)
                 {
                     IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
@@ -209,14 +209,14 @@ namespace TravelBookApplication.Controllers
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
+            if(loginInfo == null)
             {
                 return RedirectToAction("Login");
             }
 
             // Sign in the user with this external login provider if the user already has a login
             var user = await UserManager.FindAsync(loginInfo.Login);
-            if (user != null)
+            if(user != null)
             {
                 await SignInAsync(user, isPersistent: false);
                 return RedirectToLocal(returnUrl);
@@ -245,12 +245,12 @@ namespace TravelBookApplication.Controllers
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
-            if (loginInfo == null)
+            if(loginInfo == null)
             {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
-            if (result.Succeeded)
+            if(result.Succeeded)
             {
                 return RedirectToAction("Manage");
             }
@@ -264,12 +264,12 @@ namespace TravelBookApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
+            if(User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Manage");
             }
 
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -323,7 +323,7 @@ namespace TravelBookApplication.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && UserManager != null)
+            if(disposing && UserManager != null)
             {
                 UserManager.Dispose();
                 UserManager = null;
@@ -352,7 +352,7 @@ namespace TravelBookApplication.Controllers
 
         private void AddErrors(IdentityResult result)
         {
-            foreach (var error in result.Errors)
+            foreach(var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
             }
@@ -361,7 +361,7 @@ namespace TravelBookApplication.Controllers
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
+            if(user != null)
             {
                 return user.PasswordHash != null;
             }
@@ -378,7 +378,7 @@ namespace TravelBookApplication.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if(Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }

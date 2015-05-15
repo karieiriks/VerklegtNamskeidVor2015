@@ -6,7 +6,6 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,7 +22,7 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("My Wall", "CurrentUserWall", "Profile")</li>
                         <li>@Html.ActionLink("Groups", "GroupList", "Group")</li>
-                        <li>@Html.ActionLink("Messages", "UserNewsfeed", "Home")</li>
+                        <li>@Html.ActionLink("Messages", "UserNewsfeed", "Home", null ,new { @class = "disabled" })</li>
                     </ul>
                 
                 @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-form navbar-left", @role = "search" }))
@@ -40,6 +39,7 @@
 <div class="container body-content">
     @RenderBody()
 </div>
+
 <!-- search modal-->
 <div class="modal fade" id="my-search-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -51,7 +51,6 @@
             <div class="modal-body">
                 <section id="searchForm">
                     <div id="search-result-area">
-
                     </div>
                 </section>
             </div>

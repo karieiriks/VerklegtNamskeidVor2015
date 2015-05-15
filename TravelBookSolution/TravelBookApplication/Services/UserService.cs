@@ -20,7 +20,7 @@ namespace TravelBookApplication.Services
         {
             get
             {
-                if (service == null)
+                if(service == null)
                 {
                     service = new UserService();
                 }
@@ -47,7 +47,7 @@ namespace TravelBookApplication.Services
 
             var friends = GetFriendsForUser(userId);
 
-            foreach( var friend in friends )
+            foreach(var friend in friends )
             {
                 foreach(var content in friend.Content)
                 {
@@ -60,7 +60,7 @@ namespace TravelBookApplication.Services
 
             var groups = GroupService.Service.GetGroupsForUser(userId);
 
-            foreach( var gr in groups)
+            foreach(var gr in groups)
             {
                 foreach(var content in gr.GroupContent)
                 {

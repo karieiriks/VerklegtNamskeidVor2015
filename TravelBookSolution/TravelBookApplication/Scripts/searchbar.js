@@ -1,25 +1,18 @@
 ﻿$(document).ready(function () {
     $("#search-link").click(function (e) {
-
         e.preventDefault();
-
         var theValue = $("#search-bar").val();
-
-        if (theValue == "")
-        {
+        if (theValue == "") {
             return;
         }
 
         $.get("/Home/Search", { value: theValue }, function (data) {
             $("#search-result-area").html("");
-
             var length = Object.keys(data.searchResults).length;
+            var searchResultContainer = $("<div></div>").addClass("search-result-container");
 
-            var searchresultcontainer = $("<div></div>").addClass("search-result-container");
-
-            if (length == 0)
-            {
-                searchresultcontainer.html("<p>Nothing found</p>");
+            if (length == 0) {
+                searchResultContainer.html("<p>Nothing found</p>");
             }
 
             for (var i = 0; i < length; i++) {
@@ -33,12 +26,13 @@
 
                 $("<h6></h6>").html("<a href='/Profile/UserWall/" + data.searchResults[i].Id + "'>" + data.searchResults[i].FullName + "</a>").appendTo(namecontainer);
 
-                $(searchitem).appendTo(searchresultcontainer);
+                $(searchitem).appendTo(searchResultContainer);
             }
 
-            $(searchresultcontainer).appendTo("#search-result-area");
+            $(searchResultContainer).appendTo("#search-result-area");
 
             $("#my-search-modal").modal("show");
+
         }).fail(function (xhr, errorthrown) {
             console.log("xhr.status: " + xhr.status);
             console.log("xhr.statusText: " + xhr.statusText);
@@ -49,5 +43,9 @@
             console.log("errorThrown: " + errorThrown);
             console.log("xhr.redirect: " + xhr.redirect);
         });
+    });
+
+    $(".disabled").click(function () {
+        return false;
     });
 });

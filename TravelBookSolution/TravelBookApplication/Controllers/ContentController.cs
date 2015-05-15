@@ -21,18 +21,18 @@ namespace TravelBookApplication.Controllers
             UserContent newContent = new UserContent();
             string text = formCollection["post-text-area"];
 
-            if (!string.IsNullOrEmpty(text))
+            if(!string.IsNullOrEmpty(text))
             {
                 newContent.PostContent = text;
             }
 
-            if (uploadImage != null)
+            if(uploadImage != null)
             {
                 string imageDirectory = ConfigurationManager.AppSettings.Get("ImageDirectory");
                 string pic = System.IO.Path.GetFileName(uploadImage.FileName);
                 string path = System.IO.Path.Combine(Server.MapPath(imageDirectory), pic);
 
-                if (System.IO.File.Exists(path))
+                if(System.IO.File.Exists(path))
                 {
                     path = StoryService.Service.GetNewPathForFile(path);
                 }
@@ -41,7 +41,7 @@ namespace TravelBookApplication.Controllers
                 newContent.PhotoName = System.IO.Path.GetFileName(path);
             }
 
-            if (!String.IsNullOrEmpty(newContent.PostContent) || !String.IsNullOrEmpty(newContent.PhotoName))
+            if(!String.IsNullOrEmpty(newContent.PostContent) || !String.IsNullOrEmpty(newContent.PhotoName))
             {
                 string userId = formCollection["user-id"];
                 string profileId = formCollection["profile-id"];
@@ -62,7 +62,7 @@ namespace TravelBookApplication.Controllers
             string actionName = formCollection["action-name"];
             string routeValue = formCollection["route-value"]; 
 
-            if (String.IsNullOrEmpty(routeValue))
+            if(String.IsNullOrEmpty(routeValue))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -117,26 +117,24 @@ namespace TravelBookApplication.Controllers
 		[HttpPost]
 	    public ActionResult SubmitComment(Comment item)
 	    {
-		    //Comment newComment = new Comment();
 		    string text = item.Body;
 
-		    if (!string.IsNullOrEmpty(text))
+		    if(!string.IsNullOrEmpty(text))
 		    {
 			    item.Body = text;
 		    }
 
-		    if (!String.IsNullOrEmpty(item.Body))
+		    if(!String.IsNullOrEmpty(item.Body))
 		    {
 				string userId = item.UserId;
 				int contentId = item.ContentId;
-
 
 				ContentService.Service.AddNewComment(item, userId, contentId);
 			    var com = ContentService.Service.GetCommentsOnPost(contentId);
 				List<CommentInfo> commentList = new List<CommentInfo>();
 			    string imageDirectory = Url.Content(ConfigurationManager.AppSettings.Get("ImageDirectory"));
 
-			    foreach (var comment in com)
+			    foreach(var comment in com)
 			    {
 				    commentList.Add( new CommentInfo
 				    {
@@ -157,7 +155,7 @@ namespace TravelBookApplication.Controllers
 		    var comments = ContentService.Service.GetCommentsOnPost(id);
 			List<Comment> postComments = new List<Comment>();
 
-		    foreach (var comment in comments)
+		    foreach(var comment in comments)
 		    {
 			    postComments.Add( new Comment
 			    {

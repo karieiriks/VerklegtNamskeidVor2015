@@ -705,3 +705,7 @@ span.comment-body {
     overflow: hidden;
     margin-bottom: 5px;
 }
+
+.disabled{
+    cursor:auto;
+}

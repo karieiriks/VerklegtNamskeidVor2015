@@ -25,9 +25,6 @@ namespace TravelBookApplication.Models.Entities
         [ForeignKey("GroupId")]
         public virtual Group Group { get; set; }
         public virtual List<Comment> Comments { get; set; }
-        //public virtual Album Album { get; set; }
-        //public virtual List<ApplicationUser> Likers { get; set; }
-        //public virtual List<ApplicationUser> Sharers { get; set; }
     }
 
     public class ContentComparer : IEqualityComparer<UserContent>

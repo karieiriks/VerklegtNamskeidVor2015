@@ -15,39 +15,30 @@
     })
 
     $(".comment-link").click(function () {
-        var newsitem = $(this).parents(".news-item-wrapper");
-
-        var commentSection = $(newsitem).find(".comment-section");
-
-        if(commentSection.hasClass("hidden"))
-        {
+        var newsItem = $(this).parents(".news-item-wrapper");
+        var commentSection = $(newsItem).find(".comment-section");
+        if(commentSection.hasClass("hidden")) {
             commentSection.removeClass("hidden");
-        }
-        else
-        {
+        } else {
             commentSection.addClass("hidden");
         }
     })
 
     $("#post-image-input").change(function () {
         addFileInputError("");
-        var filename = $(this).val();
-        if (filename == "")
-        {
+        var fileName = $(this).val();
+        if(fileName == "") {
             $("#file-clear").addClass("hidden");
-        }
-        else if ($("#file-clear").hasClass("hidden"))
-        {
+        } else if($("#file-clear").hasClass("hidden")) {
             $("#file-clear").removeClass("hidden");
         }
 
-        $(".file-name-section").html(filename);
+        $(".file-name-section").html(fileName);
 
-        if (filename.length > 150) {
+        if(fileName.length > 150) {
             clearFileInput();
             addFileInputError("This file name is too long");
-        }
-        else if (this.files[0].size > 4000000) {
+        } else if(this.files[0].size > 4000000) {
             clearFileInput();
             addFileInputError("This image is too large");
         }

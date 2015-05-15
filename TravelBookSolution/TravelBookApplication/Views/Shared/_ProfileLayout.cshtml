@@ -16,15 +16,15 @@
             <div class="profile-button-container">
                 @Html.HiddenFor(m => m.ProfileDisplayed.Id, new { id = "profileid", name = "profileid" })
 
-                @if (Model.UserDisplayed.Id == Model.ProfileDisplayed.Id)
+                @if(Model.UserDisplayed.Id == Model.ProfileDisplayed.Id)
                 {
-                    <button id="profile-change-button" class="btn btn-primary">Change Profile</button>
+                    <button id="profile-change-button" class="btn btn-primary" disabled>Change Profile</button>
                 }
-                else if (TravelBookApplication.Services.UserService.Service.HasFriendRequestFromUser(Model.ProfileDisplayed.Id, Model.UserDisplayed.Id))
+                else if(TravelBookApplication.Services.UserService.Service.HasFriendRequestFromUser(Model.ProfileDisplayed.Id, Model.UserDisplayed.Id))
                 {
                     <button id="profile-pending-button" class="btn btn-primary" disabled>Request sent</button>
                 }
-                else if (!TravelBookApplication.Services.UserService.Service.IsFriends(Model.UserDisplayed.Id, Model.ProfileDisplayed.Id))
+                else if(!TravelBookApplication.Services.UserService.Service.IsFriends(Model.UserDisplayed.Id, Model.ProfileDisplayed.Id))
                 {
                     <button id="profile-add-button" class="btn btn-primary">Add to Friends</button>
                 }

@@ -4,16 +4,6 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script>
-        $(function () {
-            $("#tabs").tabs();
-        });
-    </script>*@
-
 <div id="tabs" class="well">
     <ul class="nav nav-pills">
         <li class="active"><a href="#tab1" data-toggle="tab">My Groups</a></li>
@@ -42,7 +32,7 @@
                 <h2>All Groups</h2>
                 <button class="group-create btn btn-primary">Create a Group</button>
             </div>
-            @foreach (var group in Model.AllGroups)
+            @foreach(var group in Model.AllGroups)
             {
                 bool isMember = TravelBookApplication.Services.GroupService.Service.IsMemberOfGroup(Model.UserDisplayed.Id, group.Id);
                 
@@ -61,7 +51,7 @@
                         @group.MemberCount members
                     </div>
                     <div class="group-widgets">
-                        @if (isMember == false)
+                        @if(isMember == false)
                         {
                             if (TravelBookApplication.Services.GroupService.Service.HasMemberRequestFromUser(group.Id, Model.UserDisplayed.Id))
                             {
@@ -76,9 +66,7 @@
                         }
                         else
                         {
-                            
                             <span class="grouplisting-widget member-status">Already a member</span>
-                            
                         }
                     </div>
                 </div>
@@ -87,7 +75,7 @@
     </div>
 </div>
 
-
+<!-- create group modal -->
 <div id="group-create-modal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -95,11 +83,11 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Create a Group</h4>
             </div>
-            @using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { @id = "group-create-form" }))
+            @using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new {@id = "group-create-form"}))
             {
                 <div class="modal-body">
                     <label for="group-name">Group Name</label>
-                    <input type="text" class ="form-control" id="group-name" name="group-name"/>
+                    <input type="text" class="form-control" id="group-name" name="group-name"/>
                     <span id="group-name-error"></span>
                     <input type="radio" id="public" name="visibility" value="1" checked="checked">
                     <label for="public">Public</label>
@@ -111,8 +99,9 @@
                         <button type="submit" class="btn btn-primary">Create</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     </div>
-                </div>   
+                </div>
             }
         </div>
     </div>
 </div>
+<!-- /create group modal -->

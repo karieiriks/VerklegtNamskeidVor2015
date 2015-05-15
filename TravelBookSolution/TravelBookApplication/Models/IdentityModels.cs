@@ -52,7 +52,6 @@ namespace TravelBookApplication.Models
                 .WithRequired(s => s.Owner)
                 .HasForeignKey(s => s.OwnerId);
 
-            //Gæti þurft að laga eftir endurbyggingu gagnagrunns
             modelBuilder.Entity<UserContent>()
                 .HasOptional(s => s.ProfileUser);
 
@@ -118,7 +117,6 @@ namespace TravelBookApplication.Models
 		        .WithMany(c => c.Comments)
 		        .HasForeignKey(c => c.ContentId)
 				.WillCascadeOnDelete(false);
-
         }
     }
 }

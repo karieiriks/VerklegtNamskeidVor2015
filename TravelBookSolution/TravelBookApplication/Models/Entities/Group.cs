@@ -12,6 +12,7 @@ namespace TravelBookApplication.Models.Entities
         public string Name { get; set; }
         public bool IsPublic { get; set; }
         public int MemberCount { get; set; }
+
         public virtual List<Membership> Members { get; set; }
         public virtual List<MemberRequest> MembersRequests { get; set; }
         public virtual List<UserContent> GroupContent { get; set; }

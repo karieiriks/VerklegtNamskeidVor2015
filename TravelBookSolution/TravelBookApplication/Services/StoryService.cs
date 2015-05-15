@@ -18,7 +18,7 @@ namespace TravelBookApplication.Services
         {
             get
             {
-                if (service == null)
+                if(service == null)
                 {
                     service = new StoryService();
                 }
@@ -56,18 +56,18 @@ namespace TravelBookApplication.Services
                 }
             }
 
-            for ( int i = 0; i < images.Count; i++ )
+            for(int i = 0; i < images.Count; i++ )
             {
                 using (Image img = Image.FromFile(images[i].FullName))
                 {
                     deletionList.Add(images[i]);
 
-                    if (img.Width > imageWidth)
+                    if(img.Width > imageWidth)
                     {
                         images[i] = ResizeImageWidth(images[i], imageWidth);
                         deletionList.Add(images[i]);
                     }
-                    else if (img.Width < imageWidth)
+                    else if(img.Width < imageWidth)
                     {
                         images[i] = SetBackgroundToImage(images[i], imageWidth, img.Height);
                         deletionList.Add(images[i]);
@@ -77,7 +77,7 @@ namespace TravelBookApplication.Services
 
             List<FileInfo> combinedList = new List<FileInfo>();
 
-            for ( int i = 0; i < images.Count; i++ )
+            for(int i = 0; i < images.Count; i++ )
             {
                 combinedList.Add(images[i]);
 
@@ -93,7 +93,7 @@ namespace TravelBookApplication.Services
         }
 
         private FileInfo CombineImages(List<FileInfo> files, string finalImagePath)
-        {;
+        {
             if(File.Exists(finalImagePath))
             {
                 finalImagePath = GetNewPathForFile(finalImagePath);
@@ -102,7 +102,7 @@ namespace TravelBookApplication.Services
             List<int> imageWidths = new List<int>();
             int nIndex = 0;
             int height = 0;
-            foreach (FileInfo file in files)
+            foreach(FileInfo file in files)
             {
                 Image img = Image.FromFile(file.FullName);
                 imageWidths.Add(img.Width);
@@ -114,7 +114,7 @@ namespace TravelBookApplication.Services
             Bitmap img3 = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(img3);
             g.Clear(SystemColors.AppWorkspace);
-            foreach (FileInfo file in files)
+            foreach(FileInfo file in files)
             {
                 Image img = Image.FromFile(file.FullName);
                 if (nIndex == 0)
@@ -171,7 +171,7 @@ namespace TravelBookApplication.Services
         {
             Image image = Image.FromFile(fileInfo.FullName);
 
-            if (image.Width == newWidth)
+            if(image.Width == newWidth)
             {
                 image.Dispose();
                 return fileInfo;
@@ -210,7 +210,7 @@ namespace TravelBookApplication.Services
                         int imageWidth = image.Width, imageHeight = image.Height;
                         int xCord = (bgWidth - image.Width) / 2;
                         int yCord = (bgHeight - image.Height) / 2;
-                        graphics.Clear(Color.Black); // Setting background as black
+                        graphics.Clear(Color.Black);
                         graphics.DrawImage(image, new Point(xCord, yCord));
                     }
                 }

@@ -7,10 +7,10 @@
 <div id="member-requests-section" class="well">
     @Html.HiddenFor(m => m.GroupDisplayed.Id, new { @id = "group-id", @Name = "group-id" })
     <h2>Member Requests</h2>
-    @Html.HiddenFor(m => m.UserDisplayed.Id, new { @id = "user-id"})
+    @Html.HiddenFor(m => m.UserDisplayed.Id, new { @id = "user-id" })
     <button class="member-add-button btn btn-primary">Add a friend</button>
     <hr />
-    @if(Model.Requests.Count != 0)
+    @if (Model.Requests.Count != 0)
     {
         foreach (var request in Model.Requests)
         {
@@ -39,7 +39,7 @@
 <div id="members-section" class="well">
     <h2>Members</h2>
     <hr />
-    @foreach(var membership in Model.Members)
+    @foreach (var membership in Model.Members)
     {
         <div class="well memberlisting-item">
             <div class="user-display-section">
@@ -47,10 +47,10 @@
                     <img src=@Url.Content(Model.ImageDirectory + membership.User.ProfileImageName) alt="profile image" />
                 </div>
                 <div class="user-name-section">
-                    <h6>@Html.ActionLink(membership.User.FullName, "UserWall", "Profile", new { id = membership.User.Id}, new { })</h6>
+                    <h6>@Html.ActionLink(membership.User.FullName, "UserWall", "Profile", new { id = membership.User.Id }, new { })</h6>
                 </div>
             </div>
-        </div>   
+        </div>
     }
 </div>
 
@@ -61,13 +61,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Add a friend to Group</h4>
             </div>
-                <div class="modal-body result-section">
+            <div class="modal-body result-section">
+            </div>
+            <div class="modal-footer">
+                <div class="result-modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
-                <div class="modal-footer">
-                    <div class="result-modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
-</div>
+</div>-->

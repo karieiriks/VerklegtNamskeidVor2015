@@ -2,10 +2,6 @@
 
     var profileid = $("#profileid");
 
-    $("#profile-change-button").on("click", function () {
-        alert("Clicked Button");
-    })
-
     $("#profile-add-button").on("click", function () {
         var button = $(this);
 
@@ -22,8 +18,7 @@
         $.post("/Profile/AcceptFriendRequestFromUser", { fromUserId: userId }, function (data) {
             var friendsWrapper = $(".friends-wrapper");
 
-            if ($(friendsWrapper).children(".friendlisting-item").length == 0)
-            {
+            if($(friendsWrapper).children(".friendlisting-item").length == 0) {
                 $(".friends-wrapper p").html("");
             }
             $(requestItem).appendTo(friendsWrapper);
@@ -41,10 +36,9 @@
     });
 
     $(".friendrequests-wrapper").change(function () {
-        var requestitems = $(this).children(".friendlisting-item");
+        var requestItems = $(this).children(".friendlisting-item");
         alert("Change!");
-        if(requestitems.length <= 0)
-        {
+        if(requestItems.length <= 0) {
             $("<p>You have no friend requests</p>").appendTo(this);
         }
     })

@@ -1,7 +1,7 @@
 ﻿@model TravelBookApplication.Models.ViewModels.NewsFeedViewModel
 
 <div class="post-section">
-    @foreach (var item in Model.Content)
+    @foreach(var item in Model.Content)
     {
         <div class="well news-item-wrapper">
             <div class="news-item-display">
@@ -12,14 +12,14 @@
                     <div class="user-name-section newsfeeditem-owner-name">
                         <h4>@Html.ActionLink(item.Owner.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h4>
                         <div class="newsfeed-username">
-                            @if (item.ProfileUser != null)
+                            @if(item.ProfileUser != null)
                             {
-                                if (item.OwnerId != item.ProfileId && item.ProfileId != Model.ProfileDisplayed.Id && item.ProfileUser != null)
+                                if(item.OwnerId != item.ProfileId && item.ProfileId != Model.ProfileDisplayed.Id && item.ProfileUser != null)
                                 {
                                     <h6> posted on @Html.ActionLink(item.ProfileUser.FullName, "UserWall", "Profile", new {id = item.ProfileId}, new {}) wall</h6>
                                 }
                             }
-                            @if (item.Group != null && Model.GroupDisplayed == null)
+                            @if(item.Group != null && Model.GroupDisplayed == null)
                             {
                                 <h6> posted on @Html.ActionLink(item.Group.Name, "GroupWall", "Group", new {id = item.GroupId}, new {}) group wall</h6>
                             }
@@ -28,25 +28,25 @@
                 </div>
                 <hr/>
                 <div class="item-display">
-                    @if (item.PostContent != null || item.PhotoName != null)
+                    @if(item.PostContent != null || item.PhotoName != null)
                     {
-                        if (item.PostContent != null)
+                        if(item.PostContent != null)
                         {
                             <div class="post-text">
                                 <p>@item.PostContent</p>
                             </div>
 
-                            if (item.PhotoName != null)
+                            if(item.PhotoName != null)
                             {
                                 <hr/>
                             }
                         }
-                        if (item.PhotoName != null)
+                        if(item.PhotoName != null)
                         {
                             <img src=@Url.Content(Model.ImageDirectory + item.PhotoName) alt="content image" class="img-thumbnail"/>
                         }
                     }
-                    else if (item.StoryTitle != null && item.StoryName != null)
+                    else if(item.StoryTitle != null && item.StoryName != null)
                     {
                         <div class="story-wrapper well">
                             <div class="story-image-container">
@@ -57,7 +57,6 @@
                             </span>
                         </div>
                     }
-
                 </div>
                 <div class="user-widget-display">
                     <hr/>
@@ -80,6 +79,7 @@
                     <div class="comment-form">
                         @using (Html.BeginForm("SubmitComment", "Content", FormMethod.Post, new {@class = "form-horizontal comment-form", role = "form"}))
                         {
+                            //Id's to add to the comment when submitted
                             @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"})
                             <input type="hidden" value="@item.Id" name="content-id"/>
                             @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
@@ -90,9 +90,9 @@
                     </div>
                 </div>
                 <div class="comment-display">
-                    @if (item.Comments != null)
+                    @if(item.Comments != null)
                     {
-                        foreach (var comment in item.Comments)
+                        foreach(var comment in item.Comments)
                          {
                             <hr/>
                              <div class="comment-wrapper">
