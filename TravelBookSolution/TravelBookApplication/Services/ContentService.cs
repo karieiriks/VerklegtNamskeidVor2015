@@ -62,13 +62,12 @@ namespace TravelBookApplication.Services
 					select c).SingleOrDefault();
 	    }
 
-	    public List<Comment> GetCommentsOnPost(int id)
-	    {
-		    var comments = (from c in db.Comments
-							where c.ContentId == id
-							select c).ToList();
-
-		    return comments;
-	    }
+        public List<Comment> GetCommentsForPost(int postid)
+        {
+            return (from c in db.Comments
+                    where c.ContentId == postid
+                    orderby c.DateCreated
+                    select c).ToList();
+        }
     }
 }

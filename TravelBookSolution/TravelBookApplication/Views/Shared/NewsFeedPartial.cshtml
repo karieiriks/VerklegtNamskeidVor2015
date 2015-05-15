@@ -81,7 +81,7 @@
                         {
                             //Id's to add to the comment when submitted
                             @Html.HiddenFor(m => m.UserDisplayed.Id, new {@Name = "user-id"})
-                            <input type="hidden" value="@item.Id" name="content-id"/>
+                            <input type="hidden" class ="content-id" value="@item.Id" name="content-id"/>
                             @Html.HiddenFor(m => m.ControllerName, new { @Name = "controller-name" })
                             @Html.HiddenFor(m => m.ActionName, new { @Name = "action-name" })
                             @Html.HiddenFor(m => m.RouteValue, new { @Name = "route-value" })
@@ -90,30 +90,6 @@
                     </div>
                 </div>
                 <div class="comment-display">
-                    @if(item.Comments != null)
-                    {
-                        foreach(var comment in item.Comments)
-                         {
-                            <hr/>
-                             <div class="comment-wrapper">
-                                 <div class="comment-header">
-                                     <small class="pull-right" style="font-size: 12px">@comment.DateCreated<span class="glyphicon glyphicon-time pull-right" style="margin-left: 2px"></span></small>
-                                     <div class="comment-user-picture-container">
-                                         <div class="comment-user-picture-slot">
-                                             <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image" />
-                                         </div>
-                                         <div class="user-name-section comment-name-section">
-                                             <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = comment.UserId }, new { })</h6>
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <span class="comment-body">
-                                        @comment.Body
-                                 </span>
-                             </div>
-                            <hr/>
-                         }
-                    }
                 </div>
             </div>
         </div>
@@ -121,22 +97,3 @@
 </div>
 
 @Html.Partial("StoryDisplayModal")
-
-@*
-<hr />
-<div class="comment-wrapper">
-    <small class="pull-right" style="font-size: 12px">@comment.DateCreated<span class="glyphicon glyphicon-time pull-right" style="margin-left: 2px"></span></small>
-    <div class="comment-user-picture-container">
-        <div class="comment-user-picture-slot">
-            <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image" />
-        </div>
-        <div class="user-name-section newsfeeditem-owner-name">
-            <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h6>
-        </div>
-    </div>
-    <span class="comment-body">
-        @comment.Body
-    </span>
-</div>
-<hr />
-*@

@@ -14,5 +14,4 @@
 /// <reference path="register.js" />
 /// <reference path="groupscript.js" />
 /// <reference path="registerref.js" />
-/// <reference path="commentdisplay.js" />
 /// <reference path="storyscript.js" />

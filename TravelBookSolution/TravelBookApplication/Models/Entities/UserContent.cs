@@ -24,19 +24,6 @@ namespace TravelBookApplication.Models.Entities
         public virtual ApplicationUser ProfileUser { get; set; }
         [ForeignKey("GroupId")]
         public virtual Group Group { get; set; }
-        public virtual List<Comment> Comments { get; set; }
-    }
-
-    public class ContentComparer : IEqualityComparer<UserContent>
-    {
-        public bool Equals(UserContent c1, UserContent c2)
-        {
-            return c1.Id == c1.Id;
-        }
-
-        public int GetHashCode(UserContent c)
-        {
-            return c.Id;
-        }
+        public List<Comment> Comments { get; set; }
     }
 }

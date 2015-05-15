@@ -114,7 +114,7 @@ namespace TravelBookApplication.Models
 
 	        modelBuilder.Entity<Comment>()
 		        .HasRequired(c => c.Content)
-		        .WithMany(c => c.Comments)
+		        .WithMany()
 		        .HasForeignKey(c => c.ContentId)
 				.WillCascadeOnDelete(false);
         }

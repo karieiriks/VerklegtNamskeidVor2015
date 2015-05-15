@@ -130,7 +130,7 @@ namespace TravelBookApplication.Controllers
 				int contentId = item.ContentId;
 
 				ContentService.Service.AddNewComment(item, userId, contentId);
-			    var com = ContentService.Service.GetCommentsOnPost(contentId);
+			    var com = ContentService.Service.GetCommentsForPost(contentId);
 				List<CommentInfo> commentList = new List<CommentInfo>();
 			    string imageDirectory = Url.Content(ConfigurationManager.AppSettings.Get("ImageDirectory"));
 
@@ -152,7 +152,7 @@ namespace TravelBookApplication.Controllers
 
 	    public List<Comment> GetAllComments(int id)
 	    {
-		    var comments = ContentService.Service.GetCommentsOnPost(id);
+		    var comments = ContentService.Service.GetCommentsForPost(id);
 			List<Comment> postComments = new List<Comment>();
 
 		    foreach(var comment in comments)
@@ -168,5 +168,29 @@ namespace TravelBookApplication.Controllers
 		    }
 		    return postComments;
 	    }
+
+        [HttpGet]
+        public ActionResult GetAllCommentsOfContent(int id)
+        {
+            var comments = ContentService.Service.GetCommentsForPost(id);
+
+            List<CommentInfo> commentInfo = new List<CommentInfo>();
+
+            string imageDirectory = Url.Content(ConfigurationManager.AppSettings.Get("ImageDirectory"));
+
+            foreach (var comment in comments)
+            {
+                commentInfo.Add(new CommentInfo
+                {
+                    Body = comment.Body,
+                    FullName = comment.User.FullName,
+                    Id = comment.User.Id,
+                    ProfileImageName = Path.Combine(imageDirectory, comment.User.ProfileImageName),
+                    TimePosted = comment.DateCreated.ToString("dd-MMMM-yy h:mm:ss tt")
+                });
+            }
+
+            return Json(commentInfo, JsonRequestBehavior.AllowGet);
+        }
     }
 }
