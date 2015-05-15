@@ -14,11 +14,11 @@
             foreach (var friendRequest in Model.FriendRequests)
             {
                 <div class="well friendlisting-item">
-                    <div class="user-display-section">
-                        <div class="user-picture-slot">
+                    <div class="user-display-section item-listing-user-display-section">
+                        <div class="user-picture-slot item-listin-picture">
                             <img src=@Url.Content(Model.ImageDirectory + friendRequest.ProfileImageName) alt="profile image" />
                         </div>
-                        <div class="user-name-section">
+                        <div class="user-name-section item-listing-name">
                             <h6>@Html.ActionLink(friendRequest.FullName, "UserWall", "Profile", new { id = friendRequest.Id }, new { })</h6>
                         </div>
                     </div>

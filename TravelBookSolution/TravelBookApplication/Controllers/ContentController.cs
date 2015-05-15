@@ -130,7 +130,7 @@ namespace TravelBookApplication.Controllers
 				string userId = item.UserId;
 				int contentId = item.ContentId;
 
-			    //item.User.FullName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+
 				ContentService.Service.AddNewComment(item, userId, contentId);
 			    var com = ContentService.Service.GetCommentsOnPost(contentId);
 				List<CommentInfo> commentList = new List<CommentInfo>();
