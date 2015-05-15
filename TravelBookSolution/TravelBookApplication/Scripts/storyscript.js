@@ -28,7 +28,8 @@ $(document).ready(function () {
 
     var clearCreationModal = function () {
         $(sceneCount).val(0);
-        $(addScenesSection).html("");
+        $(addscenessection).html("");
+        $(storytitle).val("");
         $("#title-error").html("");
     }
 
