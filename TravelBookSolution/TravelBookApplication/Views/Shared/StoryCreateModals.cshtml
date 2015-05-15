@@ -1,5 +1,4 @@
-﻿
-<div id="story-create-modal" class="modal fade">
+﻿<div id="story-create-modal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -35,7 +34,7 @@
     </div>
 </div>
 
-
+<!-- story description modal-->
 <div id="description-modal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -44,7 +43,7 @@
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body description-section">
-                <input type="hidden" class="scene-id" value="" />
+                <input type="hidden" class="scene-id" value=""/>
                 <textarea id="description-text" class="form-control"></textarea>
             </div>
             <div class="modal-footer">
@@ -56,6 +55,7 @@
         </div>
     </div>
 </div>
+<!-- /story description modal-->
 
 <div class="scene-main-wrapper well scene-template hidden">
     <span class="scene-header"></span>
@@ -71,20 +71,3 @@
         <button class="btn btn-default description-button" disabled>Add description</button>
     </div>
 </div>
-
-
-@*
-<div class="scene-main-wrapper well">
-    <span class="scene-header">Scene @i</span>
-    <div class="scene-wrapper">
-        <label for="file-@i" class="file-status"></label>
-        @Html.TextBox(string.Format("fileUpload[{0}]", i), null, new { type = "file", id = "file-" + i, @class = "img-input", @style = "display:none" })
-        <input type="hidden" class="scene-number" value="@i" />
-        <input type="hidden" id="description-@i" name="description-@i" value="" />
-        <div class="scene-container">
-            <img id="img-@i" src="@Url.Content("~/Content/Add-Image.png")" class="" />
-        </div>
-        <button class="btn btn-default description-button">Add description</button>
-    </div>
-</div>
-*@

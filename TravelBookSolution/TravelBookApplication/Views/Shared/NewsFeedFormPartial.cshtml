@@ -1,9 +1,10 @@
 ﻿@model TravelBookApplication.Models.ViewModels.BaseViewModel
 
 <div class="well news-feed-form">
-    @using (Html.BeginForm("SubmitPost", "Content", FormMethod.Post, new { id = "post-form" ,enctype = "multipart/form-data" } ) )
+    @using (Html.BeginForm("SubmitPost", "Content", FormMethod.Post, new { id = "post-form", enctype = "multipart/form-data" }))
     {
-        @Html.HiddenFor(m => m.UserDisplayed.Id, new { @id = "user-id", @Name = "user-id" }) @*Ids to add to the post when submited*@
+        //Id's to add to the post when submitted
+        @Html.HiddenFor(m => m.UserDisplayed.Id, new { @id = "user-id", @Name = "user-id" })
         @Html.HiddenFor(m => m.ProfileDisplayed.Id, new { @id = "profile-id", @Name = "profile-id" })
         @Html.HiddenFor(m => m.GroupDisplayed.Id, new { @id = "group-id", @Name = "group-id" })
         @Html.HiddenFor(m => m.ControllerName, new { @id = "controller-name", @Name = "controller-name"})
@@ -19,7 +20,7 @@
         </div>
         <hr/>
         <div class="news-feed-form-body">
-            <textarea id="post-text-area" class="form-control" name="post-text-area" placeholder="write what is on your mind..."></textarea>
+            <textarea id="post-text-area" class="form-control" name="post-text-area" placeholder="Write what is on your mind..."></textarea>
         </div>
         <hr/>
         <div class="news-feed-form-footer">

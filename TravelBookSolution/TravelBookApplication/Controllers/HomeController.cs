@@ -17,7 +17,6 @@ namespace TravelBookApplication.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-
 		[HttpGet]
         [AllowAnonymous]
 		public ActionResult Index()
@@ -77,12 +76,11 @@ namespace TravelBookApplication.Controllers
                     Id = friend.FriendId,
                     FullName = friend.Friend.FullName,
                     ProfileImageName = ImageDirectory + friend.Friend.ProfileImageName,
-                    isGroupMember = GroupService.Service.IsMemberOfGroup(friend.FriendId, groupid)
+                    IsGroupMember = GroupService.Service.IsMemberOfGroup(friend.FriendId, groupid)
                 };
 
                 friends.Add(info);
             }
-
             return Json(new { Friends = friends}, JsonRequestBehavior.AllowGet);
         }
     }

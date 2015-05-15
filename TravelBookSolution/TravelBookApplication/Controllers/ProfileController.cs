@@ -60,7 +60,7 @@ namespace TravelBookApplication.Controllers
         {
             string fromUserId = User.Identity.GetUserId();
 
-            if (UserService.Service.HasFriendRequestFromUser(toUserId, fromUserId))
+            if(UserService.Service.HasFriendRequestFromUser(toUserId, fromUserId))
             {
                 return Json(true);
             }

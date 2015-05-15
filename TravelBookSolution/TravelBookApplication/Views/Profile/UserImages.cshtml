@@ -1,15 +1,16 @@
 ﻿@model TravelBookApplication.Models.ViewModels.ImageListingViewModel
 
 @{
+    ViewBag.Title = @Model.ProfileDisplayed.FullName + "'s Images";
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
 <div class="userimages-wrapper well">
-    <h2>Images</h2>
+    <h2>@ViewBag.Title</h2>
     <hr />
-    @if (Model.Images.Count != 0)
+    @if(Model.Images.Count != 0)
     {
-        foreach (var images in Model.Images)
+        foreach(var images in Model.Images)
         {
             <div class="userimage-item">
                 <div id="userimage-slot">

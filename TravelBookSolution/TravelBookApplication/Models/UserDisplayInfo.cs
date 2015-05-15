@@ -10,6 +10,6 @@ namespace TravelBookApplication.Models
         public string Id { get; set; }
         public string FullName { get; set; }
         public string ProfileImageName { get; set; }
-        public bool isGroupMember { get; set; }
+        public bool IsGroupMember { get; set; }
     }
 }

@@ -70,13 +70,5 @@ namespace TravelBookApplication.Services
 
 		    return comments;
 	    }
-
-       /* public static Comment GetAlbumById(int id, ICommentRepository db)
-        {
-            return (from x in db.Comments
-                    where x.Id == id
-                    select x).SingleOrDefault();
-
-        }*/
     }
 }

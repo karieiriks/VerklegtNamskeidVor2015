@@ -8,7 +8,7 @@ namespace TravelBookApplication.Models
 {
 	public class CommentInfo : UserDisplayInfo
 	{
-		public string Body  { get; set; }
+		public string Body { get; set; }
 		public string TimePosted { get; set; }
 	}
 }
