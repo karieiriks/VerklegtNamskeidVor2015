@@ -76,7 +76,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 #profile-picture-container {
-    height: 270px;
+
     margin-bottom:10px;
 }
 
@@ -115,7 +115,7 @@ input[type="checkbox"].input-validation-error {
 
 .user-name-section {
     height: 50px;
-    display:inline-block;
+    display:inline;
     overflow: hidden;
 }
 
@@ -637,4 +637,58 @@ span.comment-body {
     max-width: 100%;
     word-wrap: break-word;
     text-align: center;
+}
+
+.stories-header > h2 {
+    max-width: 85%;
+    word-wrap: break-word;
+}
+
+/*new new*/
+
+.user-name-section {
+    overflow: hidden;
+    height: 50px;
+    max-width: 120px;
+    word-wrap: break-word;
+    position: absolute;
+}
+
+.user-name-section > h6 {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px;
+    word-wrap: break-word;
+    max-height: 100%;
+}
+
+#user-picture-container {
+    margin-bottom: 25px;
+    position: relative;
+    word-wrap: break-word;
+    max-height: 50px;
+    overflow: hidden;
+}
+
+.owner-display-section {
+    height: 50px;
+    max-width: 100% !important;
+    position: relative;
+}
+
+.newsfeeditem-owner-name {
+    max-width: 100%;
+}
+
+.item-listing-user-display-section {
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.comment-name-section {
+    position: relative;
+    max-height: 25px;
+    max-width: 270px;
+    overflow: hidden;
 }

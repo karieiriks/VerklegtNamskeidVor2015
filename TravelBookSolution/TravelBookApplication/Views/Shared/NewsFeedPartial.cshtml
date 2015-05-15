@@ -96,20 +96,22 @@
                          {
                             <hr/>
                              <div class="comment-wrapper">
-                                 <small class="pull-right" style="font-size: 12px">@comment.DateCreated<span class="glyphicon glyphicon-time pull-right" style="margin-left: 2px"></span></small>
-                                 <div class="comment-user-picture-container">
-                                     <div class="comment-user-picture-slot">
-                                         <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image"/>
-                                     </div>
-                                     <div class="user-name-section newsfeeditem-owner-name">
-                                        <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h6>
+                                 <div class="comment-header">
+                                     <small class="pull-right" style="font-size: 12px">@comment.DateCreated<span class="glyphicon glyphicon-time pull-right" style="margin-left: 2px"></span></small>
+                                     <div class="comment-user-picture-container">
+                                         <div class="comment-user-picture-slot">
+                                             <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image" />
+                                         </div>
+                                         <div class="user-name-section comment-name-section">
+                                             <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h6>
+                                         </div>
                                      </div>
                                  </div>
                                  <span class="comment-body">
                                         @comment.Body
-                                    </span>
+                                 </span>
                              </div>
-                        <hr/>
+                            <hr/>
                          }
                     }
                 </div>
@@ -119,3 +121,22 @@
 </div>
 
 @Html.Partial("StoryDisplayModal")
+
+@*
+<hr />
+<div class="comment-wrapper">
+    <small class="pull-right" style="font-size: 12px">@comment.DateCreated<span class="glyphicon glyphicon-time pull-right" style="margin-left: 2px"></span></small>
+    <div class="comment-user-picture-container">
+        <div class="comment-user-picture-slot">
+            <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image" />
+        </div>
+        <div class="user-name-section newsfeeditem-owner-name">
+            <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h6>
+        </div>
+    </div>
+    <span class="comment-body">
+        @comment.Body
+    </span>
+</div>
+<hr />
+*@

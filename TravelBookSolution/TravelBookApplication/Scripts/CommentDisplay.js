@@ -16,22 +16,23 @@
                 for (var i = comments.length; i < data.length; i++) {
                     $("<hr />").appendTo(commentdisplay);
                     var newWrapper = $("<div></div>").addClass("comment-wrapper");
+                    var commentHeader = $("<div></div>").addClass("comment-header").appendTo(newWrapper);
                     // the posting time
                     var newCommentTime = $("<small>" + data[i].TimePosted + "</small>");
-                    $(newCommentTime).appendTo(newWrapper).addClass("pull-right");
+                    $(newCommentTime).appendTo(commentHeader).addClass("pull-right");
                     $("<span></span>").attr({
                         style: "margin-left: 2px"
                     }).appendTo(newCommentTime).addClass("pull-right").addClass("glyphicon").addClass("glyphicon-time");
                     // the profile image
                     var newCommentImage = $("<div></div>").addClass("comment-user-picture-container");
-                    $(newCommentImage).appendTo(newWrapper);
+                    $(newCommentImage).appendTo(commentHeader);
                     var imgSlot = $("<div></div>").appendTo(newCommentImage).addClass("comment-user-picture-slot");
                     $("<img/>").attr({
                         src: data[i].ProfileImageName,
                         alt: "ProfileImage"
                     }).appendTo(imgSlot);
                     // the username
-                    var newCommentName = $("<div></div>").addClass("user-name-section").addClass("newsfeed-owner-name");
+                    var newCommentName = $("<div></div>").addClass("user-name-section").addClass("comment-name-section");
                     $(newCommentName).appendTo(newCommentImage);
                     var h6 = $("<h6></h6>").appendTo(newCommentName);
                     $("<a>"+data[i].FullName+"</a>").attr({
