@@ -10,8 +10,8 @@
         <nav>
             <ul class="nav nav-pills">
                 <li role="presentation">@Html.ActionLink("Wall", "GroupWall", "Group", new { id = Model.GroupDisplayed.Id }, new { })</li>
-                <li role="presentation"><a href="#">Images</a></li>
-                <li role="presentation"><a href="#">Stories</a></li>
+                <li role="presentation"><a href="#" class="disabled" >Images</a></li>
+                <li role="presentation"><a href="#" class="disabled" >Stories</a></li>
                 <li role="presentation">@Html.ActionLink("Members", "GroupMembers", "Group", new { id = Model.GroupDisplayed.Id }, new { })</li>
             </ul>
         </nav>
