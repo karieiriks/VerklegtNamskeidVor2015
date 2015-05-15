@@ -90,7 +90,8 @@
             $.post("/Content/SubmitComment", theComment, function (data) {
                 $(contentitem).find("textarea[name$='comment-text-area']").val("");
                 var comments = $(contentitem).find(".comment-wrapper");
-                for (var i = comments.length; i < data.length; i++) {
+                commentdisplay.html("");
+                for (var i = 0; i < data.length; i++) {
                     addCommentToSection(data[i], commentdisplay);
                 }
             });
