@@ -22,7 +22,7 @@
 
                 $("<img/>").attr({ src: data.imageDirectory + data.searchResults[i].ProfileImageName, alt: "Profile Image" }).appendTo(imagecontainer);
 
-                var namecontainer = $("<div></div>").addClass("user-name-section").addClass("search-user-name-section").appendTo(searchitem);
+                var namecontainer = $("<div></div>").addClass("search-user-name-section").appendTo(searchitem);
 
                 $("<h6></h6>").html("<a href='/Profile/UserWall/" + data.searchResults[i].Id + "'>" + data.searchResults[i].FullName + "</a>").appendTo(namecontainer);
 
