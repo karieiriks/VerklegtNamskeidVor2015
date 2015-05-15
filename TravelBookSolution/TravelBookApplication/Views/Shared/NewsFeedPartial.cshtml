@@ -103,7 +103,7 @@
                                              <img src=@Url.Content(Model.ImageDirectory + Model.UserDisplayed.ProfileImageName) alt="profile image" />
                                          </div>
                                          <div class="user-name-section comment-name-section">
-                                             <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = item.Owner.Id }, new { })</h6>
+                                             <h6>@Html.ActionLink(comment.User.FullName, "UserWall", "Profile", new { id = comment.UserId }, new { })</h6>
                                          </div>
                                      </div>
                                  </div>
