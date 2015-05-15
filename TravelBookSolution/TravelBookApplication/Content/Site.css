@@ -692,3 +692,16 @@ span.comment-body {
     max-width: 270px;
     overflow: hidden;
 }
+
+.search-user-name-section {
+    max-width: 100%;
+    display: inline;
+    position: relative;
+}
+
+.search-item {
+    position: relative;
+    height: 50px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
